@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const crypto = require('crypto');
 
 const userSchema = new Schema({
   username: {
@@ -27,7 +28,16 @@ const userSchema = new Schema({
     default: Date.now(),
     required: false,
   },
+  session_cookie: {
+    type: String,
+  },
 });
+
+userSchema.methods.generateSessionCookie = () => {
+  const token = crypto.randomBytes(32).toString('hex');
+  sessionCookie = token;
+  return token;
+};
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   AuthContainer,
@@ -6,10 +6,22 @@ import {
   AuthInputs,
   AuthBtn,
 } from '../../styles/Auth.styled';
+import axios from 'axios';
 
 const RegisterPage = () => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   function onFormSubmit(e) {
+    console.log('Creating account');
     e.preventDefault();
+
+    axios
+      .post('http://localhost:8080/auth/register', {
+        accountData: { username, email, password },
+      })
+      .then((data) => console.log(data));
   }
 
   function onClick(e) {
@@ -29,17 +41,29 @@ const RegisterPage = () => {
           <form id="login" onSubmit={onFormSubmit}>
             <div className="labels" onClick={onClick}>
               <label for="email">EMAIL</label>
-              <AuthInputs type="text" placeholder="john@example.com" />
+              <AuthInputs
+                type="text"
+                placeholder="john@example.com"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="labels" onClick={onClick}>
               <label for="username">USERNAME</label>
-              <AuthInputs type="text" placeholder="john1234" />
+              <AuthInputs
+                type="text"
+                placeholder="john1234"
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <div className="labels" onClick={onClick}>
               <label for="password">PASSWORD</label>
-              <AuthInputs type="text" placeholder="password123" />
+              <AuthInputs
+                type="text"
+                placeholder="password123"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <AuthBtn type="submit" value="LOG IN" />
+            <AuthBtn type="submit" value="REGISTER" />
           </form>
           <p>
             Already have an account?

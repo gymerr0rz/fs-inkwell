@@ -6,17 +6,19 @@ import {
   AuthBtn,
 } from '../../styles/Auth.styled';
 import { Link } from 'react-router-dom';
-
-function onFormSubmit(e) {
-  e.preventDefault();
-}
-
-function onClick(e) {
-  const target = e.currentTarget;
-  target.querySelector('input').focus();
-}
+import axios from 'axios';
 
 const LoginPage = () => {
+  function onFormSubmit(e) {
+    e.preventDefault();
+    axios.post();
+  }
+
+  function onClick(e) {
+    const target = e.currentTarget;
+    target.querySelector('input').focus();
+  }
+
   return (
     <>
       <AuthContainer>
