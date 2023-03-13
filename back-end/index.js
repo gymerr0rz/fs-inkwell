@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 8080;
 const mongoose = require('mongoose');
-const registerRoutes = require('./routes/register');
+const authRoutes = require('./routes/Auth');
 const cors = require('cors');
 
 require('dotenv').config();
@@ -18,7 +18,7 @@ app.use(
   })
 );
 app.use(express.json());
-app.use('/auth/', registerRoutes);
+app.use('/auth/', authRoutes);
 
 app.listen(PORT, () => {
   console.log('Listening on PORT:' + PORT);

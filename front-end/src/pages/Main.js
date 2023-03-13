@@ -9,10 +9,14 @@ const MainPage = () => {
       <MainPageStyle>
         <h1>INKWELL</h1>
         <p>Log in with your INKWELL account to continue.</p>
-        <Link to="/auth/register">
-          <StyledButton>Register</StyledButton>
-          <StyledButton>Log in</StyledButton>
-        </Link>
+        <div>
+          <Link to="/auth/register">
+            <StyledButton>Register</StyledButton>
+          </Link>
+          <Link to="/auth/login">
+            <StyledButton>Log in</StyledButton>
+          </Link>
+        </div>
       </MainPageStyle>
     </>
   );

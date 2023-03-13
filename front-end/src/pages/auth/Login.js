@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import {
   AuthContainer,
   AuthBox,
@@ -9,9 +9,18 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   function onFormSubmit(e) {
+    console.log('Creating account');
     e.preventDefault();
-    axios.post();
+
+    axios
+      .post('http://localhost:8080/auth/login', {
+        accountData: { email, password },
+      })
+      .then((data) => console.log(data));
   }
 
   function onClick(e) {
@@ -28,24 +37,27 @@ const LoginPage = () => {
             Organize your life, boost your productivity - all with our notes and
             Pomodoro app!
           </p>
-          <form
-            action="/login"
-            method="post"
-            id="login"
-            onSubmit={onFormSubmit}
-          >
+          <form id="login" onSubmit={onFormSubmit}>
             <div className="labels" onClick={onClick}>
               <label for="email">EMAIL</label>
-              <AuthInputs type="text" placeholder="john@example.com" />
+              <AuthInputs
+                type="text"
+                placeholder="john@example.com"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="labels" onClick={onClick}>
               <label for="password">PASSWORD</label>
-              <AuthInputs type="text" placeholder="password" />
+              <AuthInputs
+                type="text"
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <AuthBtn type="submit" value="LOG IN" />
+            <AuthBtn type="submit" value="LOGIN" />
           </form>
           <p>
-            Don’t have an account?
+            Don't have an account?
             <b>
               <Link to="/auth/register"> Register!</Link>
             </b>
