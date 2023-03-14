@@ -1,5 +1,7 @@
+import Navbar from '../../components/navbar/Navbar';
+
 const NotesPage = () => {
-  return <h1>Notes Page</h1>;
+  return <Navbar />;
 };
 
 export default NotesPage;
