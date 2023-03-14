@@ -1,6 +1,6 @@
-import { Plus } from 'lucide-react';
 import { NavbarContainer } from '../../styles/navbar/Navbar.styled';
 import NavButton from './buttons/NavButton';
+import NoteButton from './buttons/NoteButton';
 
 const Navbar = () => {
   return (
@@ -9,11 +9,9 @@ const Navbar = () => {
         <div>
           <h1>Inkwell</h1>
           <p>Workspace</p>
-          <button>
-            <Plus color="black" size={20} /> NEW NOTE
-          </button>
+          <NoteButton />
           <div>
-            <NavButton name="Dashboard" icon="Plus" />
+            <NavButton name="Dashboard" icon="Home" />
             <NavButton name="Chat" icon="Mail" />
             <NavButton name="Teams" icon="Users" />
             <NavButton name="Tasks" icon="Check" />
