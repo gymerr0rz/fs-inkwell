@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const NotesViewContainer = styled.div`
+  width: 100%;
+  height: 100%;
   background-color: #121215;
   padding: 50px;
 `;
@@ -49,7 +51,27 @@ const NotesSortButton = styled.button`
   font-size: 12px;
 `;
 
-const NotesCard = styled.div``;
+const NotesCard = styled.div`
+  max-width: 431px;
+  max-height: 405px;
+  padding: 30px;
+  overflow: hidden;
+  word-wrap: break-word;
+  background-color: #151516;
+  border: 1px solid #363535;
+  border-radius: 10px;
+  color: #fff;
+`;
+
+const NotesCardContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+  height: 90%;
+`;
 
 export {
   NotesViewContainer,
@@ -58,4 +80,6 @@ export {
   NotesSearch,
   NotesSearchContainer,
   NotesSortButton,
+  NotesCard,
+  NotesCardContainer,
 };
