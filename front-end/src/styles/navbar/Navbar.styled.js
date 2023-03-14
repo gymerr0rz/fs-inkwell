@@ -28,7 +28,7 @@ const NavbarContainer = styled.div`
   text-align: center;
   flex-direction: column;
   height: 100vh;
-  width: 339px;
+  min-width: 300px !important;
   background-color: #242425;
   h1 {
     color: #fff;

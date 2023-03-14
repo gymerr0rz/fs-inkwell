@@ -4,7 +4,7 @@ const AddNoteBtn = styled.button`
   background-color: #3a3a3a;
   border: 1px solid #484848;
   height: 50px;
-  width: 280px !important;
+  width: 250px !important;
   display: flex;
   justify-content: center;
   align-items: center;
