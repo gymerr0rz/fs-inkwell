@@ -28,27 +28,21 @@ const NotesView = () => {
           </NotesSortButton>
         </NotesSearchContainer>
         <NotesCardContainer>
-          {dummyData.notes.map((a) => {
-            return (
-              <>
-                <NotesCard>
-                  <NotesFlex>
-                    <NotesHeaderText>{a.title}</NotesHeaderText>
-                    <NotesButtons>
-                      <button>
-                        <Edit />
-                      </button>
-                      <button>
-                        <Trash />
-                      </button>
-                    </NotesButtons>
-                  </NotesFlex>
-                  <br />
-                  <CardText>{a.content}</CardText>
-                </NotesCard>
-              </>
-            );
-          })}
+          <NotesCard>
+            <NotesFlex>
+              <NotesHeaderText>a.title</NotesHeaderText>
+              <NotesButtons>
+                <button>
+                  <Edit />
+                </button>
+                <button>
+                  <Trash />
+                </button>
+              </NotesButtons>
+            </NotesFlex>
+            <br />
+            <CardText>a.content</CardText>
+          </NotesCard>
         </NotesCardContainer>
       </NotesViewContainer>
     </>

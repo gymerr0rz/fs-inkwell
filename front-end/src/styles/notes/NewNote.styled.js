@@ -10,11 +10,56 @@ const NewNoteStyled = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
-  width: 90%;
-  height: 90%;
+  width: 50%;
+  height: 70%;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 30px;
 `;
 
-export { NewNoteStyled };
+const NewNoteButton = styled.button`
+  outline: none;
+  border: none;
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: #202123;
+  color: #fff;
+  gap: 5px;
+  cursor: pointer;
+`;
+
+const NewNoteButtonContainer = styled.div`
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const NewNoteInput = styled.textarea`
+  &#content {
+    padding: 25px;
+    min-width: 350px;
+    min-height: 200px;
+    outline: none;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+  }
+  resize: none;
+  &#title {
+    padding: 25px;
+    min-width: 350px;
+    min-height: 50px;
+    outline: none;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+  }
+`;
+
+export { NewNoteStyled, NewNoteButton, NewNoteButtonContainer, NewNoteInput };

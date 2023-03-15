@@ -6,7 +6,7 @@ import NewNote from '../../notes/NewNote';
 const NoteButton = () => {
   const [showNewNote, setShowNewNote] = useState(false);
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     if (showNewNote === true) {
       setShowNewNote(false);
     } else {
@@ -16,7 +16,7 @@ const NoteButton = () => {
 
   return (
     <>
-      <AddNoteBtn onClick={(e) => handleClick(e)}>
+      <AddNoteBtn onClick={handleClick}>
         <Plus fill="white" />
         NEW NOTE
       </AddNoteBtn>

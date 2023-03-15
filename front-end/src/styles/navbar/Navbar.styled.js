@@ -29,7 +29,7 @@ const NavbarContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   min-width: 300px !important;
-  background-color: #242425;
+  background-color: #202123;
   h1 {
     color: #fff;
   }
