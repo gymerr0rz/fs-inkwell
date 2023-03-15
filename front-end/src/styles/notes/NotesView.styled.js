@@ -10,6 +10,7 @@ const NotesViewContainer = styled.div`
 const NotesViewHeadText = styled.h1`
   color: #fff;
   font-weight: 400;
+  margin-bottom: 10px;
 `;
 
 const NotesHeaderText = styled.h1`
@@ -61,7 +62,7 @@ const NotesSortButton = styled.button`
 const NotesCard = styled.div`
   max-width: 431px;
   max-height: 405px;
-  padding: 30px;
+  padding: 20px;
   overflow: hidden;
   word-wrap: break-word;
   background-color: #151516;
@@ -78,6 +79,7 @@ const NotesCardContainer = styled.div`
   margin-top: 20px;
   width: 100%;
   height: 90%;
+  overflow: auto;
 `;
 
 const CardText = styled.p`
@@ -105,9 +107,35 @@ const CardText = styled.p`
   padding: 15px;
   background-color: #29292b;
   border-radius: 10px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   height: 90%;
   overflow: auto;
+`;
+
+const NotesFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const NotesButtons = styled.div`
+  display: flex;
+  gap: 5px;
+  button {
+    background-color: #29292b;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    max-width: 35px;
+    max-height: 35px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+  }
 `;
 
 export {
@@ -120,4 +148,6 @@ export {
   NotesCard,
   NotesCardContainer,
   CardText,
+  NotesFlex,
+  NotesButtons,
 };

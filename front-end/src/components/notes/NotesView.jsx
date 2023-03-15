@@ -1,4 +1,4 @@
-import { SortAsc } from 'lucide-react';
+import { SortAsc, Trash, Edit } from 'lucide-react';
 
 import {
   NotesViewContainer,
@@ -10,6 +10,8 @@ import {
   NotesCard,
   NotesCardContainer,
   CardText,
+  NotesFlex,
+  NotesButtons,
 } from '../../styles/notes/NotesView.styled';
 import dummyData from '../../dummy-data/dummydata.json';
 
@@ -19,7 +21,7 @@ const NotesView = () => {
       <NotesViewContainer>
         <NotesViewHeadText>Notes</NotesViewHeadText>
         <NotesSearchContainer>
-          <NotesSearch type="text" />
+          <NotesSearch type="text" placeholder="Search..." />
           <NotesSortButton>
             <SortAsc size={20} />
             SORT
@@ -30,7 +32,17 @@ const NotesView = () => {
             return (
               <>
                 <NotesCard>
-                  <NotesHeaderText>{a.title}</NotesHeaderText>
+                  <NotesFlex>
+                    <NotesHeaderText>{a.title}</NotesHeaderText>
+                    <NotesButtons>
+                      <button>
+                        <Edit />
+                      </button>
+                      <button>
+                        <Trash />
+                      </button>
+                    </NotesButtons>
+                  </NotesFlex>
                   <br />
                   <CardText>{a.content}</CardText>
                 </NotesCard>

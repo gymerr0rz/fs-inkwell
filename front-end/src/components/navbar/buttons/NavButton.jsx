@@ -3,7 +3,6 @@ import * as icons from 'lucide-react';
 
 const Icon = ({ name }) => {
   const LucideIcon = icons[name];
-  console.log(icons);
 
   return <LucideIcon color="white" size={24} />;
 };
