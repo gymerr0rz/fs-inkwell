@@ -7,10 +7,15 @@ import {
 } from '../../styles/Auth.styled';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+import { useSignIn } from 'react-auth-kit';
+
+// const cookies = new Cookies();
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const signIn = useSignIn();
 
   function onFormSubmit(e) {
     console.log('Creating account');
@@ -20,7 +25,16 @@ const LoginPage = () => {
       .post('http://localhost:8080/auth/login', {
         accountData: { email, password },
       })
-      .then((data) => console.log(data));
+      .then((response) => {
+        const token = response.data.jwt_token;
+        console.log(response.data.user);
+        signIn({
+          token,
+          expiresIn: 3600,
+          tokenType: 'Bearer',
+          authState: { username: response.data.user.username },
+        });
+      });
   }
 
   function onClick(e) {

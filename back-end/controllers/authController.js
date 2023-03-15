@@ -33,6 +33,7 @@ const handle_user = async (req, res) => {
     res.json({
       success: `User ${user.username} is logged in`,
       jwt_token: accessToken,
+      user: user,
     });
   } else {
     res.sendStatus(401);
