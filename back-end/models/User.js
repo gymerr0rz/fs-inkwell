@@ -36,6 +36,16 @@ const userSchema = new Schema({
       },
     },
   ],
+  notes: [
+    {
+      title: {
+        type: String,
+      },
+      content: {
+        type: String,
+      },
+    },
+  ],
 });
 
 const User = mongoose.model('User', userSchema);

@@ -34,6 +34,7 @@ const LoginPage = () => {
           tokenType: 'Bearer',
           authState: { username: response.data.user.username },
         });
+        window.location.pathname = '/app';
       });
   }
 

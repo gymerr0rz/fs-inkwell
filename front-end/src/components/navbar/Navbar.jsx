@@ -12,7 +12,7 @@ const Navbar = () => {
           <p>Workspace</p>
           <NoteButton />
           <div>
-            <Link to="/app/dashboard">
+            <Link to="/app">
               <NavButton name="Dashboard" icon="Home" />
             </Link>
             <Link to="/app/chat">

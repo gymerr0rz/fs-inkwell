@@ -36,7 +36,7 @@ function App() {
           }
         />
         <Route
-          path="/app/dashboard"
+          path="/app"
           element={
             <RequireAuth loginPath="/auth/login">
               <DashboardPage />
