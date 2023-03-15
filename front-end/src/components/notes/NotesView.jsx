@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { SortAsc, Trash, Edit } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import {
   NotesViewContainer,
@@ -13,9 +15,23 @@ import {
   NotesFlex,
   NotesButtons,
 } from '../../styles/notes/NotesView.styled';
-import dummyData from '../../dummy-data/dummydata.json';
+import { useAuthHeader } from 'react-auth-kit';
 
 const NotesView = () => {
+  const [notes, setNotes] = useState([]);
+
+  const header = useAuthHeader();
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = header();
+    axios.get('http://localhost:8080/user/getNotes').then((response) => {
+      const newNotes = response.data;
+      console.log(newNotes);
+      setNotes([...notes, ...newNotes]);
+    });
+  }, []);
+
+  const handleDelete = () => {};
+
   return (
     <>
       <NotesViewContainer>
@@ -28,21 +44,25 @@ const NotesView = () => {
           </NotesSortButton>
         </NotesSearchContainer>
         <NotesCardContainer>
-          <NotesCard>
-            <NotesFlex>
-              <NotesHeaderText>a.title</NotesHeaderText>
-              <NotesButtons>
-                <button>
-                  <Edit />
-                </button>
-                <button>
-                  <Trash />
-                </button>
-              </NotesButtons>
-            </NotesFlex>
-            <br />
-            <CardText>a.content</CardText>
-          </NotesCard>
+          {notes.map((note) => {
+            return (
+              <NotesCard>
+                <NotesFlex>
+                  <NotesHeaderText>{note?.title}</NotesHeaderText>
+                  <NotesButtons>
+                    <button>
+                      <Edit />
+                    </button>
+                    <button onClick={handleDelete}>
+                      <Trash />
+                    </button>
+                  </NotesButtons>
+                </NotesFlex>
+                <br />
+                <CardText>{note?.content}</CardText>
+              </NotesCard>
+            );
+          })}
         </NotesCardContainer>
       </NotesViewContainer>
     </>

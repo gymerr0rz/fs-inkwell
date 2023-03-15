@@ -7,7 +7,6 @@ import {
 } from '../../styles/Auth.styled';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
 import { useSignIn } from 'react-auth-kit';
 
 // const cookies = new Cookies();

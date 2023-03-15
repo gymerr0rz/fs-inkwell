@@ -7,14 +7,17 @@ import {
 } from '../../styles/notes/NewNote.styled';
 import { BookmarkPlus, XCircle } from 'lucide-react';
 import { useState } from 'react';
+import { useAuthHeader } from 'react-auth-kit';
 
 const NewNote = () => {
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null);
 
+  const header = useAuthHeader();
   const handleClick = () => {
+    axios.defaults.headers.common['Authorization'] = header();
     axios
-      .post('http://localhost:8080/user/notes', {
+      .post('http://localhost:8080/user/createNote', {
         title,
         content,
       })
