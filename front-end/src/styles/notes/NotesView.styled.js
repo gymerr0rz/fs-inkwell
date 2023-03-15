@@ -13,7 +13,14 @@ const NotesViewHeadText = styled.h1`
 `;
 
 const NotesHeaderText = styled.h1`
-  font-size: 1rem;
+  ::before {
+    content: '';
+    padding: 1px 15px;
+    background-color: #fff;
+    margin-right: 10px;
+    border-radius: 100%;
+  }
+  font-size: 1.5rem;
   font-weight: 500;
   color: #fff;
 `;
@@ -36,7 +43,7 @@ const NotesSearch = styled.input`
 `;
 
 const NotesSortButton = styled.button`
-  width: 7.5%;
+  min-width: 100px;
   min-height: 45px;
   border-radius: 10px;
   outline: none;
@@ -73,6 +80,36 @@ const NotesCardContainer = styled.div`
   height: 90%;
 `;
 
+const CardText = styled.p`
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #363535;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #113454;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  padding: 15px;
+  background-color: #29292b;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  height: 90%;
+  overflow: auto;
+`;
+
 export {
   NotesViewContainer,
   NotesViewHeadText,
@@ -82,4 +119,5 @@ export {
   NotesSortButton,
   NotesCard,
   NotesCardContainer,
+  CardText,
 };
