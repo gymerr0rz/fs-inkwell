@@ -22,6 +22,8 @@ const NewNote = () => {
         content,
       })
       .then((response) => console.log(response));
+
+    window.location.reload();
   };
 
   return (

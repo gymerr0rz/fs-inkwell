@@ -30,7 +30,16 @@ const NotesView = () => {
     });
   }, []);
 
-  const handleDelete = () => {};
+  const handleDelete = (e) => {
+    const title =
+      e.currentTarget.parentNode.parentNode.querySelector('h1').innerText;
+    axios.defaults.headers.common['Authorization'] = header();
+    axios.delete('http://localhost:8080/user/deleteNote', {
+      data: { title },
+    });
+
+    window.location.reload();
+  };
 
   return (
     <>
