@@ -6,6 +6,7 @@ import {
   NavOpen,
   NavFixed,
   NavClosed,
+  NavNoFixed,
 } from '../../styles/navbar/Navbar.styled';
 import NavButton from './buttons/NavButton';
 import NoteButton from './buttons/NoteButton';
@@ -17,9 +18,9 @@ const Navbar = () => {
   if (!navbar)
     return (
       <>
-        <NavFixed>
+        <NavNoFixed>
           <NavOpen onClick={() => setNavbar(true)}>
-            <ChevronRight fill="white" />
+            <ChevronRight fill="white" strokeWidth="0" />
           </NavOpen>
           <NavbarContainer>
             <div>
@@ -46,7 +47,7 @@ const Navbar = () => {
               </Link>
             </div>
           </NavbarContainer>
-        </NavFixed>
+        </NavNoFixed>
       </>
     );
 
