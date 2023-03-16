@@ -1,9 +1,12 @@
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
-import { AddNoteBtn } from '../../../styles/navbar/NoteButton.styled';
+import {
+  AddNoteBtn,
+  AddNoteBtnProps,
+} from '../../../styles/navbar/NoteButton.styled';
 import NewNote from '../../notes/NewNote';
 
-const NoteButton = () => {
+const NoteButton = (props) => {
   const [showNewNote, setShowNewNote] = useState(false);
 
   const handleClick = () => {
@@ -14,12 +17,23 @@ const NoteButton = () => {
     }
   };
 
+  if (!props.show) {
+    return (
+      <>
+        <AddNoteBtn onClick={handleClick}>
+          <Plus fill="white" />
+          {props?.name}
+        </AddNoteBtn>
+        {showNewNote && <NewNote />}
+      </>
+    );
+  }
+
   return (
     <>
-      <AddNoteBtn onClick={handleClick}>
+      <AddNoteBtnProps onClick={handleClick}>
         <Plus fill="white" />
-        NEW NOTE
-      </AddNoteBtn>
+      </AddNoteBtnProps>
       {showNewNote && <NewNote />}
     </>
   );
