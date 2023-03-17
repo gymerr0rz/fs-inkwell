@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SortAsc, Trash, Edit } from 'lucide-react';
+import { SortAsc, Trash, Edit, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import {
@@ -48,7 +48,7 @@ const NotesView = () => {
         <NotesSearchContainer>
           <NotesSearch type="text" placeholder="Search..." />
           <NotesSortButton>
-            <SortAsc size={20} />
+            <SortAsc size={20} color="#8BFFC0" />
             SORT
           </NotesSortButton>
         </NotesSearchContainer>

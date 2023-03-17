@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const AddNoteBtn = styled.button`
   background-color: #3a3a3a;
-  border: 1px solid #484848;
+  border: 1px solid #8bffc0;
   height: 50px;
   width: 250px !important;
   display: flex;
@@ -10,7 +10,7 @@ const AddNoteBtn = styled.button`
   align-items: center;
   margin: 15px auto;
   outline: none;
-  color: #fff;
+  color: #8bffc0;
   gap: 10px;
   font-weight: 600;
   border-radius: 10px;
@@ -19,7 +19,7 @@ const AddNoteBtn = styled.button`
 
 const AddNoteBtnProps = styled.button`
   background-color: #3a3a3a;
-  border: 1px solid #484848;
+  border: 1px solid #8bffc0;
   height: 50px;
   width: 50px !important;
   display: flex;
@@ -27,7 +27,7 @@ const AddNoteBtnProps = styled.button`
   align-items: center;
   margin: 15px auto;
   outline: none;
-  color: #fff;
+  color: #8bffc0;
   gap: 10px;
   font-weight: 600;
   border-radius: 10px;

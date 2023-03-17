@@ -6,9 +6,6 @@ import RegisterPage from './pages/auth/Register';
 import MainPage from './pages/Main';
 import NotesPage from './pages/app/NotesPage';
 import { RequireAuth } from 'react-auth-kit';
-import DashboardPage from './pages/app/DashboardPage';
-import ChatPage from './pages/app/ChatPage';
-import TeamsPage from './pages/app/TeamsPage';
 import AdministrationPage from './pages/app/AdministrationPage';
 import TasksPage from './pages/app/TasksPage';
 
@@ -35,30 +32,7 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route
-          path="/app"
-          element={
-            <RequireAuth loginPath="/auth/login">
-              <DashboardPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/app/chat"
-          element={
-            <RequireAuth loginPath="/auth/login">
-              <ChatPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/app/teams"
-          element={
-            <RequireAuth loginPath="/auth/login">
-              <TeamsPage />
-            </RequireAuth>
-          }
-        />
+
         <Route
           path="/app/administration"
           element={

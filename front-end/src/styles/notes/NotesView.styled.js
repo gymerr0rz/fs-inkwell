@@ -49,9 +49,9 @@ const NotesSortButton = styled.button`
   min-height: 45px;
   border-radius: 10px;
   outline: none;
-  border: 1px solid #0085ff;
-  background-color: #113454;
-  color: #fff;
+  border: 1px solid #8bffc0;
+  background-color: #202123;
+  color: #8bffc0;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -74,7 +74,7 @@ const NotesCard = styled.div`
 
 const NotesCardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   margin-top: 20px;
   width: 100%;
@@ -125,7 +125,7 @@ const NotesButtons = styled.div`
     background-color: #29292b;
     border-radius: 10px;
     outline: none;
-    border: none;
+    border: 1px solid #29292b;
     max-width: 35px;
     max-height: 35px;
     padding: 10px;
@@ -133,7 +133,12 @@ const NotesButtons = styled.div`
     justify-content: center;
     align-items: center;
     color: #fff;
+    transition: 200ms background-color ease-in-out;
     cursor: pointer;
+    :hover {
+      transition: 200ms background-color ease-in-out;
+      background-color: #363636;
+    }
   }
 `;
 

@@ -1,4 +1,5 @@
 import Navbar from '../../components/navbar/Navbar';
+import TasksView from '../../components/tasks/TasksView';
 import { NotesContainer } from '../../styles/notes/NotesPage.styled';
 
 const TasksPage = () => {
@@ -6,6 +7,7 @@ const TasksPage = () => {
     <>
       <NotesContainer>
         <Navbar />
+        <TasksView />
       </NotesContainer>
     </>
   );
