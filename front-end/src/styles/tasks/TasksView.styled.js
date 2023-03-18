@@ -62,7 +62,23 @@ const Icon = styled.div`
   color: #848486;
 `;
 
-const TasksBottom = styled.div``;
+const TasksBottom = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 50px;
+  flex-direction: row;
+  gap: 50px;
+  align-items: flex-start;
+  color: #fff;
+`;
+
+const TasksManager = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export {
   TasksContainer,
@@ -71,4 +87,5 @@ export {
   Icon,
   TasksBottom,
   TasksTopText,
+  TasksManager,
 };
