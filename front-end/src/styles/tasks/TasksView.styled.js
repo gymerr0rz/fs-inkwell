@@ -172,6 +172,14 @@ const TasksDate = styled.div`
   align-items: center;
 `;
 
+const TasksCategory = styled.div`
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid #00a3ff;
+  border-radius: 10px;
+  padding: 1px 15px;
+`;
+
 export {
   TasksContainer,
   TasksTop,
@@ -184,4 +192,5 @@ export {
   TasksContent,
   TasksMenu,
   TasksDate,
+  TasksCategory,
 };
