@@ -1,4 +1,6 @@
 import { List, Search, Plus, CheckCircle, MoreVertical } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   TasksContainer,
   TasksTop,
@@ -13,8 +15,21 @@ import {
   TasksDate,
   TasksCategory,
 } from '../../styles/tasks/TasksView.styled';
+import { useAuthHeader } from 'react-auth-kit';
 
 const TasksView = () => {
+  const [tasks, setTasks] = useState([]);
+
+  const header = useAuthHeader();
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = header();
+    axios.get('http://localhost:8080/user/getTasks').then((response) => {
+      const newTasks = response.data;
+      console.log(newTasks);
+      setTasks([...tasks, ...newTasks]);
+    });
+  }, []);
+
   return (
     <TasksContainer>
       <TasksTop>

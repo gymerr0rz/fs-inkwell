@@ -3,7 +3,7 @@ const app = express();
 const PORT = 8080;
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/Auth');
-const userRoutes = require('./routes/Notes');
+const userRoutes = require('./routes/User');
 const cors = require('cors');
 
 require('dotenv').config();

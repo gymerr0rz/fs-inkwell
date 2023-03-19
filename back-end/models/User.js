@@ -47,6 +47,20 @@ const userSchema = new Schema({
       },
     },
   ],
+  tasks: [
+    {
+      title: {
+        type: String,
+        unique: true,
+      },
+      content: {
+        type: String,
+      },
+      category: {
+        type: String,
+      },
+    },
+  ],
 });
 
 const User = mongoose.model('User', userSchema);
