@@ -1,4 +1,4 @@
-import { Camera, List, Search } from 'lucide-react';
+import { List, Search, Plus, CheckCircle, MoreVertical } from 'lucide-react';
 import {
   TasksContainer,
   TasksTop,
@@ -7,6 +7,9 @@ import {
   TasksBottom,
   TasksTopText,
   TasksManager,
+  TasksTitle,
+  TasksContent,
+  TasksMenu,
 } from '../../styles/tasks/TasksView.styled';
 
 const TasksView = () => {
@@ -25,22 +28,29 @@ const TasksView = () => {
       </TasksTop>
       <TasksBottom>
         <TasksManager>
-          <div>
-            <h1>New Tasks</h1>
-            <div>3</div>
-            <button>ADD</button>
-          </div>
-          <div>
-            <div>
-              <Camera />
-              <h1>IconText</h1>
-              <Camera />
+          <TasksTitle>
+            <div className="title">
+              <h1>New Tasks</h1>
+              <div>3</div>
             </div>
+            <button>
+              <Plus />
+              ADD
+            </button>
+          </TasksTitle>
+          <TasksContent>
+            <TasksMenu>
+              <div className="abc">
+                <CheckCircle />
+                <h1>IconText</h1>
+              </div>
+              <MoreVertical />
+            </TasksMenu>
             <div>
               <p>Monday</p>
               <div>UI/UX</div>
             </div>
-          </div>
+          </TasksContent>
         </TasksManager>
       </TasksBottom>
     </TasksContainer>
