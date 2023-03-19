@@ -10,6 +10,7 @@ import {
   TasksTitle,
   TasksContent,
   TasksMenu,
+  TasksDate,
 } from '../../styles/tasks/TasksView.styled';
 
 const TasksView = () => {
@@ -46,10 +47,10 @@ const TasksView = () => {
               </div>
               <MoreVertical />
             </TasksMenu>
-            <div>
+            <TasksDate>
               <p>Monday</p>
               <div>UI/UX</div>
-            </div>
+            </TasksDate>
           </TasksContent>
         </TasksManager>
       </TasksBottom>

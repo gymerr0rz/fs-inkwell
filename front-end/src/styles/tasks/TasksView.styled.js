@@ -143,6 +143,8 @@ const TasksContent = styled.div`
   min-height: 116px;
   border: 2px solid #494949;
   overflow: hidden;
+  padding: 20px;
+  gap: 20px;
 `;
 
 const TasksMenu = styled.div`
@@ -151,15 +153,23 @@ const TasksMenu = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   .abc {
-    font-size: 0.7rem;
-    font-weight: 900;
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 400 !important;
+    }
     display: flex;
     align-items: center;
     flex-direction: row;
     gap: 10px;
   }
+`;
+
+const TasksDate = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export {
@@ -173,4 +183,5 @@ export {
   TasksTitle,
   TasksContent,
   TasksMenu,
+  TasksDate,
 };
