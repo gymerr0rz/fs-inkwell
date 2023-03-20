@@ -55,19 +55,24 @@ const TasksView = () => {
               ADD
             </button>
           </TasksTitle>
-          <TasksContent>
-            <TasksMenu>
-              <div className="abc">
-                <CheckCircle />
-                <h1>IconText</h1>
-              </div>
-              <MoreVertical />
-            </TasksMenu>
-            <TasksDate>
-              <p>Monday</p>
-              <TasksCategory>UI/UX</TasksCategory>
-            </TasksDate>
-          </TasksContent>
+          {tasks.map((task) => {
+            console.log(task);
+            return (
+              <TasksContent>
+                <TasksMenu>
+                  <div className="abc">
+                    <CheckCircle />
+                    <h1>{task.title}</h1>
+                  </div>
+                  <MoreVertical />
+                </TasksMenu>
+                <TasksDate>
+                  <p>{task.date}</p>
+                  <TasksCategory>{task.category}</TasksCategory>
+                </TasksDate>
+              </TasksContent>
+            );
+          })}
         </TasksManager>
       </TasksBottom>
     </TasksContainer>

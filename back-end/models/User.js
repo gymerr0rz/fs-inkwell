@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -53,10 +54,10 @@ const userSchema = new Schema({
         type: String,
         unique: true,
       },
-      content: {
+      category: {
         type: String,
       },
-      category: {
+      date: {
         type: String,
       },
     },

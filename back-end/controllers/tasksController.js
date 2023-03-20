@@ -27,9 +27,9 @@ const get_tasks = async (req, res) => {
 
 const create_task = async (req, res) => {
   try {
-    const { title, content, category } = req.body;
+    const { title, category } = req.body;
 
-    if (!title && !content && !category) return res.sendStatus(403);
+    if (!title && !category) return res.sendStatus(403);
 
     const headers = req.headers.authorization;
     const token = headers.split(' ')[1];
@@ -46,10 +46,16 @@ const create_task = async (req, res) => {
 
     if (note) return res.sendStatus(409);
 
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    const fullDate = `${day}.${month}.${year}`;
     user.tasks.push({
       title: title,
-      content: content,
       category: category,
+      date: fullDate,
     });
 
     await user.save();
