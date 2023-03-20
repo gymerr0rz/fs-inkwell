@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   NavbarContainer,
@@ -14,6 +14,13 @@ import { ChevronRight } from 'lucide-react';
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
+  const [name, setName] = useState(null);
+
+  useEffect(() => {
+    let url = window.location.pathname;
+    const pathname = url.split('/app/').join('');
+    setName(pathname.toUpperCase());
+  }, []);
 
   if (!navbar)
     return (
@@ -26,7 +33,7 @@ const Navbar = () => {
             <div>
               <h1>Inkwell</h1>
               <p>Workspace</p>
-              <NoteButton name="ADD NOTE" />
+              <NoteButton name={`ADD ${name}`} />
               <Link to="/app/tasks">
                 <NavButton icon="Check" name="Tasks" />
               </Link>
