@@ -7,6 +7,9 @@ import {
   NavFixed,
   NavClosed,
   NavNoFixed,
+  NavLogo,
+  NavbarInnerContainer,
+  NavLinks,
 } from '../../styles/navbar/Navbar.styled';
 import NavButton from './buttons/NavButton';
 import NoteButton from './buttons/NoteButton';
@@ -14,13 +17,6 @@ import { ChevronRight } from 'lucide-react';
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
-  const [name, setName] = useState(null);
-
-  useEffect(() => {
-    let url = window.location.pathname;
-    const pathname = url.split('/app/').join('');
-    setName(pathname.toUpperCase());
-  }, []);
 
   if (!navbar)
     return (
@@ -30,20 +26,23 @@ const Navbar = () => {
             <ChevronRight fill="white" strokeWidth="0" />
           </NavOpen>
           <NavbarContainer>
-            <div>
-              <h1>Inkwell</h1>
-              <p>Workspace</p>
-              <NoteButton name={`ADD ${name}`} />
-              <Link to="/app/tasks">
-                <NavButton icon="Check" name="Tasks" />
-              </Link>
-              <Link to="/app/notes">
-                <NavButton icon="Book" name="Notes" />
-              </Link>
-              <Link to="/app/settings">
-                <NavButton icon="Settings" name="Settings" />
-              </Link>
-            </div>
+            <NavbarInnerContainer>
+              <NavLogo>
+                <h1>Inkwell</h1>
+                <p>Workspace</p>
+              </NavLogo>
+              <NavLinks>
+                <Link to="/app/tasks">
+                  <NavButton icon="Check" name="Tasks" />
+                </Link>
+                <Link to="/app/notes">
+                  <NavButton icon="Book" name="Notes" />
+                </Link>
+                <Link to="/app/settings">
+                  <NavButton icon="Settings" name="Settings" />
+                </Link>
+              </NavLinks>
+            </NavbarInnerContainer>
           </NavbarContainer>
         </NavNoFixed>
       </>

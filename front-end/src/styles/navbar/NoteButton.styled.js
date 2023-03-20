@@ -1,37 +1,19 @@
 import styled from 'styled-components';
 
 const AddNoteBtn = styled.button`
-  background-color: #3a3a3a;
+  min-width: 150px;
+  min-height: 45px;
+  border-radius: 10px;
+  outline: none;
   border: 1px solid #8bffc0;
-  height: 50px;
-  width: 250px !important;
+  background-color: #202123;
+  color: #8bffc0;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px auto;
-  outline: none;
-  color: #8bffc0;
-  gap: 10px;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
+  gap: 5px;
+  font-size: 12px;
 `;
 
-const AddNoteBtnProps = styled.button`
-  background-color: #3a3a3a;
-  border: 1px solid #8bffc0;
-  height: 50px;
-  width: 50px !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 15px auto;
-  outline: none;
-  color: #8bffc0;
-  gap: 10px;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-`;
-
-export { AddNoteBtn, AddNoteBtnProps };
+export { AddNoteBtn };

@@ -8,7 +8,7 @@ const NavbarNoProps = styled.button`
   outline: none;
   border: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   cursor: pointer;
@@ -22,7 +22,7 @@ const NavbarNoProps = styled.button`
 
 const NavbarButton = styled.button`
   height: 50px;
-  width: 90%;
+  width: 250px;
   margin: 0 auto;
   outline: none;
   border: none;
@@ -43,13 +43,10 @@ const NavbarButton = styled.button`
 const NavbarContainer = styled.div`
   position: relative;
   padding-top: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   text-align: center;
   flex-direction: column;
   height: 100%;
-  min-width: 100% !important;
+  width: 100%;
   background-color: #202123;
   h1 {
     color: #fff;
@@ -60,6 +57,28 @@ const NavbarContainer = styled.div`
     font-weight: lighter;
     font-size: 20px;
   }
+`;
+
+const NavbarInnerContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+`;
+
+const NavLogo = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const NavLinks = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const NavbarContainerProps = styled.div`
@@ -135,4 +154,7 @@ export {
   NavFixed,
   NavOpen,
   NavNoFixed,
+  NavLogo,
+  NavLinks,
+  NavbarInnerContainer,
 };

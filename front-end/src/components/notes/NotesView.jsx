@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { SortAsc, Trash, Edit, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
-
+import NoteButton from '../navbar/buttons/NoteButton';
 import {
   NotesViewContainer,
   NotesViewHeadText,
@@ -25,7 +25,6 @@ const NotesView = () => {
     axios.defaults.headers.common['Authorization'] = header();
     axios.get('http://localhost:8080/user/getNotes').then((response) => {
       const newNotes = response.data;
-      console.log(newNotes);
       setNotes([...notes, ...newNotes]);
     });
   }, []);
@@ -51,6 +50,7 @@ const NotesView = () => {
             <SortAsc size={20} color="#8BFFC0" />
             SORT
           </NotesSortButton>
+          <NoteButton />
         </NotesSearchContainer>
         <NotesCardContainer>
           {notes.map((note) => {

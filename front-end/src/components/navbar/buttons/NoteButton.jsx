@@ -1,5 +1,5 @@
 import { Plus } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   AddNoteBtn,
   AddNoteBtnProps,
@@ -17,24 +17,13 @@ const NoteButton = (props) => {
     }
   };
 
-  if (!props.show) {
-    return (
-      <>
-        <AddNoteBtn onClick={handleClick}>
-          <Plus fill="white" />
-          {props?.name}
-        </AddNoteBtn>
-        {showNewNote && <NewNote />}
-      </>
-    );
-  }
-
   return (
     <>
-      <AddNoteBtnProps onClick={handleClick}>
+      <AddNoteBtn onClick={handleClick}>
         <Plus fill="white" />
-      </AddNoteBtnProps>
-      {showNewNote && <NewNote />}
+        ADD NOTE
+      </AddNoteBtn>
+      {showNewNote && <NewNote location={props.location} />}
     </>
   );
 };
