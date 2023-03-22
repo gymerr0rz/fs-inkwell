@@ -50,15 +50,29 @@ const userSchema = new Schema({
   ],
   tasks: [
     {
-      title: {
-        type: String,
-        unique: true,
+      new_tasks: {
+        title: {
+          type: String,
+          unique: true,
+        },
+        category: {
+          type: String,
+        },
+        date: {
+          type: String,
+        },
       },
-      category: {
-        type: String,
-      },
-      date: {
-        type: String,
+      completed: {
+        title: {
+          type: String,
+          unique: true,
+        },
+        category: {
+          type: String,
+        },
+        date: {
+          type: String,
+        },
       },
     },
   ],

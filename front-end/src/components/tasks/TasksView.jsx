@@ -104,7 +104,7 @@ const TasksView = () => {
                 <TasksContent>
                   <TasksMenu>
                     <div className="abc">
-                      <CheckCircle />
+                      <CheckCircle color="#8bffc0" />
                       <h1>{task.title}</h1>
                     </div>
                     <MoreVertical />
