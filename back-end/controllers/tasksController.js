@@ -52,19 +52,13 @@ const create_task = async (req, res) => {
     const year = date.getFullYear();
 
     const fullDate = `${day}.${month}.${year}`;
-    user.tasks.push({
-      origin: {
-        title: title,
-        category: category,
-        date: fullDate,
-      },
-    });
 
-    // user.tasks.push({
-    //   title: title,
-    //   category: category,
-    //   date: fullDate,
-    // });
+    user.tasks.push({
+      title: title,
+      category: category,
+      date: fullDate,
+      origin: origin,
+    });
 
     await user.save();
 

@@ -28,7 +28,6 @@ const TasksView = () => {
     axios.defaults.headers.common['Authorization'] = header();
     axios.get('http://localhost:8080/user/getTasks').then((response) => {
       const newTasks = response.data;
-      console.log(newTasks);
       setTasks([...tasks, ...newTasks]);
     });
   }, []);
@@ -69,22 +68,23 @@ const TasksView = () => {
               </button>
             </TasksTitle>
             {tasks.map((task) => {
-              console.log(task);
-              return (
-                <TasksContent>
-                  <TasksMenu>
-                    <div className="abc">
-                      <CheckCircle />
-                      <h1>{task.title}</h1>
-                    </div>
-                    <MoreVertical />
-                  </TasksMenu>
-                  <TasksDate>
-                    <p>{task.date}</p>
-                    <TasksCategory>{task.category}</TasksCategory>
-                  </TasksDate>
-                </TasksContent>
-              );
+              if (task.origin === 'new_tasks') {
+                return (
+                  <TasksContent>
+                    <TasksMenu>
+                      <div className="abc">
+                        <CheckCircle />
+                        <h1>{task.title}</h1>
+                      </div>
+                      <MoreVertical />
+                    </TasksMenu>
+                    <TasksDate>
+                      <p>{task.date}</p>
+                      <TasksCategory>{task.category}</TasksCategory>
+                    </TasksDate>
+                  </TasksContent>
+                );
+              }
             })}
           </TasksManager>
           <TasksManager>
@@ -99,22 +99,23 @@ const TasksView = () => {
               </button>
             </TasksTitleCompleted>
             {tasks.map((task) => {
-              console.log(task);
-              return (
-                <TasksContent>
-                  <TasksMenu>
-                    <div className="abc">
-                      <CheckCircle color="#8bffc0" />
-                      <h1>{task.title}</h1>
-                    </div>
-                    <MoreVertical />
-                  </TasksMenu>
-                  <TasksDate>
-                    <p>{task.date}</p>
-                    <TasksCategory>{task.category}</TasksCategory>
-                  </TasksDate>
-                </TasksContent>
-              );
+              if (task.origin === 'completed') {
+                return (
+                  <TasksContent>
+                    <TasksMenu>
+                      <div className="abc">
+                        <CheckCircle color="#8bffc0" />
+                        <h1>{task.title}</h1>
+                      </div>
+                      <MoreVertical />
+                    </TasksMenu>
+                    <TasksDate>
+                      <p>{task.date}</p>
+                      <TasksCategory>{task.category}</TasksCategory>
+                    </TasksDate>
+                  </TasksContent>
+                );
+              }
             })}
           </TasksManager>
         </TasksBottom>

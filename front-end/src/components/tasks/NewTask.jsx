@@ -4,6 +4,7 @@ import {
   NewNoteButtonContainer,
   NewNoteInput,
   NewNoteStyled,
+  NewNoteSelect,
 } from '../../styles/notes/NewNote.styled';
 import { BookmarkPlus, XCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -45,6 +46,12 @@ const NewTask = (props) => {
         placeholder="Task Category"
         onChange={(e) => setCategory(e.target.value)}
       />
+      <NewNoteSelect>
+        <select name="cars" id="cars">
+          <option value="new_tasks">New Tasks</option>
+          <option value="completed">Completed</option>
+        </select>
+      </NewNoteSelect>
       <NewNoteButtonContainer>
         <NewNoteButton onClick={handleClick}>
           <BookmarkPlus /> ADD

@@ -16,6 +16,7 @@ const NewNoteStyled = styled.div`
   border: 2px solid #494949;
   backdrop-filter: blur(10px);
   border-radius: 30px;
+  overflow: hidden;
   h1 {
     color: #fff;
     font-size: 3rem;
@@ -68,4 +69,30 @@ const NewNoteInput = styled.textarea`
   }
 `;
 
-export { NewNoteStyled, NewNoteButton, NewNoteButtonContainer, NewNoteInput };
+const NewNoteSelect = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+  select {
+    min-width: 350px;
+    width: 30%;
+    padding: 10px;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+  }
+`;
+
+export {
+  NewNoteStyled,
+  NewNoteButton,
+  NewNoteButtonContainer,
+  NewNoteInput,
+  NewNoteSelect,
+};
