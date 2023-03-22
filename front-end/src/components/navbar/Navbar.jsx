@@ -12,7 +12,6 @@ import {
   NavLinks,
 } from '../../styles/navbar/Navbar.styled';
 import NavButton from './buttons/NavButton';
-import NoteButton from './buttons/NoteButton';
 import { ChevronRight } from 'lucide-react';
 
 const Navbar = () => {
@@ -57,7 +56,6 @@ const Navbar = () => {
           </NavClosed>
           <NavbarContainerProps>
             <div>
-              <NoteButton show={true} />
               <Link to="/app/tasks">
                 <NavButton icon="Check" />
               </Link>

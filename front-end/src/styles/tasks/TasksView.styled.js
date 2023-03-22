@@ -83,6 +83,56 @@ const TasksManager = styled.div`
   gap: 20px;
 `;
 
+const TasksTitleCompleted = styled.div`
+  display: flex;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  h1 {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  button {
+    height: 100%;
+    border: 2px solid #8bffc0;
+    background-color: #202123;
+    color: #8bffc0;
+    width: 145px;
+    border-radius: 10px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .title {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+  }
+
+  .title div {
+    color: #8bffc0;
+    border: 2px solid #8bffc0;
+    font-weight: 700;
+    height: 100%;
+    width: 49px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #202123;
+    border-radius: 10px;
+  }
+`;
+
 const TasksTitle = styled.div`
   display: flex;
   width: 100%;
@@ -193,4 +243,5 @@ export {
   TasksMenu,
   TasksDate,
   TasksCategory,
+  TasksTitleCompleted,
 };

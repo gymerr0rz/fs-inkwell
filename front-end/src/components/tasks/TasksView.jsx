@@ -14,11 +14,14 @@ import {
   TasksMenu,
   TasksDate,
   TasksCategory,
+  TasksTitleCompleted,
 } from '../../styles/tasks/TasksView.styled';
 import { useAuthHeader } from 'react-auth-kit';
+import NewTask from './NewTask';
 
 const TasksView = () => {
   const [tasks, setTasks] = useState([]);
+  const [showComponent, setShowComponent] = useState(false);
 
   const header = useAuthHeader();
   useEffect(() => {
@@ -30,52 +33,93 @@ const TasksView = () => {
     });
   }, []);
 
+  const handleClose = () => {
+    setShowComponent(false);
+  };
+
+  const handleClick = () => {
+    setShowComponent(true);
+  };
+
   return (
-    <TasksContainer>
-      <TasksTop>
-        <TasksTopText>My Tasks</TasksTopText>
-        <Icon>
-          <List />
-          List
-        </Icon>
-        <TasksSearch>
-          <Search />
-          <input type="text" placeholder="Search..." />
-        </TasksSearch>
-      </TasksTop>
-      <TasksBottom>
-        <TasksManager>
-          <TasksTitle>
-            <div className="title">
-              <h1>New Tasks</h1>
-              <div>3</div>
-            </div>
-            <button>
-              <Plus />
-              ADD
-            </button>
-          </TasksTitle>
-          {tasks.map((task) => {
-            console.log(task);
-            return (
-              <TasksContent>
-                <TasksMenu>
-                  <div className="abc">
-                    <CheckCircle />
-                    <h1>{task.title}</h1>
-                  </div>
-                  <MoreVertical />
-                </TasksMenu>
-                <TasksDate>
-                  <p>{task.date}</p>
-                  <TasksCategory>{task.category}</TasksCategory>
-                </TasksDate>
-              </TasksContent>
-            );
-          })}
-        </TasksManager>
-      </TasksBottom>
-    </TasksContainer>
+    <>
+      {showComponent && <NewTask onClose={handleClose} />}
+      <TasksContainer>
+        <TasksTop>
+          <TasksTopText>My Tasks</TasksTopText>
+          <Icon>
+            <List />
+            List
+          </Icon>
+          <TasksSearch>
+            <Search />
+            <input type="text" placeholder="Search..." />
+          </TasksSearch>
+        </TasksTop>
+        <TasksBottom>
+          <TasksManager>
+            <TasksTitle>
+              <div className="title">
+                <h1>New Tasks</h1>
+                <div>3</div>
+              </div>
+              <button onClick={handleClick}>
+                <Plus />
+                ADD
+              </button>
+            </TasksTitle>
+            {tasks.map((task) => {
+              console.log(task);
+              return (
+                <TasksContent>
+                  <TasksMenu>
+                    <div className="abc">
+                      <CheckCircle />
+                      <h1>{task.title}</h1>
+                    </div>
+                    <MoreVertical />
+                  </TasksMenu>
+                  <TasksDate>
+                    <p>{task.date}</p>
+                    <TasksCategory>{task.category}</TasksCategory>
+                  </TasksDate>
+                </TasksContent>
+              );
+            })}
+          </TasksManager>
+          <TasksManager>
+            <TasksTitleCompleted>
+              <div className="title">
+                <h1>Completed</h1>
+                <div>3</div>
+              </div>
+              <button onClick={handleClick}>
+                <Plus />
+                ADD
+              </button>
+            </TasksTitleCompleted>
+            {tasks.map((task) => {
+              console.log(task);
+              return (
+                <TasksContent>
+                  <TasksMenu>
+                    <div className="abc">
+                      <CheckCircle />
+                      <h1>{task.title}</h1>
+                    </div>
+                    <MoreVertical />
+                  </TasksMenu>
+                  <TasksDate>
+                    <p>{task.date}</p>
+                    <TasksCategory>{task.category}</TasksCategory>
+                  </TasksDate>
+                </TasksContent>
+              );
+            })}
+          </TasksManager>
+        </TasksBottom>
+      </TasksContainer>
+    </>
   );
 };
 

@@ -142,6 +142,27 @@ const NotesButtons = styled.div`
   }
 `;
 
+const SingularButton = styled.div`
+  background-color: #29292b;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #29292b;
+  min-width: 155px;
+  font-size: 0.8rem;
+  min-height: 35px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  transition: 200ms background-color ease-in-out;
+  cursor: pointer;
+  :hover {
+    transition: 200ms background-color ease-in-out;
+    background-color: #363636;
+  }
+`;
+
 export {
   NotesViewContainer,
   NotesViewHeadText,
@@ -154,4 +175,5 @@ export {
   CardText,
   NotesFlex,
   NotesButtons,
+  SingularButton,
 };

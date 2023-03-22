@@ -12,9 +12,15 @@ const NewNoteStyled = styled.div`
   z-index: 99;
   width: 50%;
   height: 70%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 2px solid #494949;
   backdrop-filter: blur(10px);
   border-radius: 30px;
+  h1 {
+    color: #fff;
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
 `;
 
 const NewNoteButton = styled.button`

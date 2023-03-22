@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { SortAsc, Trash, Edit, Search } from 'lucide-react';
+import { SortAsc, Trash, Edit, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import NoteButton from '../navbar/buttons/NoteButton';
 import {
   NotesViewContainer,
   NotesViewHeadText,
@@ -14,11 +13,14 @@ import {
   CardText,
   NotesFlex,
   NotesButtons,
+  SingularButton,
 } from '../../styles/notes/NotesView.styled';
 import { useAuthHeader } from 'react-auth-kit';
+import NewNote from './NewNote';
 
 const NotesView = () => {
   const [notes, setNotes] = useState([]);
+  const [showComponent, setShowComponent] = useState(false);
 
   const header = useAuthHeader();
   useEffect(() => {
@@ -40,8 +42,17 @@ const NotesView = () => {
     window.location.reload();
   };
 
+  const handleClose = () => {
+    setShowComponent(false);
+  };
+
+  const handleClick = () => {
+    setShowComponent(true);
+  };
+
   return (
     <>
+      {showComponent && <NewNote onClose={handleClose} />}
       <NotesViewContainer>
         <NotesViewHeadText>Notes</NotesViewHeadText>
         <NotesSearchContainer>
@@ -50,7 +61,10 @@ const NotesView = () => {
             <SortAsc size={20} color="#8BFFC0" />
             SORT
           </NotesSortButton>
-          <NoteButton />
+          <SingularButton onClick={handleClick}>
+            <Plus />
+            NEW NOTE
+          </SingularButton>
         </NotesSearchContainer>
         <NotesCardContainer>
           {notes.map((note) => {

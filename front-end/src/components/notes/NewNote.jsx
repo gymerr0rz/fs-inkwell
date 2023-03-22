@@ -9,7 +9,7 @@ import { BookmarkPlus, XCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
 
-const NewNote = () => {
+const NewNote = (props) => {
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null);
 
@@ -26,26 +26,30 @@ const NewNote = () => {
     window.location.reload();
   };
 
+  const handleClose = () => {
+    props.onClose();
+  };
+
   return (
-    <NewNoteStyled>
-      <h1>New Note</h1>
+    <NewNoteStyled className="tab">
+      <h1>New Task</h1>
       <NewNoteInput
         type="text"
         id="title"
-        placeholder="Note Title"
+        placeholder="Task Title"
         onChange={(e) => setTitle(e.target.value)}
       />
       <NewNoteInput
         type="text"
         id="content"
-        placeholder="Note Content"
+        placeholder="Task Category"
         onChange={(e) => setContent(e.target.value)}
       />
       <NewNoteButtonContainer>
         <NewNoteButton onClick={handleClick}>
           <BookmarkPlus /> ADD
         </NewNoteButton>
-        <NewNoteButton>
+        <NewNoteButton onClick={handleClose}>
           <XCircle /> CANCEL
         </NewNoteButton>
       </NewNoteButtonContainer>
