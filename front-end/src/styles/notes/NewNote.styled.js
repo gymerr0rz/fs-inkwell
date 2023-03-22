@@ -69,18 +69,47 @@ const NewNoteInput = styled.textarea`
   }
 `;
 
+const ColorPicker = styled.input`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  ::-webkit-color-swatch-wrapper {
+    outline: none;
+    border: none;
+    padding: 0;
+    border: none;
+  }
+  ::-webkit-color-swatch {
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+  }
+  ::-webkit-color-swatch-thumb {
+    outline: none;
+    border: none;
+    border-radius: 50%;
+  }
+`;
+
 const NewNoteSelect = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   margin: 10px;
+
   select {
     min-width: 350px;
-    width: 30%;
     padding: 10px;
     outline: none;
     background-color: rgba(0, 0, 0, 0.5);
@@ -89,10 +118,20 @@ const NewNoteSelect = styled.div`
   }
 `;
 
+const ColorContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  gap: 10px;
+`;
+
 export {
   NewNoteStyled,
   NewNoteButton,
   NewNoteButtonContainer,
   NewNoteInput,
+  ColorPicker,
   NewNoteSelect,
+  ColorContainer,
 };

@@ -5,6 +5,8 @@ import {
   NewNoteInput,
   NewNoteStyled,
   NewNoteSelect,
+  ColorPicker,
+  ColorContainer,
 } from '../../styles/notes/NewNote.styled';
 import { BookmarkPlus, XCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -13,6 +15,8 @@ import { useAuthHeader } from 'react-auth-kit';
 const NewTask = (props) => {
   const [title, setTitle] = useState(null);
   const [category, setCategory] = useState(null);
+  const [color, setColor] = useState('#000');
+  const [origin, setOrigin] = useState(null);
 
   const header = useAuthHeader();
   const handleClick = () => {
@@ -21,6 +25,8 @@ const NewTask = (props) => {
       .post('http://localhost:8080/user/createTask', {
         title,
         category,
+        color,
+        origin,
       })
       .then((response) => console.log(response));
 
@@ -46,8 +52,17 @@ const NewTask = (props) => {
         placeholder="Task Category"
         onChange={(e) => setCategory(e.target.value)}
       />
+      <ColorContainer>
+        <label>Choose color for category border.</label>
+        <ColorPicker type="color" onChange={(e) => setColor(e.target.value)} />
+      </ColorContainer>
       <NewNoteSelect>
-        <select name="cars" id="cars">
+        <select
+          name="origin"
+          id="origin"
+          className="custom-select"
+          onChange={(e) => setOrigin(e.target.value)}
+        >
           <option value="new_tasks">New Tasks</option>
           <option value="completed">Completed</option>
         </select>
