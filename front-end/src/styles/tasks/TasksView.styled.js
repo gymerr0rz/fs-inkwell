@@ -109,6 +109,11 @@ const TasksTitleCompleted = styled.div`
     gap: 5px;
     font-weight: 700;
     cursor: pointer;
+    transition: background-color 100ms ease-in-out;
+    :hover {
+      transition: background-color 100ms ease-in-out;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
   }
 
   .title {
@@ -159,6 +164,11 @@ const TasksTitle = styled.div`
     gap: 5px;
     font-weight: 700;
     cursor: pointer;
+    transition: background-color 100ms ease-in-out;
+    :hover {
+      transition: background-color 100ms ease-in-out;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
   }
 
   .title {
@@ -225,9 +235,9 @@ const TasksDate = styled.div`
 const TasksCategory = styled.div`
   font-weight: 600;
   font-size: 0.9rem;
-  border: 1px solid #00a3ff;
   border-radius: 10px;
   padding: 1px 15px;
+  border: 2px solid ${(props) => props.border};
 `;
 
 export {

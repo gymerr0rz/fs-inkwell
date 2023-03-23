@@ -15,8 +15,10 @@ const NavbarNoProps = styled.button`
   color: #fff;
   background-color: transparent;
   border-radius: 10px;
+  transition: background-color 100ms ease-in-out;
   :hover {
-    background-color: #424242;
+    transition: background-color 100ms ease-in-out;
+    background-color: rgba(255, 255, 255, 0.15);
   }
 `;
 
@@ -35,8 +37,10 @@ const NavbarButton = styled.button`
   color: #fff;
   background-color: transparent;
   border-radius: 10px;
+  transition: background-color 100ms ease-in-out;
   :hover {
-    background-color: #424242;
+    transition: background-color 100ms ease-in-out;
+    background-color: rgba(255, 255, 255, 0.15);
   }
 `;
 

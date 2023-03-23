@@ -80,7 +80,9 @@ const TasksView = () => {
                     </TasksMenu>
                     <TasksDate>
                       <p>{task.date}</p>
-                      <TasksCategory>{task.category}</TasksCategory>
+                      <TasksCategory border={task.color}>
+                        {task.category}
+                      </TasksCategory>
                     </TasksDate>
                   </TasksContent>
                 );

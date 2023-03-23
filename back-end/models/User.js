@@ -76,6 +76,9 @@ const userSchema = new Schema({
 
       // Origin of the task (optional)
       origin: String,
+
+      // Origin Color (optinal)
+      color: String,
     },
   ],
 });

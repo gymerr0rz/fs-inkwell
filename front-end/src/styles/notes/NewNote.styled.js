@@ -35,6 +35,11 @@ const NewNoteButton = styled.button`
   color: #fff;
   gap: 5px;
   cursor: pointer;
+  transition: background-color 150ms ease-in-out;
+  :hover {
+    transition: background-color 150ms ease-in-out;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
 `;
 
 const NewNoteButtonContainer = styled.div`

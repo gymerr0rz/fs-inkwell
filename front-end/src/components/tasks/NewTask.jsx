@@ -15,8 +15,8 @@ import { useAuthHeader } from 'react-auth-kit';
 const NewTask = (props) => {
   const [title, setTitle] = useState(null);
   const [category, setCategory] = useState(null);
-  const [color, setColor] = useState('#000');
-  const [origin, setOrigin] = useState(null);
+  const [color, setColor] = useState('#00000');
+  const [origin, setOrigin] = useState('new_tasks');
 
   const header = useAuthHeader();
   const handleClick = () => {
