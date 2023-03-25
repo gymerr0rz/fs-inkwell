@@ -10,8 +10,8 @@ const NewNoteStyled = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
-  width: 50%;
-  height: 70%;
+  min-width: 50%;
+  min-height: 70%;
   background-color: rgba(0, 0, 0, 0.4);
   border: 2px solid #494949;
   backdrop-filter: blur(10px);

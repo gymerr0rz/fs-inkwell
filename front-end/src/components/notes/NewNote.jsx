@@ -32,17 +32,17 @@ const NewNote = (props) => {
 
   return (
     <NewNoteStyled className="tab">
-      <h1>New Task</h1>
+      <h1>New Note</h1>
       <NewNoteInput
         type="text"
         id="title"
-        placeholder="Task Title"
+        placeholder="Note Title"
         onChange={(e) => setTitle(e.target.value)}
       />
       <NewNoteInput
         type="text"
         id="content"
-        placeholder="Task Category"
+        placeholder="Note Content"
         onChange={(e) => setContent(e.target.value)}
       />
       <NewNoteButtonContainer>
