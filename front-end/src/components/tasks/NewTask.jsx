@@ -6,10 +6,11 @@ import {
   NewNoteStyled,
   NewNoteSelect,
   ColorPicker,
+  Categories,
   ColorContainer,
 } from '../../styles/notes/NewNote.styled';
 import { BookmarkPlus, XCircle } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
 
 const NewTask = (props) => {
@@ -37,6 +38,19 @@ const NewTask = (props) => {
     props.onClose();
   };
 
+  const handleChange = (e) => {
+    if (e.target.tagName.toLowerCase() === 'span') {
+      const target = e.target;
+      const buttons = document.querySelectorAll('span');
+      setCategory(target.innerText);
+      buttons.forEach((button) => {
+        button.classList.remove('active');
+        target.classList.add('active');
+      });
+      console.log(category);
+    }
+  };
+
   return (
     <NewNoteStyled className="tab">
       <h1>New Task</h1>
@@ -46,12 +60,16 @@ const NewTask = (props) => {
         placeholder="Task Title"
         onChange={(e) => setTitle(e.target.value)}
       />
-      <NewNoteInput
-        type="text"
-        id="content"
-        placeholder="Task Category"
-        onChange={(e) => setCategory(e.target.value)}
-      />
+      <Categories onClick={(e) => handleChange(e)}>
+        <span>Fashion</span>
+        <span>Lifestyle</span>
+        <span>Fitness</span>
+        <span>Travel</span>
+        <span>Technology</span>
+        <span>Beauty</span>
+        <span>Comedy</span>
+        <span>Foods & Drinks</span>
+      </Categories>
       <ColorContainer>
         <label>Choose color for category border.</label>
         <ColorPicker type="color" onChange={(e) => setColor(e.target.value)} />

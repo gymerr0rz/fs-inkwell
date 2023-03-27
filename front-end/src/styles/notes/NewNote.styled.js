@@ -131,6 +131,32 @@ const ColorContainer = styled.div`
   gap: 10px;
 `;
 
+const Categories = styled.div`
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 10px;
+  span {
+    &.active {
+      color: rgb(139, 255, 192);
+      border: 1px solid rgb(139, 255, 192);
+    }
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    :hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+`;
+
 export {
   NewNoteStyled,
   NewNoteButton,
@@ -139,4 +165,5 @@ export {
   ColorPicker,
   NewNoteSelect,
   ColorContainer,
+  Categories,
 };
