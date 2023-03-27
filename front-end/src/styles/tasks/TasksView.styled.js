@@ -193,6 +193,7 @@ const TasksTitle = styled.div`
 `;
 
 const TasksContent = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -202,7 +203,7 @@ const TasksContent = styled.div`
   border-radius: 10px;
   min-height: 116px;
   border: 2px solid #494949;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 20px;
   gap: 20px;
 `;

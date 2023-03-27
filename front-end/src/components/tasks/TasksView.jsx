@@ -18,10 +18,12 @@ import {
 } from '../../styles/tasks/TasksView.styled';
 import { useAuthHeader } from 'react-auth-kit';
 import NewTask from './NewTask';
+import ShowOptions from './show_options/ShowOptions';
 
 const TasksView = () => {
   const [tasks, setTasks] = useState([]);
   const [showComponent, setShowComponent] = useState(false);
+  const [showOptions, setShowOptions] = useState([]);
 
   const header = useAuthHeader();
   useEffect(() => {
@@ -38,6 +40,15 @@ const TasksView = () => {
 
   const handleClick = () => {
     setShowComponent(true);
+  };
+
+  const handleOptions = (taskId) => {
+    const title = taskId.currentTarget.parentNode.querySelector('h1').value;
+    setShowOptions((prevState) => ({
+      ...prevState,
+      [title]: !prevState[title],
+    }));
+    console.log(showOptions);
   };
 
   return (
@@ -76,7 +87,7 @@ const TasksView = () => {
                         <CheckCircle />
                         <h1>{task.title}</h1>
                       </div>
-                      <MoreVertical />
+                      <MoreVertical onClick={(e) => handleOptions(e)} />
                     </TasksMenu>
                     <TasksDate>
                       <p>{task.date}</p>
@@ -84,6 +95,7 @@ const TasksView = () => {
                         {task.category}
                       </TasksCategory>
                     </TasksDate>
+                    {showOptions[task.id] && <ShowOptions />}
                   </TasksContent>
                 );
               }
