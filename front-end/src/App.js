@@ -34,7 +34,7 @@ function App() {
         />
 
         <Route
-          path="/app/administration"
+          path="/app/settings"
           element={
             <RequireAuth loginPath="/auth/login">
               <AdministrationPage />

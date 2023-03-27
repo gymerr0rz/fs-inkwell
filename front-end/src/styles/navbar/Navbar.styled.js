@@ -46,7 +46,6 @@ const NavbarButton = styled.button`
 
 const NavbarContainer = styled.div`
   position: relative;
-  padding-top: 50px;
   text-align: center;
   flex-direction: column;
   height: 100%;
@@ -66,6 +65,9 @@ const NavbarContainer = styled.div`
 const NavbarInnerContainer = styled.div`
   display: flex;
   gap: 20px;
+  height: 100%;
+  justify-content: space-between;
+  padding: 50px 0;
   flex-direction: column;
 `;
 
@@ -83,11 +85,11 @@ const NavLinks = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  margin-top: 25px;
 `;
 
 const NavbarContainerProps = styled.div`
   position: relative;
-  padding-top: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;

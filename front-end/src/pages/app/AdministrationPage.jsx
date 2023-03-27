@@ -1,4 +1,5 @@
 import Navbar from '../../components/navbar/Navbar';
+import SettingsPage from '../../components/settings/SettingsView';
 import { NotesContainer } from '../../styles/notes/NotesPage.styled';
 
 const AdministrationPage = () => {
@@ -6,6 +7,7 @@ const AdministrationPage = () => {
     <>
       <NotesContainer>
         <Navbar />
+        <SettingsPage />
       </NotesContainer>
     </>
   );
