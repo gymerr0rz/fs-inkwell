@@ -43,12 +43,10 @@ const TasksView = () => {
   };
 
   const handleOptions = (taskId) => {
-    const title = taskId.currentTarget.parentNode.querySelector('h1').value;
     setShowOptions((prevState) => ({
       ...prevState,
-      [title]: !prevState[title],
+      [taskId]: !prevState[taskId],
     }));
-    console.log(showOptions);
   };
 
   return (
@@ -57,10 +55,6 @@ const TasksView = () => {
       <TasksContainer>
         <TasksTop>
           <TasksTopText>My Tasks</TasksTopText>
-          <Icon>
-            <List />
-            List
-          </Icon>
           <TasksSearch>
             <Search />
             <input type="text" placeholder="Search..." />
@@ -87,7 +81,7 @@ const TasksView = () => {
                         <CheckCircle />
                         <h1>{task.title}</h1>
                       </div>
-                      <MoreVertical onClick={(e) => handleOptions(e)} />
+                      <MoreVertical onClick={() => handleOptions(task.title)} />
                     </TasksMenu>
                     <TasksDate>
                       <p>{task.date}</p>
@@ -95,7 +89,7 @@ const TasksView = () => {
                         {task.category}
                       </TasksCategory>
                     </TasksDate>
-                    {showOptions[task.id] && <ShowOptions />}
+                    {showOptions[task.title] && <ShowOptions />}
                   </TasksContent>
                 );
               }
@@ -121,12 +115,13 @@ const TasksView = () => {
                         <CheckCircle color="#8bffc0" />
                         <h1>{task.title}</h1>
                       </div>
-                      <MoreVertical />
+                      <MoreVertical onClick={() => handleOptions(task.title)} />
                     </TasksMenu>
                     <TasksDate>
                       <p>{task.date}</p>
                       <TasksCategory>{task.category}</TasksCategory>
                     </TasksDate>
+                    {showOptions[task.title] && <ShowOptions />}
                   </TasksContent>
                 );
               }
