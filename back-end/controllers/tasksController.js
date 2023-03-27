@@ -94,4 +94,64 @@ const delete_task = async (req, res) => {
   }
 };
 
-module.exports = { create_task, get_tasks, delete_task };
+const modify_task = async (req, res) => {
+  const { title } = req.body;
+
+  if (!title) return res.sendStatus(403);
+
+  const headers = req.headers.authorization;
+  const token = headers.split(' ')[1];
+
+  if (!token) return res.sendStatus(403);
+
+  const decode = jwt.decode(token, SECRET_TOKEN);
+
+  const user_username = decode.username;
+
+  const user = await User.findOne({ username: user_username });
+
+  const taskIndex = user.tasks.findIndex((task) => task.title === title);
+
+  if (taskIndex !== -1) {
+    user.tasks.splice(taskIndex, 1);
+    await user.save();
+    return res.sendStatus(200);
+  }
+};
+
+const change_status_task = async (req, res) => {
+  const { title } = req.body;
+
+  if (!title) return res.sendStatus(403);
+
+  const headers = req.headers.authorization;
+  const token = headers.split(' ')[1];
+
+  if (!token) return res.sendStatus(403);
+
+  const decode = jwt.decode(token, SECRET_TOKEN);
+
+  const user_username = decode.username;
+
+  const user = await User.findOne({ username: user_username });
+
+  const taskIndex = user.tasks.findIndex((task) => task.title === title);
+
+  if (taskIndex !== -1) {
+    if (user.tasks[taskIndex].origin === 'completed') {
+      user.tasks[taskIndex].origin = 'new_tasks';
+      return user.save();
+    } else {
+      user.tasks[taskIndex].origin = 'completed';
+      return user.save();
+    }
+  }
+};
+
+module.exports = {
+  create_task,
+  get_tasks,
+  delete_task,
+  change_status_task,
+  modify_task,
+};

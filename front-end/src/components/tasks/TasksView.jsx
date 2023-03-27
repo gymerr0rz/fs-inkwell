@@ -123,7 +123,9 @@ const TasksView = () => {
                       <p>{task.date}</p>
                       <TasksCategory>{task.category}</TasksCategory>
                     </TasksDate>
-                    {showOptions[task.title] && <ShowOptions />}
+                    {showOptions[task.title] && (
+                      <ShowOptions title={task.title} />
+                    )}
                   </TasksContent>
                 );
               }

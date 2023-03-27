@@ -2,17 +2,41 @@ import { ClipboardCheck, Edit2, Trash } from 'lucide-react';
 import { useState } from 'react';
 import { Container } from '../../../styles/options/Options.styled';
 import axios from 'axios';
+import { useAuthHeader } from 'react-auth-kit';
 
-const ShowOptions = (props) => {
-  const [title] = useState(props.title);
+const ShowOptions = (options) => {
+  const [title] = useState(options.title);
+  const header = useAuthHeader();
 
   const handleTrash = () => {
-    axios.delete('http');
+    console.log(title);
+    axios.defaults.headers.common['Authorization'] = header();
+    axios.delete('http://localhost:8080/user/deleteTask', {
+      data: { title },
+    });
+
+    window.location.reload();
   };
 
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    console.log(title);
+    axios.defaults.headers.common['Authorization'] = header();
+    axios.delete('http://localhost:8080/user/editTask', {
+      data: { title },
+    });
 
-  const handleComplete = () => {};
+    window.location.reload();
+  };
+
+  const handleComplete = () => {
+    console.log(title);
+    axios.defaults.headers.common['Authorization'] = header();
+    axios.post('http://localhost:8080/user/changeStatusTask', {
+      title,
+    });
+
+    window.location.reload();
+  };
 
   return (
     <Container>

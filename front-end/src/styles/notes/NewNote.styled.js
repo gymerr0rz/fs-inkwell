@@ -63,7 +63,7 @@ const NewNoteInput = styled.textarea`
   }
   resize: none;
   &#title {
-    padding: 25px;
+    padding: 10px 25px;
     min-width: 350px;
     min-height: 50px;
     outline: none;
@@ -112,7 +112,6 @@ const NewNoteSelect = styled.div`
   flex-direction: row;
   gap: 10px;
   margin: 10px;
-
   select {
     min-width: 350px;
     padding: 10px;
@@ -127,6 +126,10 @@ const ColorContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 40px;
   color: #fff;
   gap: 10px;
 `;
