@@ -67,11 +67,12 @@ const NavbarInnerContainer = styled.div`
   gap: 20px;
   height: 100%;
   justify-content: space-between;
-  padding: 50px 0;
+  padding: 20px 0;
   flex-direction: column;
 `;
 
 const NavLogo = styled.div`
+  margin-top: 50px;
   display: flex;
   width: 100%;
   justify-content: center;

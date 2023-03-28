@@ -23,14 +23,7 @@ const create_user = async (req, res) => {
     console.log('User created!');
 
     // Save the user to the database
-    user
-      .save()
-      .then((data) => {
-        res.send(data);
-      })
-      .catch((err) => console.log(err));
-
-    console.log('Saving User!');
+    user.save();
   } catch (err) {
     console.log(err);
   }

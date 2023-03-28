@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const UserContainer = styled.div`
-  width: 100%;
+  margin: 0 auto;
+  width: 90%;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -9,6 +10,11 @@ const UserContainer = styled.div`
   justify-content: space-between;
   padding: 20px;
   height: 100px;
+  border-radius: 10px;
+  cursor: pointer;
+  :hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 `;
 
 const UserImage = styled.img`
@@ -17,7 +23,6 @@ const UserImage = styled.img`
 `;
 
 const UserInfo = styled.div`
-  padding-right: 30px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -34,4 +39,10 @@ const UserInfo = styled.div`
     font-size: 18px;
   }
 `;
-export { UserContainer, UserImage, UserInfo };
+
+const UserInformation = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;
+export { UserContainer, UserImage, UserInfo, UserInformation };

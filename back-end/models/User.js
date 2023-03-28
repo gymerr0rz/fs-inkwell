@@ -58,29 +58,6 @@ const userSchema = new Schema({
       content: String,
     },
   ],
-
-  // User's tasks for scheduling and tracking
-  tasks: [
-    {
-      // Unique title of the task
-      title: {
-        type: String,
-        unique: true,
-      },
-
-      // Category of the task (optional)
-      category: String,
-
-      // Date when the task is due (optional)
-      date: String,
-
-      // Origin of the task (optional)
-      origin: String,
-
-      // Origin Color (optinal)
-      color: String,
-    },
-  ],
 });
 
 const User = mongoose.model('User', userSchema);
