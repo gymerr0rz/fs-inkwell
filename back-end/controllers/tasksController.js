@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Task = require('../models/Tasks');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const SECRET_TOKEN = process.env.REFRESH_TOKEN_SECRET;
@@ -42,9 +43,9 @@ const create_task = async (req, res) => {
 
     const user = await User.findOne({ username: user_username });
 
-    const note = user.tasks.find((task) => task.title === title);
+    const task = user.tasks.find((task) => task.title === title);
 
-    if (note) return res.sendStatus(409);
+    if (task) return res.sendStatus(409);
 
     const date = new Date();
     const day = date.getDate();
@@ -53,13 +54,15 @@ const create_task = async (req, res) => {
 
     const fullDate = `${day}.${month}.${year}`;
 
-    user.tasks.push({
+    const newTask = new Task({
       title: title,
       category: category,
+      status: origin,
       date: fullDate,
-      origin: origin,
-      color: color,
+      border_color: color,
     });
+
+    user.tasks.push(newTask);
 
     await user.save();
 

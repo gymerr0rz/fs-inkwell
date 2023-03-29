@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Note = require('../models/Notes');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const SECRET_TOKEN = process.env.REFRESH_TOKEN_SECRET;
@@ -46,10 +47,12 @@ const create_notes = async (req, res) => {
 
     if (note) return res.sendStatus(409);
 
-    user.notes.push({
+    const newNote = new Note({
       title: title,
-      content: content,
+      description: content,
     });
+
+    user.notes.push(newNote);
 
     await user.save();
 

@@ -35,29 +35,11 @@ const userSchema = new Schema({
   },
 
   // JWT tokens for user authentication and authorization
-  jwt_token: [
-    {
-      // Encrypted token string
-      token: String,
-
-      // Expiration date of the token
-      expiresAt: Date,
-    },
-  ],
+  jwt_token: [],
 
   // User's personal notes for organization and productivity
-  notes: [
-    {
-      // Unique title of the note
-      title: {
-        type: String,
-        unique: true,
-      },
-
-      // Content of the note
-      content: String,
-    },
-  ],
+  notes: [],
+  tasks: [],
 });
 
 const User = mongoose.model('User', userSchema);

@@ -1,11 +1,18 @@
+const mongoose = require('mongoose');
+
 const taskSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    description: { type: String, required: true },
+    category: { type: String, required: true },
     status: {
       type: String,
       enum: ['todo', 'in_progress', 'done'],
       default: 'todo',
+    },
+    date: { type: String, required: true },
+    border_color: {
+      type: String,
+      default: '#FFFFFF',
     },
   },
   { timestamps: true }
