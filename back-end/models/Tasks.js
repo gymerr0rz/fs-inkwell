@@ -21,5 +21,4 @@ const taskSchema = new mongoose.Schema(
 // Specify a unique name for the index
 taskSchema.index({ title: 1 }, { name: 'title_index', sparse: true });
 
-const Task = mongoose.model('Task', taskSchema);
 module.exports = Task;
