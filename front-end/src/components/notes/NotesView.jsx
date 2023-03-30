@@ -82,7 +82,7 @@ const NotesView = () => {
                   </NotesButtons>
                 </NotesFlex>
                 <br />
-                <CardText>{note?.content}</CardText>
+                <CardText>{note?.description}</CardText>
               </NotesCard>
             );
           })}

@@ -12,5 +12,4 @@ const noteSchema = new mongoose.Schema(
 // Specify a unique name for the index
 noteSchema.index({ title: 1 }, { name: 'title_index', sparse: true });
 
-const Note = mongoose.model('Note', noteSchema);
 module.exports = Note;
