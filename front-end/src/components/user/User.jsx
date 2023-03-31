@@ -8,12 +8,18 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
+import ShowOptions from './show_options/ShowOptions';
 
 const User = () => {
   const [username, setUsername] = useState(null);
   const [displayName, setDisplayName] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
+  const [showOptions, setShowOptions] = useState(false);
   const header = useAuthHeader();
+
+  const handleToggle = () => {
+    setShowOptions(!showOptions);
+  };
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
@@ -26,7 +32,7 @@ const User = () => {
 
   return (
     <>
-      <UserContainer>
+      <UserContainer onClick={() => handleToggle()}>
         <UserInformation>
           <UserImage src={profilePicture} alt="" />
           <UserInfo>
@@ -34,7 +40,8 @@ const User = () => {
             <p>{displayName}</p>
           </UserInfo>
         </UserInformation>
-        <ChevronDown color="#fff" />
+        <ChevronDown color="#fff" onClick={() => handleToggle()} />
+        {showOptions && <ShowOptions />}
       </UserContainer>
     </>
   );
