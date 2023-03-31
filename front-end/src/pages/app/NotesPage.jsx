@@ -6,7 +6,7 @@ const NotesPage = () => {
   return (
     <>
       <NotesContainer>
-        <Navbar />
+        {/* <Navbar /> */}
         <NotesView />
       </NotesContainer>
     </>

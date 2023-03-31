@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import LoginPage from './pages/auth/Login';
 import React from 'react';
 import RegisterPage from './pages/auth/Register';
@@ -8,10 +8,20 @@ import NotesPage from './pages/app/NotesPage';
 import { RequireAuth } from 'react-auth-kit';
 import AdministrationPage from './pages/app/AdministrationPage';
 import TasksPage from './pages/app/TasksPage';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
+  const location = useLocation();
+
+  // Check if the current location is on one of the desired paths
+  const isOnAppPage =
+    location.pathname.startsWith('/app/notes') ||
+    location.pathname.startsWith('/app/tasks') ||
+    location.pathname.startsWith('/app/settings');
+
   return (
     <>
+      {isOnAppPage && <Navbar />}
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/auth/login" element={<LoginPage />} />

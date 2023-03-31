@@ -111,14 +111,15 @@ const NavbarContainerProps = styled.div`
 `;
 
 const NavFixed = styled.div`
-  position: relative;
+  position: absolute;
   height: 100vh;
   min-width: 100px !important;
   background-color: #202123;
 `;
 
 const NavNoFixed = styled.div`
-  position: relative;
+  position: absolute;
+  margin-right: 500px;
   height: 100vh;
   min-width: 300px !important;
   background-color: #202123;

@@ -6,7 +6,7 @@ const TasksPage = () => {
   return (
     <>
       <NotesContainer>
-        <Navbar />
+        {/* <Navbar /> */}
         <TasksView />
       </NotesContainer>
     </>
