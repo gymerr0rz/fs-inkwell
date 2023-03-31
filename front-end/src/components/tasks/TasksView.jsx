@@ -85,9 +85,13 @@ const TasksView = () => {
                     </TasksMenu>
                     <TasksDate>
                       <p>{task.date}</p>
-                      <TasksCategory border={task.color}>
-                        {task.category}
-                      </TasksCategory>
+                      {task.category ? (
+                        <TasksCategory border={task.color}>
+                          {task.category}
+                        </TasksCategory>
+                      ) : (
+                        console.log('No Category')
+                      )}
                     </TasksDate>
                     {showOptions[task.title] && (
                       <ShowOptions title={task.title} />

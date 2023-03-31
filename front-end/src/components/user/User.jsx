@@ -5,19 +5,33 @@ import {
   UserInformation,
   UserInfo,
 } from '../../styles/user/User.styled';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useAuthHeader } from 'react-auth-kit';
 
 const User = () => {
+  const [username, setUsername] = useState(null);
+  const [displayName, setDisplayName] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
+  const header = useAuthHeader();
+
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = header();
+    axios.get('http://localhost:8080/user/getUser').then((user) => {
+      setUsername(user.data.username);
+      setDisplayName(user.data.username);
+      setProfilePicture(user.data.profile_image);
+    });
+  }, []);
+
   return (
     <>
       <UserContainer>
         <UserInformation>
-          <UserImage
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F974736784906248192%2FgPZwCbdS.jpg&f=1&nofb=1&ipt=c6419fb8d7334e4ae0000fc34960f9806fd1b50f837b8ba606d92576ebc6d9a4&ipo=images"
-            alt=""
-          />
+          <UserImage src={profilePicture} alt="" />
           <UserInfo>
-            <h1>ERR0RZ</h1>
-            <p>@lolerr0rz</p>
+            <h1>{username}</h1>
+            <p>{displayName}</p>
           </UserInfo>
         </UserInformation>
         <ChevronDown color="#fff" />
