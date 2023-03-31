@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const Task = require('../models/Tasks');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const SECRET_TOKEN = process.env.REFRESH_TOKEN_SECRET;
@@ -54,13 +53,13 @@ const create_task = async (req, res) => {
 
     const fullDate = `${day}.${month}.${year}`;
 
-    const newTask = new Task({
+    const newTask = {
       title: title,
       category: category,
       status: origin,
       date: fullDate,
       border_color: color,
-    });
+    };
 
     user.tasks.push(newTask);
 
