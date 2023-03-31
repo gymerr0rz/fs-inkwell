@@ -65,7 +65,6 @@ const userSchema = new Schema({
       // Category of the task (optional)
       category: {
         type: String,
-        required: true,
       },
 
       // Date when the task is due (optional)
