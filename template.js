@@ -47,14 +47,20 @@ const create_notes = async (req, res) => {
 
     if (findNote) return res.sendStatus(409);
 
-    const newNote = {
-      title: title,
-      description: content,
-    };
+    // const newNote = {
+    //   title: title,
+    //   description: content,
+    // };
 
-    user.notes.push(newNote);
+    const note = new Note({
+      title,
+      content,
+      userId: req.user._id,
+    });
 
-    await user.save();
+    // user.notes.push(newNote);
+
+    await note.save();
 
     return res.sendStatus(200);
   } catch (err) {

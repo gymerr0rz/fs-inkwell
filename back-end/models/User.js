@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { noteSchema } = require('./Notes');
+const { taskSchema } = require('./Tasks');
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
   // User's unique username for login
@@ -37,49 +39,8 @@ const userSchema = new Schema({
       expiresAt: Date,
     },
   ],
-  // User's personal notes for organization and productivity
-  notes: [
-    {
-      // Unique title of the note
-      title: {
-        type: String,
-        unique: true,
-      },
-      // Content of the note
-      description: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-
-  // User's tasks for scheduling and tracking
-  tasks: [
-    {
-      // Unique title of the task
-      title: {
-        type: String,
-        unique: true,
-      },
-
-      // Category of the task (optional)
-      category: {
-        type: String,
-      },
-
-      // Date when the task is due (optional)
-      date: String,
-
-      // Origin of the task (optional)
-      origin: {
-        type: String,
-        default: 'new_tasks',
-      },
-
-      // Origin Color (optinal)
-      color: { type: String, default: '#FFFFFF' },
-    },
-  ],
+  notes: [noteSchema],
+  tasks: [taskSchema],
 });
 
 const User = mongoose.model('User', userSchema);

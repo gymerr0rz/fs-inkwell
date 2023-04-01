@@ -19,6 +19,8 @@ const create_user = async (req, res) => {
       email,
       username,
       password: hashedPassword,
+      notes: [],
+      tasks: [],
     });
     console.log('User created!');
 

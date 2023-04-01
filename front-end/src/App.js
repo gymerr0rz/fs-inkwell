@@ -9,15 +9,15 @@ import { RequireAuth } from 'react-auth-kit';
 import AdministrationPage from './pages/app/AdministrationPage';
 import TasksPage from './pages/app/TasksPage';
 import Navbar from './components/navbar/Navbar';
+import HomePage from './pages/app/HomePage';
 
 function App() {
   const location = useLocation();
 
   // Check if the current location is on one of the desired paths
   const isOnAppPage =
-    location.pathname.startsWith('/app/notes') ||
-    location.pathname.startsWith('/app/tasks') ||
-    location.pathname.startsWith('/app/settings');
+    location.pathname.startsWith('/app/') ||
+    location.pathname.startsWith('/app');
 
   return (
     <>
@@ -48,6 +48,14 @@ function App() {
           element={
             <RequireAuth loginPath="/auth/login">
               <AdministrationPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/app/"
+          element={
+            <RequireAuth loginPath="/auth/login">
+              <HomePage />
             </RequireAuth>
           }
         />

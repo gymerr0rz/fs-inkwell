@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/Auth');
 const userRoutes = require('./routes/User');
 const cors = require('cors');
+const passport = require('passport');
 
 require('dotenv').config();
 
@@ -19,6 +20,7 @@ app.use(
   })
 );
 app.use(express.json());
+
 app.use('/auth/', authRoutes);
 app.use('/user/', userRoutes);
 

@@ -8,17 +8,33 @@ import {
   ProfileText,
   UpdateUsername,
 } from '../../../styles/settings/profile/Profile.styled';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useAuthHeader } from 'react-auth-kit';
+import { useState } from 'react';
 
 const ProfileSettings = () => {
+  const [username, setUsername] = useState(null);
+  const [displayName, setDisplayName] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [showOptions, setShowOptions] = useState(false);
+  const header = useAuthHeader();
+
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = header();
+    axios.get('http://localhost:8080/user/getUser').then((user) => {
+      setUsername(user.data.username);
+      setDisplayName(user.data.username);
+      setProfilePicture(user.data.profile_image);
+    });
+  }, []);
+
   return (
     <>
       <ProfileContainer>
         <h1>Profile Picture</h1>
         <ProfileStyling>
-          <ProfileImage
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F974736784906248192%2FgPZwCbdS.jpg&f=1&nofb=1&ipt=c6419fb8d7334e4ae0000fc34960f9806fd1b50f837b8ba606d92576ebc6d9a4&ipo=images"
-            alt=""
-          />
+          <ProfileImage src={profilePicture} alt="" />
           <UpdateInfo>
             <UpdatePicture>
               <button>Update Profile Picture</button>
@@ -35,7 +51,7 @@ const ProfileSettings = () => {
         <ProfileText>
           <h1>Username</h1>
           <UpdateUsername>
-            <input type="text" placeholder="lol_err0rz" />
+            <input type="text" placeholder={username} />
             <p>You may update your username</p>
           </UpdateUsername>
         </ProfileText>
@@ -45,7 +61,7 @@ const ProfileSettings = () => {
         <ProfileText>
           <h1>Display Name </h1>
           <UpdateUsername>
-            <input type="text" placeholder="lol_err0rz" />
+            <input type="text" placeholder={username} />
             <p>Customize capitalization for your username</p>
           </UpdateUsername>
         </ProfileText>
