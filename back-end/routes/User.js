@@ -22,6 +22,6 @@ router.get('/getUser', userController.get_user);
 router.delete('/deleteUser', userController.delete_user);
 
 // Weather routes
-router.get('/getWeather', weatherController.get_weather);
+router.post('/getWeather', weatherController.get_weather);
 
 module.exports = router;
