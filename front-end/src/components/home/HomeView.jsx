@@ -1,5 +1,7 @@
+import Weather from '../weather/Weather';
+
 const HomeView = () => {
-  return <h1>Hello World</h1>;
+  return <Weather />;
 };
 
 export default HomeView;
