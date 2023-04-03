@@ -68,6 +68,7 @@ const Navbar = () => {
                 <NavButton icon="User" />
               </Link>
             </div>
+            {/* <User /> */}
           </NavbarContainerProps>
         </NavFixed>
       </>

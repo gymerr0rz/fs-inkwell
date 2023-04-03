@@ -1,5 +1,15 @@
+import HomeView from '../../components/home/HomeView';
+import { NotesContainer } from '../../styles/notes/NotesPage.styled';
+
 const HomePage = () => {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <NotesContainer>
+        {/* <Navbar /> */}
+        <HomeView />
+      </NotesContainer>
+    </>
+  );
 };
 
 export default HomePage;

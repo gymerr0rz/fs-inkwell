@@ -19,7 +19,6 @@ const get_user = async (req, res) => {
 
     if (!user) return res.sendStatus(204);
 
-    console.log(user);
     res.send(user);
   } catch (err) {
     console.log(err);
