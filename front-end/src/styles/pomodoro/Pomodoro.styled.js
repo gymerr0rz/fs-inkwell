@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const WeatherContainer = styled.div`
+const PomodoroContainer = styled.div`
   min-width: 500px;
   height: 323px;
   background-color: #202123;
@@ -9,22 +9,22 @@ const WeatherContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
-`;
-const WeatherCurrent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 30px;
   align-items: center;
+  gap: 10px;
   color: #fff;
+  span {
+    font-size: 6rem;
+    font-weight: 900;
+  }
 `;
-const WeatherButtons = styled.div`
+
+const PomodoroButtons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   button {
-    width: 40%;
+    width: 100px;
     background-color: #121215;
     border: none;
     height: 40px;
@@ -36,32 +36,15 @@ const WeatherButtons = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-  }
-`;
-const WeatherStatus = styled.div`
-  text-align: right;
-  p {
-    color: #9b9b9b;
-  }
-`;
-const WeatherInformation = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  h1 {
-    display: flex;
-    gap: 2.5px;
-    font-size: 5rem;
-    b {
-      font-size: 1rem;
+    transition: background-color 100ms ease-in-out, transform 100ms ease-in-out;
+    :hover {
+      transition: background-color 100ms ease-in-out;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    :focus {
+      transform: scale(0.95);
+      transition: transform 100ms ease-in-out;
     }
   }
 `;
-
-export {
-  WeatherContainer,
-  WeatherCurrent,
-  WeatherInformation,
-  WeatherStatus,
-  WeatherButtons,
-};
+export { PomodoroContainer, PomodoroButtons };
