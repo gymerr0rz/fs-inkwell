@@ -10,6 +10,7 @@ import {
   Droplets,
   LocateIcon,
   RefreshCcw,
+  Search,
   Sun,
 } from 'lucide-react';
 import {
@@ -18,6 +19,8 @@ import {
   WeatherStatus,
   WeatherInformation,
   WeatherButtons,
+  WeatherInput,
+  WeatherSearch,
 } from '../../styles/weather/Weather.styled';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -30,6 +33,7 @@ const Weather = () => {
   const [weather, setWeather] = useState(null);
   const [time, setTime] = useState('00:00');
   const [gps, setGps] = useState(null);
+  const [clicked, setClicked] = useState(false);
 
   function getWeatherData() {
     axios
@@ -43,6 +47,7 @@ const Weather = () => {
         setWeather(weatherData.current.condition.text);
         setTime(weatherData.location.localtime);
         setGps(weatherData.location.name + ', ' + weatherData.location.country);
+        setClicked(false);
       });
 
     function weatherCode(code) {
@@ -105,6 +110,29 @@ const Weather = () => {
     getWeatherData();
   }, []);
 
+  function handleClick() {
+    if (clicked) {
+      return (
+        <WeatherSearch>
+          <WeatherInput
+            type="text"
+            placeholder="Type the location"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <span onClick={getWeatherData}>
+            <Search size={15} className="search" />
+          </span>
+        </WeatherSearch>
+      );
+    } else {
+      return (
+        <button onClick={() => setClicked(true)}>
+          <LocateIcon size={10} /> CHANGE LOCATION
+        </button>
+      );
+    }
+  }
+
   return (
     <WeatherContainer>
       <WeatherCurrent>
@@ -125,9 +153,10 @@ const Weather = () => {
         </WeatherStatus>
       </WeatherCurrent>
       <WeatherButtons>
-        <button>
+        {/* <button>
           <LocateIcon size={15} /> CHANGE LOCATION
-        </button>
+        </button> */}
+        {handleClick()}
         <button onClick={getWeatherData}>
           <RefreshCcw size={15} />
           REFRESH
