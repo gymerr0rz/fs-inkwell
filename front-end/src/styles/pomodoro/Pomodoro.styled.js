@@ -36,15 +36,21 @@ const PomodoroButtons = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    transition: background-color 100ms ease-in-out, transform 100ms ease-in-out;
+    transition: background-color 100ms ease-in-out;
+
     :hover {
       transition: background-color 100ms ease-in-out;
       background-color: rgba(255, 255, 255, 0.1);
     }
-    :focus {
-      transform: scale(0.95);
-      transition: transform 100ms ease-in-out;
-    }
+  }
+  .play.active {
+    background-color: green !important;
+  }
+  .pause.active {
+    background-color: purple !important;
+  }
+  .stop.active {
+    background-color: red !important;
   }
 `;
 export { PomodoroContainer, PomodoroButtons };

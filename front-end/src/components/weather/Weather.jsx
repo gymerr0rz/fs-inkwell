@@ -27,7 +27,6 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const Weather = () => {
-  const [location, setLocation] = useState('Solin, Croatia');
   const [temperature, setTemperature] = useState(null);
   const [status, setStatus] = useState(null);
   const [weather, setWeather] = useState(null);
@@ -36,6 +35,9 @@ const Weather = () => {
   const [clicked, setClicked] = useState(false);
 
   function getWeatherData() {
+    if (!localStorage.getItem('weatherLocation')) return;
+    const location = localStorage.getItem('weatherLocation');
+
     axios
       .post('http://localhost:8080/user/getWeather', {
         location,
@@ -116,8 +118,10 @@ const Weather = () => {
         <WeatherSearch>
           <WeatherInput
             type="text"
-            placeholder="Type the location"
-            onChange={(e) => setLocation(e.target.value)}
+            placeholder="Paris, France"
+            onChange={(e) => {
+              localStorage.setItem('weatherLocation', e.target.value);
+            }}
           />
           <span onClick={getWeatherData}>
             <Search size={15} className="search" />

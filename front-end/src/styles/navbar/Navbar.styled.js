@@ -23,6 +23,9 @@ const NavbarNoProps = styled.button`
 `;
 
 const NavbarButton = styled.button`
+  svg {
+    stroke: #848486;
+  }
   height: 50px;
   width: 250px;
   margin: 0 auto;
@@ -34,7 +37,8 @@ const NavbarButton = styled.button`
   padding: 20px;
   cursor: pointer;
   gap: 20px;
-  color: #fff;
+  color: #848486;
+  font-weight: 500;
   background-color: transparent;
   border-radius: 10px;
   transition: background-color 100ms ease-in-out;
@@ -81,12 +85,31 @@ const NavLogo = styled.div`
 `;
 
 const NavLinks = styled.div`
+  a {
+    text-decoration: none;
+  }
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   margin-top: 25px;
+  position: relative;
+  button.active {
+    svg {
+      stroke: #fff;
+    }
+    color: #fff;
+    ::before {
+      position: absolute;
+      left: 0;
+      height: 50px;
+      width: 50px;
+      content: '';
+      color: #fff;
+      border-left: 3px solid #8bffc0;
+    }
+  }
 `;
 
 const NavbarContainerProps = styled.div`
