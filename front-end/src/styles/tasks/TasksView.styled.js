@@ -6,6 +6,7 @@ const TasksContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: 121215;
+  overflow: auto;
 `;
 
 const TasksTopText = styled.h1`
@@ -231,6 +232,8 @@ const TasksDate = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  color: #8d8d8d;
+  text-transform: uppercase;
 `;
 
 const TasksCategory = styled.div`
@@ -239,6 +242,7 @@ const TasksCategory = styled.div`
   border-radius: 10px;
   padding: 1px 15px;
   border: 2px solid ${(props) => props.border};
+  color: #fff !important;
 `;
 
 export {

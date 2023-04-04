@@ -22,6 +22,7 @@ const NewTask = (props) => {
   const header = useAuthHeader();
   const handleClick = () => {
     axios.defaults.headers.common['Authorization'] = header();
+    console.log(origin);
     axios
       .post('http://localhost:8080/user/createTask', {
         title,

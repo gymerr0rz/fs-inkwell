@@ -21,6 +21,10 @@ const User = () => {
     setShowOptions(!showOptions);
   };
 
+  const handleLeave = () => {
+    setShowOptions(false);
+  };
+
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
     axios.get('http://localhost:8080/user/getUser').then((user) => {
@@ -32,12 +36,12 @@ const User = () => {
 
   return (
     <>
-      <UserContainer onClick={() => handleToggle()}>
+      <UserContainer onClick={() => handleToggle()} onMouseLeave={handleLeave}>
         <UserInformation>
           <UserImage src={profilePicture} alt="" />
           <UserInfo>
             <h1>{username}</h1>
-            <p>{displayName}</p>
+            <p>@{displayName}</p>
           </UserInfo>
         </UserInformation>
         <ChevronDown color="#fff" onClick={() => handleToggle()} />

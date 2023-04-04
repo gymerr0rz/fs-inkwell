@@ -1,10 +1,9 @@
-import { List, Search, Plus, CheckCircle, MoreVertical } from 'lucide-react';
+import { Search, Plus, CheckCircle, MoreVertical } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
   TasksContainer,
   TasksTop,
-  Icon,
   TasksSearch,
   TasksBottom,
   TasksTopText,
@@ -24,6 +23,8 @@ const TasksView = () => {
   const [tasks, setTasks] = useState([]);
   const [showComponent, setShowComponent] = useState(false);
   const [showOptions, setShowOptions] = useState([]);
+  let [newTaskCount, setNewTaskCount] = useState(0);
+  let [completedTask, setCompletedTask] = useState(0);
 
   const header = useAuthHeader();
   useEffect(() => {
@@ -31,6 +32,15 @@ const TasksView = () => {
     axios.get('http://localhost:8080/user/getTasks').then((response) => {
       const newTasks = response.data;
       setTasks([...tasks, ...newTasks]);
+      newTasks.map((task) => {
+        if (task.origin === 'new_tasks') {
+          console.log('Added count to new task!');
+          setNewTaskCount((prevCount) => prevCount + 1);
+        } else if (task.origin === 'completed') {
+          console.log('Added count to completed task!');
+          setCompletedTask((prevCount) => prevCount + 1);
+        }
+      });
     });
   }, []);
 
@@ -65,7 +75,7 @@ const TasksView = () => {
             <TasksTitle>
               <div className="title">
                 <h1>New Tasks</h1>
-                <div>3</div>
+                <div>{newTaskCount}</div>
               </div>
               <button onClick={handleClick}>
                 <Plus />
@@ -78,7 +88,7 @@ const TasksView = () => {
                   <TasksContent>
                     <TasksMenu>
                       <div className="abc">
-                        <CheckCircle />
+                        <CheckCircle color="#8D8D8D" />
                         <h1>{task.title}</h1>
                       </div>
                       <MoreVertical onClick={() => handleOptions(task.title)} />
@@ -105,7 +115,7 @@ const TasksView = () => {
             <TasksTitleCompleted>
               <div className="title">
                 <h1>Completed</h1>
-                <div>3</div>
+                <div>{completedTask}</div>
               </div>
               <button onClick={handleClick}>
                 <Plus />

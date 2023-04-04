@@ -28,7 +28,7 @@ const get_tasks = async (req, res) => {
 const create_task = async (req, res) => {
   try {
     const { title, category, origin, color } = req.body;
-
+    console.log(origin);
     if (!title && !category && !origin) return res.sendStatus(403);
 
     const headers = req.headers.authorization;
@@ -56,9 +56,9 @@ const create_task = async (req, res) => {
     const newTask = {
       title: title,
       category: category,
-      status: origin,
+      origin: origin,
       date: fullDate,
-      border_color: color,
+      color: color,
     };
 
     user.tasks.push(newTask);
