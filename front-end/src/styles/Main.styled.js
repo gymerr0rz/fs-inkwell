@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import HeroB from '../assets/bg/asset.png';
 
 const MainPageStyle = styled.div`
   width: 80%;
@@ -127,6 +128,12 @@ const HeroTwo = styled.div`
 const Container = styled.div`
   width: 100%;
   height: 100vh;
+  &.hero {
+    background-image: url(${HeroB});
+    background-position: center bottom; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+  }
 `;
 
 const HeroButtons = styled.div`

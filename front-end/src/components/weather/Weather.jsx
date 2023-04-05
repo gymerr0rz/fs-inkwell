@@ -26,7 +26,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const Weather = () => {
-  const [temperature, setTemperature] = useState(null);
+  const [temperature, setTemperature] = useState('0');
   const [status, setStatus] = useState(null);
   const [weather, setWeather] = useState(null);
   const [time, setTime] = useState('00:00');
@@ -34,7 +34,10 @@ const Weather = () => {
   const [clicked, setClicked] = useState(false);
 
   function getWeatherData() {
-    if (!localStorage.getItem('weatherLocation')) return;
+    if (!localStorage.getItem('weatherLocation')) {
+      setGps('Input a location');
+      return;
+    }
     const location = localStorage.getItem('weatherLocation');
 
     axios

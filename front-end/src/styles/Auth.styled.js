@@ -4,7 +4,7 @@ const AuthContainer = styled.div`
   position: relative;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 5, 0.95);
+  background-color: #121215;
 `;
 
 const AuthBox = styled.div`
@@ -45,7 +45,7 @@ const AuthBox = styled.div`
     min-width: 504px;
     min-height: 63px;
     border-radius: 10px;
-    background-color: #101114;
+    background-color: #0a0b0c;
     border: none;
     font-weight: 900;
     margin: 10px;
@@ -57,7 +57,7 @@ const AuthBox = styled.div`
 `;
 
 const AuthInputs = styled.input`
-  background-color: #101114;
+  background-color: #0a0b0c;
   border: none;
   color: #fff;
   font-weight: 500;

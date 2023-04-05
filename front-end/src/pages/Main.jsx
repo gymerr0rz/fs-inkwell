@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledButton } from '../styles/Buttons,styled';
 import {
   MainPageStyle,
   HomeNavbar,
@@ -15,7 +14,7 @@ import Book from '../assets/undraw_design_notes_re_eklr.svg';
 const MainPage = () => {
   return (
     <>
-      <Container>
+      <Container className="hero">
         <MainPageStyle>
           <HomeNavbar>
             <h1>INKWELL</h1>
@@ -23,7 +22,9 @@ const MainPage = () => {
               <li>About us</li>
               <li>Contact us</li>
               <li>
-                <button>Log in</button>
+                <Link to="/auth/login">
+                  <button>Log in</button>
+                </Link>
               </li>
             </ul>
           </HomeNavbar>
@@ -36,8 +37,12 @@ const MainPage = () => {
               media.
             </p>
             <HeroButtons>
-              <button className="login">Log in</button>
-              <button className="register">Create account</button>
+              <Link to="/auth/login">
+                <button className="login">Log in</button>
+              </Link>
+              <Link to="/auth/register">
+                <button className="register">Create account</button>
+              </Link>
             </HeroButtons>
           </Hero>
         </MainPageStyle>
@@ -57,7 +62,9 @@ const MainPage = () => {
                 a streamlined experience that helps you stay focused and achieve
                 your goals.
               </p>
-              <button className="register">Create account</button>
+              <Link to="/auth/register">
+                <button className="register">Create account</button>
+              </Link>
             </Flex>
             <img src={Book} alt="" />
           </HeroTwo>
