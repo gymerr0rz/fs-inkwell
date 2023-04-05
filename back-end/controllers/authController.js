@@ -9,8 +9,19 @@ const handle_user = async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    if (!user) return res.sendStatus(401); // unauthorized
+    if (!user)
+      return res.status(404).json({
+        status: 'failed',
+        message: "Email doesn't exist!",
+      });
     const match = await bcrypt.compare(password, user.password);
+
+    if (!match)
+      res.status(401).json({
+        status: 'failed',
+        message: 'Incorrect password!',
+      });
+
     if (match) {
       const accessToken = jwt.sign(
         {
@@ -31,13 +42,11 @@ const handle_user = async (req, res) => {
         expiresAt: new Date(Date.now() + 60 * 60 * 1000),
       });
       await user.save();
-      res.json({
+      res.status(200).json({
         success: `User ${user.username} is logged in`,
         jwt_token: accessToken,
         user: user,
       });
-    } else {
-      res.sendStatus(401);
     }
   } catch (err) {
     console.log(err);

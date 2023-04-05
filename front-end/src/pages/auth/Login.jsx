@@ -8,7 +8,19 @@ import {
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSignIn } from 'react-auth-kit';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+const options = {
+  position: 'top-right',
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: 'dark',
+};
 // const cookies = new Cookies();
 
 const LoginPage = () => {
@@ -34,6 +46,9 @@ const LoginPage = () => {
           authState: { username: response.data.user.username },
         });
         window.location.pathname = '/app';
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message, options);
       });
   }
 
@@ -45,6 +60,7 @@ const LoginPage = () => {
   return (
     <>
       <AuthContainer>
+        <ToastContainer />
         <AuthBox>
           <h1>INKWELL</h1>
           <p>
@@ -63,7 +79,7 @@ const LoginPage = () => {
             <div className="labels" onClick={onClick}>
               <label for="password">PASSWORD</label>
               <AuthInputs
-                type="text"
+                type="password"
                 placeholder="password"
                 onChange={(e) => setPassword(e.target.value)}
               />

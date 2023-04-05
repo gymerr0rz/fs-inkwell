@@ -4,11 +4,19 @@ const bcrypt = require('bcrypt');
 const create_user = async (req, res) => {
   const { email, username, password } = req.body.accountData;
 
-  if (!email && !username && !password) return res.status(400);
+  if (!email && !username && !password)
+    return res.status(400).json({
+      status: 'failed',
+      message: 'No content!',
+    });
 
   const userFind = await User.findOne({ email });
 
-  if (userFind) return res.status(404);
+  if (userFind)
+    return res.status(409).json({
+      status: 'failed',
+      message: 'Account already exists!',
+    });
 
   try {
     // Hash the Password
@@ -22,10 +30,13 @@ const create_user = async (req, res) => {
       notes: [],
       tasks: [],
     });
-    console.log('User created!');
 
     // Save the user to the database
     user.save();
+    res.status(200).json({
+      status: 'success',
+      message: 'Account created!',
+    });
   } catch (err) {
     console.log(err);
   }
