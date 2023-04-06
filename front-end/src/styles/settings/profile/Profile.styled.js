@@ -50,17 +50,39 @@ const ProfileText = styled.div`
   }
 `;
 
+const ImageContainer = styled.div`
+  width: 100px;
+  height: 100px;
+  position: relative;
+`;
+
 const ProfileImage = styled.img`
   border-radius: 50%;
-  max-height: 100px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const UpdateInfo = styled.div`
-  gap: 20px;
+  gap: 5px;
   display: flex;
   flex-direction: column;
   p {
     color: #a0a0a0;
+  }
+  button {
+    width: 100px;
+    background-color: #6364ff;
+    color: #fff;
+    border: none;
+    height: 25px;
+    border-radius: 5px;
+    cursor: pointer;
   }
 `;
 
@@ -88,7 +110,7 @@ const UpdatePicture = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  button {
+  input {
     background-color: #343434;
     border: 2px solid rgba(73, 73, 73, 0.5);
     color: #fff;
@@ -96,6 +118,7 @@ const UpdatePicture = styled.div`
     height: 30px;
     border-radius: 5px;
     font-weight: 600;
+    outline: none;
   }
 `;
 
@@ -107,4 +130,5 @@ export {
   UpdatePicture,
   UpdateUsername,
   ProfileText,
+  ImageContainer,
 };

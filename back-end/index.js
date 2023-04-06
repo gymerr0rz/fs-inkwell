@@ -4,6 +4,7 @@ const PORT = 8080;
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/Auth');
 const userRoutes = require('./routes/User');
+const uploadRoute = require('./routes/Uploads');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -20,6 +21,7 @@ app.use(
 app.use(express.json());
 app.use('/auth/', authRoutes);
 app.use('/user/', userRoutes);
+app.use('/uploads/', uploadRoute);
 
 app.listen(PORT, () => {
   console.log('Listening on PORT:' + PORT);

@@ -50,6 +50,30 @@ const delete_user = async (req, res) => {
   }
 };
 
+const upload_profile_image = async (req, res) => {
+  try {
+    const headers = req.headers.authorization;
+    const token = headers.split(' ')[1];
+
+    if (!token) return res.sendStatus(403);
+
+    const decode = jwt.decode(token, SECRET_TOKEN);
+
+    const user_username = decode.username;
+
+    const user = await User.findOne({ username: user_username });
+
+    user.profile_image = req.file.path;
+
+    await user.save();
+
+    res.status(200).json({ message: 'Profile picture uploaded successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 const change_settings = async (req, res) => {
   const { title } = req.body;
 
@@ -79,4 +103,5 @@ module.exports = {
   get_user,
   delete_user,
   change_settings,
+  upload_profile_image,
 };

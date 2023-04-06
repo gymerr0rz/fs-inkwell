@@ -18,8 +18,21 @@ const UserContainer = styled.div`
 `;
 
 const UserImage = styled.img`
-  max-height: 60px;
   border-radius: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const ImageContainer = styled.div`
+  width: 75px;
+  height: 75px;
+  position: relative;
 `;
 
 const UserInfo = styled.div`
@@ -45,4 +58,4 @@ const UserInformation = styled.div`
   flex-direction: row;
   gap: 10px;
 `;
-export { UserContainer, UserImage, UserInfo, UserInformation };
+export { UserContainer, UserImage, UserInfo, UserInformation, ImageContainer };

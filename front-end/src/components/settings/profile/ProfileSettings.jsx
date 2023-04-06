@@ -7,6 +7,7 @@ import {
   UpdateInfo,
   ProfileText,
   UpdateUsername,
+  ImageContainer,
 } from '../../../styles/settings/profile/Profile.styled';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -18,6 +19,8 @@ const ProfileSettings = () => {
   const [displayName, setDisplayName] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
   const [showOptions, setShowOptions] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const header = useAuthHeader();
 
   useEffect(() => {
@@ -29,18 +32,43 @@ const ProfileSettings = () => {
     });
   }, []);
 
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('profile_image', selectedFile);
+
+    axios
+      .post('http://localhost:8080/user/uploadProfileImage', formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <ProfileContainer>
         <h1>Profile Picture</h1>
         <ProfileStyling>
-          <ProfileImage src={profilePicture} alt="" />
+          <ImageContainer>
+            <ProfileImage
+              {...{ src: `http://localhost:8080/${profilePicture}`, alt: '' }}
+            />
+          </ImageContainer>
           <UpdateInfo>
             <UpdatePicture>
-              <button>Update Profile Picture</button>
+              <input type="file" onChange={handleFileSelect} />
               <Trash />
             </UpdatePicture>
             <p>Must be JPEG, PNG, or GIF and cannot exceed 10MB. </p>
+            <button onClick={handleFormSubmit}>Save Changes</button>
           </UpdateInfo>
         </ProfileStyling>
       </ProfileContainer>

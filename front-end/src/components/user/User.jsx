@@ -4,6 +4,7 @@ import {
   UserImage,
   UserInformation,
   UserInfo,
+  ImageContainer,
 } from '../../styles/user/User.styled';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -38,7 +39,11 @@ const User = () => {
     <>
       <UserContainer onClick={() => handleToggle()} onMouseLeave={handleLeave}>
         <UserInformation>
-          <UserImage src={profilePicture} alt="" />
+          <ImageContainer>
+            <UserImage
+              {...{ src: `http://localhost:8080/${profilePicture}`, alt: '' }}
+            />
+          </ImageContainer>
           <UserInfo>
             <h1>{username}</h1>
             <p>@{displayName}</p>
