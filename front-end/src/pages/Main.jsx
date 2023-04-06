@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   MainPageStyle,
@@ -10,8 +10,45 @@ import {
   Flex,
 } from '../styles/Main.styled';
 import Book from '../assets/undraw_design_notes_re_eklr.svg';
+import axios from 'axios';
+import { useAuthHeader } from 'react-auth-kit';
 
 const MainPage = () => {
+  const [active, setActive] = useState(null);
+
+  const header = useAuthHeader();
+
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = header();
+    axios
+      .get('http://localhost:8080/user/getUser')
+      .then(() => {
+        window.localStorage.setItem('isLoggedIn', true);
+        setActive(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        window.localStorage.setItem('isLoggedIn', false);
+        setActive(false);
+      });
+  }, []);
+
+  function handleCondition() {
+    if (!active) {
+      return (
+        <Link to="/auth/login">
+          <button>Log in</button>
+        </Link>
+      );
+    } else {
+      return (
+        <Link to="/app">
+          <button>Dashboard</button>
+        </Link>
+      );
+    }
+  }
+
   return (
     <>
       <Container className="hero">
@@ -21,11 +58,7 @@ const MainPage = () => {
             <ul>
               <li>About us</li>
               <li>Contact us</li>
-              <li>
-                <Link to="/auth/login">
-                  <button>Log in</button>
-                </Link>
-              </li>
+              <li>{handleCondition()}</li>
             </ul>
           </HomeNavbar>
           <Hero>

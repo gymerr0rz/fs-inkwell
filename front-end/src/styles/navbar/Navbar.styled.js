@@ -107,7 +107,7 @@ const NavLinks = styled.div`
       width: 50px;
       content: '';
       color: #fff;
-      border-left: 3px solid #8bffc0;
+      border-left: 3px solid rgb(99, 100, 255);
     }
   }
 `;

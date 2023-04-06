@@ -58,7 +58,7 @@ const NotesView = () => {
         <NotesSearchContainer>
           <NotesSearch type="text" placeholder="Search..." />
           <NotesSortButton>
-            <SortAsc size={20} color="#8BFFC0" />
+            <SortAsc size={20} color="#6364FF" />
             SORT
           </NotesSortButton>
           <SingularButton onClick={handleClick}>

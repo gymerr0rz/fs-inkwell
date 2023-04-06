@@ -98,9 +98,9 @@ const TasksTitleCompleted = styled.div`
 
   button {
     height: 100%;
-    border: 2px solid #8bffc0;
+    border: 2px solid rgb(99, 100, 255);
     background-color: #202123;
-    color: #8bffc0;
+    color: rgb(99, 100, 255);
     width: 145px;
     border-radius: 10px;
     outline: none;
@@ -126,8 +126,8 @@ const TasksTitleCompleted = styled.div`
   }
 
   .title div {
-    color: #8bffc0;
-    border: 2px solid #8bffc0;
+    color: rgb(99, 100, 255);
+    border: 2px solid rgb(99, 100, 255);
     font-weight: 700;
     height: 100%;
     width: 49px;

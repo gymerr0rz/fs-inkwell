@@ -49,9 +49,9 @@ const NotesSortButton = styled.button`
   min-height: 45px;
   border-radius: 10px;
   outline: none;
-  border: 1px solid #8bffc0;
+  border: 1px solid rgb(99, 100, 255);
   background-color: #202123;
-  color: #8bffc0;
+  color: rgb(99, 100, 255);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -143,10 +143,9 @@ const NotesButtons = styled.div`
 `;
 
 const SingularButton = styled.div`
-  background-color: #29292b;
+  background-color: rgb(99, 100, 255);
   border-radius: 10px;
   outline: none;
-  border: 1px solid #29292b;
   min-width: 155px;
   font-size: 0.8rem;
   min-height: 35px;
