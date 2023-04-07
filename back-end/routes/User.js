@@ -5,6 +5,8 @@ const tasksController = require('../controllers/tasksController');
 const userController = require('../controllers/userController');
 const weatherController = require('../controllers/weatherController');
 const uploadMiddleware = require('../middleware/uploadMiddleware');
+const usersController = require('../controllers/usersController');
+
 // Notes routes
 router.post('/createNote', notesController.create_notes);
 router.get('/getNotes', notesController.get_notes);
@@ -28,5 +30,11 @@ router.delete('/deleteUser', userController.delete_user);
 
 // Weather routes
 router.post('/getWeather', weatherController.get_weather);
+
+// Get User To Display route (max 6)
+router.get('/getUser/:id', usersController.get_users);
+
+// Get User To Display route (how many users exist with that search param)
+router.get('/searchUser', usersController.search_users);
 
 module.exports = router;

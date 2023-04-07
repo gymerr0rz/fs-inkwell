@@ -84,6 +84,37 @@ const NavLogo = styled.div`
   flex-direction: column;
 `;
 
+const SearchDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+const SearchIcons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 250px;
+  height: 50px;
+  background-color: #3a3a3a;
+  position: relative;
+  border: 2px solid #484848;
+  margin: 20px auto;
+  border-radius: 10px;
+
+  input {
+    outline: none;
+    background-color: #3a3a3a;
+    border: none;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    /* position: relative; */
+  }
+`;
+
 const NavLinks = styled.div`
   a {
     text-decoration: none;
@@ -93,7 +124,6 @@ const NavLinks = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  margin-top: 25px;
   position: relative;
   button.active {
     svg {
@@ -188,4 +218,6 @@ export {
   NavLogo,
   NavLinks,
   NavbarInnerContainer,
+  SearchDiv,
+  SearchIcons,
 };

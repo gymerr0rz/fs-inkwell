@@ -71,6 +71,10 @@ const TasksView = () => {
       });
   };
 
+  const handleDragStart = (event, task) => {
+    console.log(task);
+  };
+
   return (
     <>
       {showComponent && <NewTask onClose={handleClose} />}
@@ -102,7 +106,7 @@ const TasksView = () => {
               {tasks.map((task) => {
                 if (task.origin === 'new_tasks') {
                   return (
-                    <TasksContent draggable="true">
+                    <TasksContent draggable>
                       <TasksMenu>
                         <div className="abc">
                           <CheckCircle color="#8D8D8D" />

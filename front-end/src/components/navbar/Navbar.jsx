@@ -10,13 +10,18 @@ import {
   NavLogo,
   NavbarInnerContainer,
   NavLinks,
+  SearchDiv,
+  SearchIcons,
 } from '../../styles/navbar/Navbar.styled';
 import NavButton from './buttons/NavButton';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Search } from 'lucide-react';
 import User from '../user/User';
+import axios from 'axios';
+import ShowUsers from './showusers/ShowUsers';
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
+  const [users, setUsers] = useState([]);
 
   function currentButton(code) {
     const navbarButtons = {
@@ -24,6 +29,7 @@ const Navbar = () => {
       Tasks: 'apptasks',
       Notes: 'appnotes',
       Settings: 'appsettings',
+      Friends: 'appfriends',
     };
     return navbarButtons[code] || null;
   }
@@ -44,6 +50,22 @@ const Navbar = () => {
     });
   });
 
+  const handleSearch = (e) => {
+    const user = e.target.value;
+    // console.log(users);
+    if (user.length > 0) {
+      axios
+        .get('http://localhost:8080/user/getUser/' + user)
+        .then((response) => {
+          if (response.data.length > 0) {
+            setUsers([...response.data]);
+          }
+        });
+    } else {
+      setUsers([]);
+    }
+  };
+
   if (!navbar)
     return (
       <>
@@ -56,6 +78,21 @@ const Navbar = () => {
               <NavLogo>
                 <h1>Inkwell</h1>
                 <p>Workspace</p>
+                <SearchDiv>
+                  <SearchIcons>
+                    <input
+                      type="text"
+                      placeholder="Find users..."
+                      onChange={(e) => handleSearch(e)}
+                    />
+                    <Search color="#fff" />
+                  </SearchIcons>
+                  {users.length !== 0 ? (
+                    <ShowUsers users={users} />
+                  ) : (
+                    console.log('Error')
+                  )}
+                </SearchDiv>
                 <NavLinks className="navBtn">
                   <Link to="/app">
                     <NavButton icon="Home" name="Home" />
@@ -65,6 +102,9 @@ const Navbar = () => {
                   </Link>
                   <Link to="/app/notes">
                     <NavButton icon="Book" name="Notes" />
+                  </Link>
+                  <Link to="/app/friends">
+                    <NavButton icon="Users" name="Friends" />
                   </Link>
                   <Link to="/app/settings">
                     <NavButton icon="Settings" name="Settings" />

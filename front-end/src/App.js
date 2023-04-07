@@ -10,6 +10,9 @@ import AdministrationPage from './pages/app/AdministrationPage';
 import TasksPage from './pages/app/TasksPage';
 import Navbar from './components/navbar/Navbar';
 import HomePage from './pages/app/HomePage';
+import FriendsPage from './pages/app/FriendsPage';
+import UsersPage from './pages/app/UsersPage';
+import UsersId from './pages/app/UsersId';
 
 function App() {
   const location = useLocation();
@@ -48,6 +51,30 @@ function App() {
           element={
             <RequireAuth loginPath="/auth/login">
               <AdministrationPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/app/friends"
+          element={
+            <RequireAuth loginPath="/auth/login">
+              <FriendsPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/app/users"
+          element={
+            <RequireAuth loginPath="/auth/login">
+              <UsersPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/app/users/:id"
+          element={
+            <RequireAuth loginPath="/auth/login">
+              <UsersId />
             </RequireAuth>
           }
         />
