@@ -7,11 +7,6 @@ const taskSchema = new Schema({
     type: String,
   },
 
-  // Category of the task (optional)
-  category: {
-    type: String,
-  },
-
   // Date when the task is due (optional)
   date: String,
 

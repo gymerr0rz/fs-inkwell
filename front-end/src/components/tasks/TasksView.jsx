@@ -14,6 +14,7 @@ import {
   TasksDate,
   TasksCategory,
   TasksTitleCompleted,
+  TaskScroll,
 } from '../../styles/tasks/TasksView.styled';
 import { useAuthHeader } from 'react-auth-kit';
 import NewTask from './NewTask';
@@ -25,6 +26,7 @@ const TasksView = () => {
   const [showOptions, setShowOptions] = useState([]);
   let [newTaskCount, setNewTaskCount] = useState(0);
   let [completedTask, setCompletedTask] = useState(0);
+  const [search, setSearch] = useState(null);
 
   const header = useAuthHeader();
   useEffect(() => {
@@ -59,6 +61,16 @@ const TasksView = () => {
     }));
   };
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    axios
+      .get('http://localhost:8080/user/getTasks?search=' + e.target.value)
+      .then((response) => {
+        const newTasks = response.data;
+        setTasks([...newTasks]);
+      });
+  };
+
   return (
     <>
       {showComponent && <NewTask onClose={handleClose} />}
@@ -67,7 +79,11 @@ const TasksView = () => {
           <TasksTopText>My Tasks</TasksTopText>
           <TasksSearch>
             <Search />
-            <input type="text" placeholder="Search..." />
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => handleSearch(e)}
+            />
           </TasksSearch>
         </TasksTop>
         <TasksBottom>
@@ -82,34 +98,32 @@ const TasksView = () => {
                 ADD
               </button>
             </TasksTitle>
-            {tasks.map((task) => {
-              if (task.origin === 'new_tasks') {
-                return (
-                  <TasksContent>
-                    <TasksMenu>
-                      <div className="abc">
-                        <CheckCircle color="#8D8D8D" />
-                        <h1>{task.title}</h1>
-                      </div>
-                      <MoreVertical onClick={() => handleOptions(task.title)} />
-                    </TasksMenu>
-                    <TasksDate>
-                      <p>{task.date}</p>
-                      {task.category ? (
-                        <TasksCategory border={task.color}>
-                          {task.category}
-                        </TasksCategory>
-                      ) : (
-                        console.log('No Category')
+            <TaskScroll>
+              {tasks.map((task) => {
+                if (task.origin === 'new_tasks') {
+                  return (
+                    <TasksContent draggable="true">
+                      <TasksMenu>
+                        <div className="abc">
+                          <CheckCircle color="#8D8D8D" />
+                          <h1>{task.title}</h1>
+                        </div>
+                        <MoreVertical
+                          className="vertical"
+                          onClick={() => handleOptions(task.title)}
+                        />
+                      </TasksMenu>
+                      <TasksDate>
+                        <p>{task.date}</p>
+                      </TasksDate>
+                      {showOptions[task.title] && (
+                        <ShowOptions title={task.title} />
                       )}
-                    </TasksDate>
-                    {showOptions[task.title] && (
-                      <ShowOptions title={task.title} />
-                    )}
-                  </TasksContent>
-                );
-              }
-            })}
+                    </TasksContent>
+                  );
+                }
+              })}
+            </TaskScroll>
           </TasksManager>
           <TasksManager>
             <TasksTitleCompleted>
@@ -122,28 +136,32 @@ const TasksView = () => {
                 ADD
               </button>
             </TasksTitleCompleted>
-            {tasks.map((task) => {
-              if (task.origin === 'completed') {
-                return (
-                  <TasksContent>
-                    <TasksMenu>
-                      <div className="abc">
-                        <CheckCircle color="#8bffc0" />
-                        <h1>{task.title}</h1>
-                      </div>
-                      <MoreVertical onClick={() => handleOptions(task.title)} />
-                    </TasksMenu>
-                    <TasksDate>
-                      <p>{task.date}</p>
-                      <TasksCategory>{task.category}</TasksCategory>
-                    </TasksDate>
-                    {showOptions[task.title] && (
-                      <ShowOptions title={task.title} />
-                    )}
-                  </TasksContent>
-                );
-              }
-            })}
+            <TaskScroll>
+              {tasks.map((task) => {
+                if (task.origin === 'completed') {
+                  return (
+                    <TasksContent draggable="true">
+                      <TasksMenu>
+                        <div className="abc">
+                          <CheckCircle color="#8bffc0" />
+                          <h1>{task.title}</h1>
+                        </div>
+                        <MoreVertical
+                          className="vertical"
+                          onClick={() => handleOptions(task.title)}
+                        />
+                      </TasksMenu>
+                      <TasksDate>
+                        <p>{task.date}</p>
+                      </TasksDate>
+                      {showOptions[task.title] && (
+                        <ShowOptions title={task.title} />
+                      )}
+                    </TasksContent>
+                  );
+                }
+              })}
+            </TaskScroll>
           </TasksManager>
         </TasksBottom>
       </TasksContainer>

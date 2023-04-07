@@ -194,6 +194,16 @@ const TasksTitle = styled.div`
 `;
 
 const TasksContent = styled.div`
+  :hover {
+    transition: border 200ms ease-in-out;
+    border: 2px solid #fff;
+  }
+  .vertical {
+    cursor: pointer;
+  }
+  -webkit-user-drag: none;
+  transition: border 200ms ease-in-out;
+  cursor: grab;
   position: relative;
   width: 100%;
   display: flex;
@@ -217,7 +227,7 @@ const TasksMenu = styled.div`
   align-items: center;
   .abc {
     h1 {
-      font-size: 1.5rem;
+      font-size: 1rem;
       font-weight: 400 !important;
     }
     display: flex;
@@ -245,6 +255,15 @@ const TasksCategory = styled.div`
   color: #fff !important;
 `;
 
+const TaskScroll = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* overflow: auto; */
+  height: 75%;
+  width: 100%;
+`;
+
 export {
   TasksContainer,
   TasksTop,
@@ -259,4 +278,5 @@ export {
   TasksDate,
   TasksCategory,
   TasksTitleCompleted,
+  TaskScroll,
 };

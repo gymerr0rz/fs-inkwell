@@ -5,6 +5,10 @@ const SECRET_TOKEN = process.env.REFRESH_TOKEN_SECRET;
 
 const get_tasks = async (req, res) => {
   try {
+    const { search } = req.query;
+
+    if (!search) {
+    }
     const headers = req.headers.authorization;
 
     if (!headers) return res.sendStatus(403);
@@ -19,7 +23,21 @@ const get_tasks = async (req, res) => {
 
     if (!user) return res.sendStatus(204);
 
-    res.send(user.tasks);
+    if (!search) {
+      res.send(user.tasks);
+    }
+
+    if (search) {
+      const task = user.tasks.filter((task) => task.title.includes(search));
+      if (task) {
+        res.send(task);
+      } else {
+        res.status(400).json({
+          status: 'failed',
+          message: 'task not found!',
+        });
+      }
+    }
   } catch (err) {
     console.log(err);
   }
@@ -27,7 +45,7 @@ const get_tasks = async (req, res) => {
 
 const create_task = async (req, res) => {
   try {
-    const { title, category, origin, color } = req.body;
+    const { title, origin, color } = req.body;
     console.log(origin);
     if (!title && !category && !origin) return res.sendStatus(403);
 
@@ -55,7 +73,6 @@ const create_task = async (req, res) => {
 
     const newTask = {
       title: title,
-      category: category,
       origin: origin,
       date: fullDate,
       color: color,

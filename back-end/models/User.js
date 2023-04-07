@@ -30,15 +30,6 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  // JWT tokens for user authentication and authorization
-  jwt_token: [
-    {
-      // Encrypted token string
-      token: String,
-      // Expiration date of the token
-      expiresAt: Date,
-    },
-  ],
   notes: [noteSchema],
   tasks: [taskSchema],
 });
