@@ -8,12 +8,18 @@ import {
 
 const ShowUsers = (props) => {
   const users = props.users;
-  console.log(users);
+
+  const handleClick = (user) => {
+    window.location.assign(
+      `http://localhost:3000/app/users?id=${encodeURIComponent(user.username)}`
+    );
+  };
+
   return (
     <ShowContainer>
       {users.map((user) => {
         return (
-          <User>
+          <User onClick={() => handleClick(user)}>
             <ImageContainer>
               <UserImage
                 {...{
