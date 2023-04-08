@@ -19,6 +19,8 @@ import {
 import { useAuthHeader } from 'react-auth-kit';
 import NewTask from './NewTask';
 import ShowOptions from './show_options/ShowOptions';
+import { useDrag } from 'react-dnd';
+import Draggable from 'react-draggable';
 
 const TasksView = () => {
   const [tasks, setTasks] = useState([]);
@@ -27,14 +29,21 @@ const TasksView = () => {
   let [newTaskCount, setNewTaskCount] = useState(0);
   let [completedTask, setCompletedTask] = useState(0);
   const [search, setSearch] = useState(null);
-
   const header = useAuthHeader();
+
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      const clickedInside = event.target.closest('.tasks-content');
+      if (!clickedInside) {
+        handleCloseOptions();
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
     axios.defaults.headers.common['Authorization'] = header();
     axios.get('http://localhost:8080/user/getTasks').then((response) => {
       const newTasks = response.data;
       setTasks([...tasks, ...newTasks]);
-      newTasks.map((task) => {
+      newTasks.forEach((task) => {
         if (task.origin === 'new_tasks') {
           console.log('Added count to new task!');
           setNewTaskCount((prevCount) => prevCount + 1);
@@ -44,7 +53,14 @@ const TasksView = () => {
         }
       });
     });
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
   }, []);
+
+  const handleCloseOptions = () => {
+    setShowOptions({});
+  };
 
   const handleClose = () => {
     setShowComponent(false);
@@ -55,10 +71,14 @@ const TasksView = () => {
   };
 
   const handleOptions = (taskId) => {
-    setShowOptions((prevState) => ({
-      ...prevState,
-      [taskId]: !prevState[taskId],
-    }));
+    setShowOptions((prevState) => {
+      const nextState = {};
+      for (const id in prevState) {
+        nextState[id] = id === taskId ? !prevState[id] : false;
+      }
+      nextState[taskId] = !prevState[taskId];
+      return nextState;
+    });
   };
 
   const handleSearch = (e) => {
@@ -69,10 +89,6 @@ const TasksView = () => {
         const newTasks = response.data;
         setTasks([...newTasks]);
       });
-  };
-
-  const handleDragStart = (event, task) => {
-    console.log(task);
   };
 
   return (
@@ -106,7 +122,11 @@ const TasksView = () => {
               {tasks.map((task) => {
                 if (task.origin === 'new_tasks') {
                   return (
-                    <TasksContent draggable>
+                    <TasksContent
+                      className="tasks-content"
+                      draggable="true"
+                      onMouseLeave={handleCloseOptions}
+                    >
                       <TasksMenu>
                         <div className="abc">
                           <CheckCircle color="#8D8D8D" />
@@ -144,7 +164,11 @@ const TasksView = () => {
               {tasks.map((task) => {
                 if (task.origin === 'completed') {
                   return (
-                    <TasksContent draggable="true">
+                    <TasksContent
+                      className="tasks-content"
+                      draggable="true"
+                      onMouseLeave={handleCloseOptions}
+                    >
                       <TasksMenu>
                         <div className="abc">
                           <CheckCircle color="#8bffc0" />

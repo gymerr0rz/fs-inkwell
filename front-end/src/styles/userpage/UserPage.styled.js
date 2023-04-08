@@ -19,10 +19,11 @@ const UserProfileContainer = styled.div`
 `;
 
 const RealContainer = styled.div`
-  width: 80%;
-  height: 747px;
+  width: 100%;
+  height: 90%;
+  margin: 0 50px;
   background-color: #202123;
-  border: 1px solid #494949;
+  border: 2px solid #494949;
   border-radius: 10px;
   overflow: hidden;
 `;
@@ -40,7 +41,7 @@ const Banner = styled.div`
     width: 100%;
     padding: 0 50px;
     button {
-      border: 1px solid #494949;
+      border: 2px solid #494949;
       background-color: #6364ff;
       height: 40px;
       width: 150px;
@@ -52,7 +53,7 @@ const Banner = styled.div`
     img {
       height: 134px;
       border-radius: 50%;
-      border: 1px solid #494949;
+      border: 2px solid #494949;
     }
   }
 `;

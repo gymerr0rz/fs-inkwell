@@ -47,7 +47,6 @@ const SettingsOptions = styled.div`
   z-index: 99;
   left: 30px;
   width: 250px;
-  height: 100px;
   padding: 20px;
   display: flex;
   justify-content: center;

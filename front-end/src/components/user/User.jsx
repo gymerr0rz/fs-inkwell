@@ -50,7 +50,7 @@ const User = () => {
           </UserInfo>
         </UserInformation>
         <ChevronDown color="#fff" onClick={() => handleToggle()} />
-        {showOptions && <ShowOptions />}
+        {showOptions && <ShowOptions user={username} />}
       </UserContainer>
     </>
   );

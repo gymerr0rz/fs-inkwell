@@ -25,6 +25,11 @@ router.post(
   uploadMiddleware.single('profile_image'),
   userController.upload_profile_image
 );
+router.post(
+  '/uploadBannerImage',
+  uploadMiddleware.single('banner_image'),
+  userController.upload_profile_image
+);
 router.get('/getUser', userController.get_user);
 router.delete('/deleteUser', userController.delete_user);
 

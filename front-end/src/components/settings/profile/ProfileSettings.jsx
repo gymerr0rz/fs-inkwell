@@ -18,6 +18,7 @@ const ProfileSettings = () => {
   const [username, setUsername] = useState(null);
   const [displayName, setDisplayName] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
+  const [bio, setBio] = useState(null);
   const [showOptions, setShowOptions] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -29,6 +30,7 @@ const ProfileSettings = () => {
       setUsername(user.data.username);
       setDisplayName(user.data.username);
       setProfilePicture(user.data.profile_image);
+      setBio(user.data.bio);
     });
   }, []);
 
@@ -99,7 +101,7 @@ const ProfileSettings = () => {
         <ProfileText>
           <h1>Bio</h1>
           <UpdateUsername>
-            <input type="text" placeholder="-" />
+            <input type="text" placeholder={bio} />
             <p>
               Description for the About panel on your channel page in under 300
               characters

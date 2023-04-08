@@ -32,7 +32,7 @@ const UsersPage = () => {
           <RealContainer>
             <Banner>
               <BannerImage
-                src="https://pbs.twimg.com/profile_banners/785651770697523200/1674108300/1500x500"
+                src={users.profile_banner ? users.profile_banner : ''}
                 alt=""
               />
               <div>
@@ -49,11 +49,7 @@ const UsersPage = () => {
                   <h1>{users.username}</h1>
                   <p>{`@${users.username}`}</p>
                 </div>
-                <p>
-                  Not affiliated with xQc or his mods The fastest source for any
-                  and all news and updates involving the best content creator on
-                  the globe, @xQc
-                </p>
+                <p>{users.bio ? users.bio : 'No Bio Really'}</p>
               </ProfileInfo>
               <Card></Card>
             </ProfileContainer>

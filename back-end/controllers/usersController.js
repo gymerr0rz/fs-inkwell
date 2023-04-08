@@ -28,7 +28,14 @@ const search_users = async (req, res) => {
     const { id } = req.query;
     const users = await User.find(
       { username: new RegExp('^' + id) },
-      { username: 1, email: 1, profile_image: 1, _id: 0 }
+      {
+        username: 1,
+        email: 1,
+        profile_image: 1,
+        profile_banner: 1,
+        bio: 1,
+        _id: 0,
+      }
     );
 
     if (users.length > 0) {
