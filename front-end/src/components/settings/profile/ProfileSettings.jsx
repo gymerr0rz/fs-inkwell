@@ -48,6 +48,7 @@ const ProfileSettings = () => {
       .post('http://localhost:8080/user/uploadProfileImage', formData)
       .then((response) => {
         console.log(response.data);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);

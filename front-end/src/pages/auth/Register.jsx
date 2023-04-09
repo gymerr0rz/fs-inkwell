@@ -9,6 +9,7 @@ import {
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSignIn } from 'react-auth-kit';
 
 const options = {
   position: 'top-right',
@@ -26,6 +27,8 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const signIn = useSignIn();
+
   function onFormSubmit(e) {
     console.log('Creating account');
     e.preventDefault();
@@ -36,7 +39,14 @@ const RegisterPage = () => {
       })
       .then((data) => {
         toast.success(data.data.message, options);
-        setTimeout(() => (window.location.pathname = '/auth/login'), 3000);
+        const token = data.data.token;
+        signIn({
+          token,
+          expiresIn: 3600,
+          tokenType: 'Bearer',
+          authState: { username: data.data.user.username },
+        });
+        window.location.pathname += '/setupProfile';
       })
       .catch((err) => {
         toast.error(err.response.data.message, options);

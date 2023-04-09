@@ -13,6 +13,7 @@ import HomePage from './pages/app/HomePage';
 import FriendsPage from './pages/app/FriendsPage';
 import UsersPage from './pages/app/UsersPage';
 import UsersId from './pages/app/UsersId';
+import SetupProfile from './pages/auth/setupProfile/SetupProfile';
 
 function App() {
   const location = useLocation();
@@ -29,6 +30,14 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/auth/register" element={<RegisterPage />} />
+        <Route
+          path="/auth/register/setupProfile"
+          element={
+            <RequireAuth loginPath="/auth/login">
+              <SetupProfile />
+            </RequireAuth>
+          }
+        />
         <Route
           path="/app/notes"
           element={
@@ -78,6 +87,7 @@ function App() {
             </RequireAuth>
           }
         />
+
         <Route
           path="/app/"
           element={

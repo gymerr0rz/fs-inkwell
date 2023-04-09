@@ -2,6 +2,8 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const sendConfirmationEmail = require('../utils/sendConfirmationEmail');
 const uuid = require('uuid');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const confirm_user = async (req, res) => {
   try {
@@ -58,6 +60,14 @@ const create_user = async (req, res) => {
       tasks: [],
     });
 
+    const accessToken = jwt.sign(
+      {
+        username: user.username,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: '30s' }
+    );
+
     const confirmationLink = `http://localhost:8080/auth/confirm/${token}`;
     await sendConfirmationEmail(email, confirmationLink);
     // Save the user to the database
@@ -65,6 +75,8 @@ const create_user = async (req, res) => {
     res.status(200).json({
       status: 'success',
       message: 'Account created!',
+      user: user,
+      token: accessToken,
     });
   } catch (err) {
     console.log(err);
