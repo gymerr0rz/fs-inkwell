@@ -8,8 +8,12 @@ import {
   ProfileInfo,
   Card,
   ProfileContainer,
+  Information,
+  SocialLinks,
 } from '../../styles/userpage/UserPage.styled';
 import axios from 'axios';
+import { GithubIcon, TwitterIcon } from 'lucide-react';
+import { useAuthHeader } from 'react-auth-kit';
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -32,7 +36,11 @@ const UsersPage = () => {
           <RealContainer>
             <Banner>
               <BannerImage
-                src={users.profile_banner ? users.profile_banner : ''}
+                src={
+                  users.profile_banner
+                    ? `http://localhost:8080/${users.profile_banner}`
+                    : ''
+                }
                 alt=""
               />
               <div>
@@ -45,11 +53,24 @@ const UsersPage = () => {
             </Banner>
             <ProfileContainer>
               <ProfileInfo>
-                <div>
-                  <h1>{users.username}</h1>
-                  <p>{`@${users.username}`}</p>
-                </div>
-                <p>{users.bio ? users.bio : 'No Bio Really'}</p>
+                <Information>
+                  <div>
+                    <h1>{users.username}</h1>
+                    <p>{`@${users.username}`}</p>
+                  </div>
+                  <p>{users.bio ? users.bio : 'No Bio Really'}</p>
+                </Information>
+                <SocialLinks>
+                  <p>Socials</p>
+                  <div>
+                    <li>
+                      <TwitterIcon fill="#fff" stroke="none" />
+                    </li>
+                    <li>
+                      <GithubIcon fill="#fff" stroke="none" />
+                    </li>
+                  </div>
+                </SocialLinks>
               </ProfileInfo>
               <Card></Card>
             </ProfileContainer>

@@ -37,9 +37,16 @@ const userSchema = new Schema({
     type: String,
     default: 'uploads/default.png',
   },
-  banner: {
+  profile_banner: {
     type: String,
     default: 'https://cdn.onlinewebfonts.com/svg/img_110805.png',
+  },
+  token: {
+    type: String,
+  },
+  email_confirmed: {
+    type: Boolean,
+    default: false,
   },
   // Date when the user account was created
   created_at: {

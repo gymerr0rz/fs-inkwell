@@ -70,26 +70,27 @@ const BannerImage = styled.img`
 `;
 
 const ProfileInfo = styled.div`
-  width: 40%;
+  width: 30%;
   height: 80%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 20px;
   padding: 30px 0;
   color: #fff;
   div {
-    h1 {
-      color: #fff;
-    }
-    p {
-      color: #848486;
+    div {
+      h1 {
+        color: #fff;
+      }
+      p {
+        color: #848486;
+      }
     }
   }
 `;
 const Card = styled.div`
-  width: 60%;
+  width: 70%;
   height: 80%;
   background-color: #2b2c2f;
   border: 1px solid #494949;
@@ -106,6 +107,37 @@ const ProfileContainer = styled.div`
   gap: 30px;
 `;
 
+const SocialLinks = styled.div`
+  p {
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 2px solid #494949;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    li {
+      padding: 10px;
+      cursor: pointer;
+      background-color: #6364ff;
+      border: 1px solid #494949;
+      list-style: none;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+`;
+
+const Information = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 export {
   NotesContainer,
   UserProfileContainer,
@@ -115,4 +147,6 @@ export {
   ProfileContainer,
   ProfileInfo,
   Card,
+  Information,
+  SocialLinks,
 };

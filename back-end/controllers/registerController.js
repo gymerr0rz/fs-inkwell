@@ -1,5 +1,31 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const sendConfirmationEmail = require('../utils/sendConfirmationEmail');
+const uuid = require('uuid');
+
+const confirm_user = async (req, res) => {
+  try {
+    const { token } = req.params;
+
+    // Verify the token against the token stored in the database
+    const user = await User.findOne({ token });
+
+    if (!user) {
+      res.status(404).send('Invalid confirmation link.');
+      return;
+    }
+
+    // Update the user's account to confirm their email address
+    await User.updateOne(
+      { token },
+      { $unset: { token }, $set: { email_confirmed: true } }
+    );
+
+    res.send('Email confirmed. Thank you!');
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const create_user = async (req, res) => {
   const { email, username, password } = req.body.accountData;
@@ -21,16 +47,19 @@ const create_user = async (req, res) => {
   try {
     // Hash the Password
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    const token = uuid.v4();
     // Create a User
     const user = new User({
       email,
       username,
       password: hashedPassword,
+      token,
       notes: [],
       tasks: [],
     });
 
+    const confirmationLink = `http://localhost:8080/auth/confirm/${token}`;
+    await sendConfirmationEmail(email, confirmationLink);
     // Save the user to the database
     user.save();
     res.status(200).json({
@@ -44,4 +73,5 @@ const create_user = async (req, res) => {
 
 module.exports = {
   create_user,
+  confirm_user,
 };

@@ -6,7 +6,6 @@ const path = require('path');
 
 const get_file = async (req, res) => {
   try {
-    console.log('hello');
     const filename = req.params.filename;
     res.sendFile(path.join(__dirname, '../uploads', filename));
   } catch (err) {

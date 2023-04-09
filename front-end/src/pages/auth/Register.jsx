@@ -78,7 +78,7 @@ const RegisterPage = () => {
             <div className="labels" onClick={onClick}>
               <label for="password">PASSWORD</label>
               <AuthInputs
-                type="text"
+                type="password"
                 placeholder="password123"
                 onChange={(e) => setPassword(e.target.value)}
               />
