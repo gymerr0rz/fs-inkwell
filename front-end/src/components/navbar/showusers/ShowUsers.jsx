@@ -11,7 +11,9 @@ const ShowUsers = (props) => {
 
   const handleClick = (user) => {
     window.location.assign(
-      `http://localhost:3000/app/users?id=${encodeURIComponent(user.username)}`
+      `https://inkwell.onrender.com/app/users?id=${encodeURIComponent(
+        user.username
+      )}`
     );
   };
 
