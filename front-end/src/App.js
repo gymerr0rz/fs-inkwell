@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Switch } from 'react-router-dom';
 import LoginPage from './pages/auth/Login';
 import React from 'react';
 import RegisterPage from './pages/auth/Register';
@@ -14,6 +14,7 @@ import FriendsPage from './pages/app/FriendsPage';
 import UsersPage from './pages/app/UsersPage';
 import UsersId from './pages/app/UsersId';
 import SetupProfile from './pages/auth/setupProfile/SetupProfile';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   const location = useLocation();
@@ -96,6 +97,7 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );

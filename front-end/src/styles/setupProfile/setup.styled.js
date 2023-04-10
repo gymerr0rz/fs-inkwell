@@ -39,6 +39,13 @@ const Buttons = styled.div`
     background-color: transparent;
     border-radius: 10px;
     padding: 10px 20px;
+    cursor: pointer;
+    transition: 100ms ease-in-out background-color, color 100ms ease-in-out;
+    :hover {
+      transition: 100ms ease-in-out background-color, color 100ms ease-in-out;
+      background-color: #6364ff;
+      color: #fff;
+    }
   }
 `;
 

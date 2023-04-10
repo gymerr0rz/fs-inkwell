@@ -15,24 +15,20 @@ const socialSchema = new Schema({
 });
 
 const userSchema = new Schema({
-  // User's unique username for login
   username: {
     type: String,
     required: true,
     unique: true,
   },
-  // User's unique email for contact and notifications
   email: {
     type: String,
     required: true,
     unique: true,
   },
-  // User's encrypted password for security
   password: {
     type: String,
     required: true,
   },
-  // User's profile image URL for display
   profile_image: {
     type: String,
     default: 'uploads/default.png',
@@ -48,7 +44,6 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  // Date when the user account was created
   created_at: {
     type: Date,
     default: Date.now,

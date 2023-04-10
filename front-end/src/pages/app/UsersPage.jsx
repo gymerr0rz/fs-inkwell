@@ -17,10 +17,12 @@ import { useAuthHeader } from 'react-auth-kit';
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
-
+  const [authenticated, setAuthenticated] = useState();
+  const header = useAuthHeader();
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
+    axios.defaults.headers.common['Authorization'] = header();
     axios
       .get('http://localhost:8080/user/searchUser?id=' + id)
       .then((response) => {

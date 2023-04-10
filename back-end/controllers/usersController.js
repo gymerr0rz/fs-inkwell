@@ -26,6 +26,7 @@ const get_users = async (req, res) => {
 const search_users = async (req, res) => {
   try {
     const { id } = req.query;
+
     const users = await User.find(
       { username: new RegExp('^' + id) },
       {

@@ -46,7 +46,6 @@ const User = () => {
           </ImageContainer>
           <UserInfo>
             <h1>{username}</h1>
-            <p>@{displayName}</p>
           </UserInfo>
         </UserInformation>
         <ChevronDown color="#fff" onClick={() => handleToggle()} />
