@@ -160,10 +160,18 @@ const change_status_task = async (req, res) => {
   if (taskIndex !== -1) {
     if (user.tasks[taskIndex].origin === 'completed') {
       user.tasks[taskIndex].origin = 'new_tasks';
-      return user.save();
+      user.save();
+      res.status(200).json({
+        status: 'success',
+        message: 'Successfly changes the status of the task!',
+      });
     } else {
       user.tasks[taskIndex].origin = 'completed';
-      return user.save();
+      user.save();
+      res.status(200).json({
+        status: 'success',
+        message: 'Second Option.',
+      });
     }
   }
 };
