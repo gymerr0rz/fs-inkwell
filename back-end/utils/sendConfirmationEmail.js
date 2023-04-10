@@ -16,7 +16,7 @@ async function sendConfirmationEmail(email, confirmationLink) {
   });
 
   // send mail with defined transport object
-  let info = await transporter.sendMail(
+  await transporter.sendMail(
     {
       from: process.env.EMAIL_USER, // sender address
       to: email, // list of receivers
