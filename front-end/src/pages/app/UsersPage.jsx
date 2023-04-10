@@ -19,6 +19,7 @@ const UsersPage = () => {
   const [users, setUsers] = useState([]);
   const [authenticated, setAuthenticated] = useState();
   const header = useAuthHeader();
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');

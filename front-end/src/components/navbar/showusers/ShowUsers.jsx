@@ -11,7 +11,7 @@ const ShowUsers = (props) => {
 
   const handleClick = (user) => {
     window.location.assign(
-      `https://inkwell.onrender.com/app/users?id=${encodeURIComponent(
+      `https://dynamic-scone-61b6b0.netlify.app/app/users?id=${encodeURIComponent(
         user.username
       )}`
     );
