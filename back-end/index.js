@@ -8,6 +8,8 @@ const uploadRoute = require('./routes/Uploads');
 const cors = require('cors');
 require('dotenv').config();
 
+console.log(process.env.MONGO_SRV);
+
 mongoose.set('strictQuery', true);
 mongoose
   .connect(process.env.MONGO_SRV)
