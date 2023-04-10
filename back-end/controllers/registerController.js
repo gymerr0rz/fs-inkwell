@@ -68,7 +68,7 @@ const create_user = async (req, res) => {
       { expiresIn: '30s' }
     );
 
-    const confirmationLink = `http://localhost:8080/auth/confirm/${token}`;
+    const confirmationLink = `https://inkwell.onrender.com/auth/confirm/${token}`;
     await sendConfirmationEmail(email, confirmationLink);
     // Save the user to the database
     user.save();

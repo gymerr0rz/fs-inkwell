@@ -26,7 +26,7 @@ const ProfileSettings = () => {
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get('http://localhost:8080/user/getUser').then((user) => {
+    axios.get('https://inkwell.onrender.com/user/getUser').then((user) => {
       setUsername(user.data.username);
       setDisplayName(user.data.username);
       setProfilePicture(user.data.profile_image);
@@ -45,7 +45,7 @@ const ProfileSettings = () => {
     formData.append('profile_image', selectedFile);
 
     axios
-      .post('http://localhost:8080/user/uploadProfileImage', formData)
+      .post('https://inkwell.onrender.com/user/uploadProfileImage', formData)
       .then((response) => {
         console.log(response.data);
         window.location.reload();
@@ -62,7 +62,10 @@ const ProfileSettings = () => {
         <ProfileStyling>
           <ImageContainer>
             <ProfileImage
-              {...{ src: `http://localhost:8080/${profilePicture}`, alt: '' }}
+              {...{
+                src: `https://inkwell.onrender.com/${profilePicture}`,
+                alt: '',
+              }}
             />
           </ImageContainer>
           <UpdateInfo>

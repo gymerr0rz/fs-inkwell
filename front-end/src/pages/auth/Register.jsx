@@ -34,7 +34,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     axios
-      .post('http://localhost:8080/auth/register', {
+      .post('https://inkwell.onrender.com/auth/register', {
         accountData: { username, email, password },
       })
       .then((data) => {

@@ -41,7 +41,7 @@ const Weather = () => {
     const location = localStorage.getItem('weatherLocation');
 
     axios
-      .post('http://localhost:8080/user/getWeather', {
+      .post('https://inkwell.onrender.com/user/getWeather', {
         location,
       })
       .then((response) => {

@@ -55,7 +55,7 @@ const Navbar = () => {
     // console.log(users);
     if (user.length > 0) {
       axios
-        .get('http://localhost:8080/user/getUser/' + user)
+        .get('https://inkwell.onrender.com/user/getUser/' + user)
         .then((response) => {
           if (response.data.length > 0) {
             setUsers([...response.data]);

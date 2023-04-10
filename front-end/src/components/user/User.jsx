@@ -28,7 +28,7 @@ const User = () => {
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get('http://localhost:8080/user/getUser').then((user) => {
+    axios.get('https://inkwell.onrender.com/user/getUser').then((user) => {
       setUsername(user.data.username);
       setDisplayName(user.data.username);
       setProfilePicture(user.data.profile_image);
@@ -41,7 +41,10 @@ const User = () => {
         <UserInformation>
           <ImageContainer>
             <UserImage
-              {...{ src: `http://localhost:8080/${profilePicture}`, alt: '' }}
+              {...{
+                src: `https://inkwell.onrender.com/${profilePicture}`,
+                alt: '',
+              }}
             />
           </ImageContainer>
           <UserInfo>

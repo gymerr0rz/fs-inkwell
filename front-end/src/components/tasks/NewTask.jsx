@@ -23,7 +23,7 @@ const NewTask = (props) => {
     axios.defaults.headers.common['Authorization'] = header();
     console.log(origin);
     axios
-      .post('http://localhost:8080/user/createTask', {
+      .post('https://inkwell.onrender.com/user/createTask', {
         title,
         color,
         origin,

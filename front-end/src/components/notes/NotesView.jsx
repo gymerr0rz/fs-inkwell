@@ -25,7 +25,7 @@ const NotesView = () => {
   const header = useAuthHeader();
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get('http://localhost:8080/user/getNotes').then((response) => {
+    axios.get('https://inkwell.onrender.com/user/getNotes').then((response) => {
       const newNotes = response.data;
       setNotes([...notes, ...newNotes]);
     });
@@ -35,7 +35,7 @@ const NotesView = () => {
     const title =
       e.currentTarget.parentNode.parentNode.querySelector('h1').innerText;
     axios.defaults.headers.common['Authorization'] = header();
-    axios.delete('http://localhost:8080/user/deleteNote', {
+    axios.delete('https://inkwell.onrender.com/user/deleteNote', {
       data: { title },
     });
 

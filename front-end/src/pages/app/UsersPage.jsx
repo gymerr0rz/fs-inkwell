@@ -24,7 +24,7 @@ const UsersPage = () => {
     const id = urlParams.get('id');
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .get('http://localhost:8080/user/searchUser?id=' + id)
+      .get('https://inkwell.onrender.com/user/searchUser?id=' + id)
       .then((response) => {
         console.log(...response.data);
         setUsers(...response.data);
@@ -40,14 +40,14 @@ const UsersPage = () => {
               <BannerImage
                 src={
                   users.profile_banner
-                    ? `http://localhost:8080/${users.profile_banner}`
+                    ? `https://inkwell.onrender.com/${users.profile_banner}`
                     : ''
                 }
                 alt=""
               />
               <div>
                 <img
-                  src={`http://localhost:8080/${users.profile_image}`}
+                  src={`https://inkwell.onrender.com/${users.profile_image}`}
                   alt=""
                 />
                 <button>ADD AS FRIEND</button>

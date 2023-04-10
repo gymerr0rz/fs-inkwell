@@ -33,7 +33,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     axios
-      .post('http://localhost:8080/auth/login', {
+      .post('https://inkwell.onrender.com/auth/login', {
         accountData: { email, password },
       })
       .then((response) => {

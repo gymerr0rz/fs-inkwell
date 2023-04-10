@@ -17,7 +17,7 @@ const NewNote = (props) => {
   const handleClick = () => {
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .post('http://localhost:8080/user/createNote', {
+      .post('https://inkwell.onrender.com/user/createNote', {
         title,
         content,
       })

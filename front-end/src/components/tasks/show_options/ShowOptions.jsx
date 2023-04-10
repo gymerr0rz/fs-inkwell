@@ -11,7 +11,7 @@ const ShowOptions = (options) => {
   const handleTrash = () => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
-    axios.delete('http://localhost:8080/user/deleteTask', {
+    axios.delete('https://inkwell.onrender.com/user/deleteTask', {
       data: { title },
     });
 
@@ -21,7 +21,7 @@ const ShowOptions = (options) => {
   const handleEdit = () => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
-    axios.delete('http://localhost:8080/user/editTask', {
+    axios.delete('https://inkwell.onrender.com/user/editTask', {
       data: { title },
     });
 
@@ -31,7 +31,7 @@ const ShowOptions = (options) => {
   const handleComplete = () => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
-    axios.post('http://localhost:8080/user/changeStatusTask', {
+    axios.post('https://inkwell.onrender.com/user/changeStatusTask', {
       title,
     });
 

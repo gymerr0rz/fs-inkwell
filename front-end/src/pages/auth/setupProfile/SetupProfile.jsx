@@ -16,7 +16,7 @@ const SetupProfile = () => {
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .get('http://localhost:8080/user/getUser')
+      .get('https://inkwell.onrender.com/user/getUser')
       .then((user) => {
         const data = user.data;
         setUser(data);

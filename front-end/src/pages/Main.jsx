@@ -21,7 +21,7 @@ const MainPage = () => {
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .get('http://localhost:8080/user/getUser')
+      .get('https://inkwell.onrender.com/user/getUser')
       .then(() => {
         window.localStorage.setItem('isLoggedIn', true);
         setActive(true);

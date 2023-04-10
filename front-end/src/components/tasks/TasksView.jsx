@@ -40,7 +40,7 @@ const TasksView = () => {
     };
     document.addEventListener('click', handleClickOutside);
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get('http://localhost:8080/user/getTasks').then((response) => {
+    axios.get('https://inkwell.onrender.com/user/getTasks').then((response) => {
       const newTasks = response.data;
       setTasks([...tasks, ...newTasks]);
       newTasks.forEach((task) => {
@@ -84,7 +84,9 @@ const TasksView = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value);
     axios
-      .get('http://localhost:8080/user/getTasks?search=' + e.target.value)
+      .get(
+        'https://inkwell.onrender.com/user/getTasks?search=' + e.target.value
+      )
       .then((response) => {
         const newTasks = response.data;
         setTasks([...newTasks]);

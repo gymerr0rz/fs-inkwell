@@ -23,7 +23,7 @@ const ShowUsers = (props) => {
             <ImageContainer>
               <UserImage
                 {...{
-                  src: `http://localhost:8080/${user.profile_image}`,
+                  src: `https://inkwell.onrender.com/${user.profile_image}`,
                   alt: '',
                 }}
               />
