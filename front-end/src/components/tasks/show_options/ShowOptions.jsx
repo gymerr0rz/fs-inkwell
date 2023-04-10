@@ -11,31 +11,43 @@ const ShowOptions = (options) => {
   const handleTrash = () => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
-    axios.delete('https://inkwell.onrender.com/user/deleteTask', {
-      data: { title },
-    });
-
-    window.location.reload();
+    axios
+      .delete('https://inkwell.onrender.com/user/deleteTask', {
+        data: { title },
+      })
+      .then((response) => {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleEdit = () => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
-    axios.delete('https://inkwell.onrender.com/user/editTask', {
-      data: { title },
-    });
-
-    window.location.reload();
+    axios
+      .delete('https://inkwell.onrender.com/user/editTask', {
+        data: { title },
+      })
+      .then((response) => {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleComplete = () => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
-    axios.post('https://inkwell.onrender.com/user/changeStatusTask', {
-      title,
-    });
-
-    window.location.reload();
+    axios
+      .post('https://inkwell.onrender.com/user/changeStatusTask', {
+        title,
+      })
+      .then((response) => {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

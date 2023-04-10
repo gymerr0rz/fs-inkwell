@@ -35,11 +35,12 @@ const NotesView = () => {
     const title =
       e.currentTarget.parentNode.parentNode.querySelector('h1').innerText;
     axios.defaults.headers.common['Authorization'] = header();
-    axios.delete('https://inkwell.onrender.com/user/deleteNote', {
-      data: { title },
-    });
-
-    window.location.reload();
+    axios
+      .delete('https://inkwell.onrender.com/user/deleteNote', {
+        data: { title },
+      })
+      .then((response) => window.location.reload())
+      .catch((err) => console.log(err));
   };
 
   const handleClose = () => {

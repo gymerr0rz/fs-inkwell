@@ -28,9 +28,11 @@ const NewTask = (props) => {
         color,
         origin,
       })
-      .then((response) => console.log(response));
-
-    window.location.reload();
+      .then((response) => {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleClose = () => {

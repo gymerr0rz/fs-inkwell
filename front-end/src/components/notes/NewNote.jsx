@@ -21,9 +21,10 @@ const NewNote = (props) => {
         title,
         content,
       })
-      .then((response) => console.log(response));
-
-    window.location.reload();
+      .then((response) => {
+        console.log(response);
+        window.location.reload();
+      });
   };
 
   const handleClose = () => {
