@@ -6,7 +6,7 @@ async function sendConfirmationEmail(email, confirmationLink) {
   // Only needed if you don't have a real mail account for testing
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
+    host: 'smtp.gmail.email',
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
