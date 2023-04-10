@@ -16,7 +16,7 @@ mongoose
 app.use(
   cors({
     origin:
-      'https://64344fdbdc4a9a59d91002b3--dynamic-scone-61b6b0.netlify.app/',
+      'https://64345909b205786f8cc2605d--dynamic-scone-61b6b0.netlify.app',
   })
 );
 app.use(express.json());
