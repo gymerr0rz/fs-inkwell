@@ -8,8 +8,6 @@ const uploadRoute = require('./routes/Uploads');
 const cors = require('cors');
 require('dotenv').config();
 
-console.log(process.env.MONGO_SRV);
-
 mongoose.set('strictQuery', true);
 mongoose
   .connect(process.env.MONGO_SRV)
@@ -17,7 +15,8 @@ mongoose
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin:
+      'https://64344fdbdc4a9a59d91002b3--dynamic-scone-61b6b0.netlify.app/',
   })
 );
 app.use(express.json());
