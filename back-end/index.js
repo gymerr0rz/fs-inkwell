@@ -13,9 +13,14 @@ mongoose
   .connect(process.env.MONGO_SRV)
   .then(() => console.log('Connected to database'));
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://dynamic-scone-61b6b0.netlify.app',
+];
+
 app.use(
   cors({
-    origin: 'https://dynamic-scone-61b6b0.netlify.app',
+    origin: allowedOrigins,
   })
 );
 app.use(express.json());
