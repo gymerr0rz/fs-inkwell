@@ -17,18 +17,22 @@ import { useAuthHeader } from 'react-auth-kit';
 import SERVER_URL from '../../config/config';
 
 const UsersPage = () => {
-  const [users, setUsers] = useState([]);
-  const [authenticated, setAuthenticated] = useState();
+  const [users, setUsers] = useState();
+  const [owner, setOwner] = useState(false);
   const header = useAuthHeader();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get(`${SERVER_URL}/user/searchUser?id=` + id).then((response) => {
-      console.log(...response.data);
-      setUsers(...response.data);
-    });
+    axios
+      .get(`${SERVER_URL}/user/searchUser?id=` + id)
+      .then((response) => {
+        console.log(response.data.users);
+        setUsers(response.data.users);
+        setOwner(response.data.owner);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -38,16 +42,16 @@ const UsersPage = () => {
           <RealContainer>
             <Banner>
               <BannerImage
-                src={
-                  users.profile_banner
-                    ? `${SERVER_URL}/${users.profile_banner}`
-                    : ''
-                }
+                src={`${SERVER_URL}/${users.profile_banner}`}
                 alt=""
               />
               <div>
                 <img src={`${SERVER_URL}/${users.profile_image}`} alt="" />
-                <button>ADD AS FRIEND</button>
+                {owner ? (
+                  <button>EDIT PROFILE</button>
+                ) : (
+                  <button>ADD AS FRIEND</button>
+                )}
               </div>
             </Banner>
             <ProfileContainer>
@@ -57,7 +61,7 @@ const UsersPage = () => {
                     <h1>{users.username}</h1>
                     <p>{`@${users.username}`}</p>
                   </div>
-                  <p>{users.bio ? users.bio : 'No Bio Really'}</p>
+                  <p>{users.bio ? users.bio : 'No bio'}</p>
                 </Information>
                 <SocialLinks>
                   <p>Socials</p>
