@@ -116,14 +116,29 @@ const change_settings = async (req, res) => {
 
   const changeUser = await User.findOne({ username: username });
 
-  if (changeUser) {
-    res.status(409).json({
-      status: 'failed',
-      message: 'User with that username already exists!',
+  if (username) {
+    if (changeUser) {
+      res.status(409).json({
+        status: 'failed',
+        message: 'User with that username already exists!',
+      });
+    } else {
+      user.username = username;
+      await user.save();
+      res.status(200).json({
+        status: 'success',
+        message: 'Username is updated to ' + username,
+      });
+    }
+  }
+
+  if (bio) {
+    user.bio = bio;
+    user.save();
+    res.status(200).json({
+      status: 'success',
+      message: 'Users bio successfully changed!',
     });
-  } else {
-    user.username = username;
-    await user.save();
   }
 };
 
