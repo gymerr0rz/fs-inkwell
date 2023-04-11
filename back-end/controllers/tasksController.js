@@ -17,7 +17,7 @@ const get_tasks = async (req, res) => {
 
     const user_username = decode.username;
 
-    const user = await User.findOne({ username: user_username });
+    const user = await User.findById(user_username);
 
     if (!user) return res.sendStatus(204);
 
@@ -59,7 +59,7 @@ const create_task = async (req, res) => {
 
     const user_username = decode.username;
 
-    const user = await User.findOne({ username: user_username });
+    const user = await User.findById(user_username);
 
     const task = user.tasks.find((task) => task.title === title);
 
@@ -103,7 +103,7 @@ const delete_task = async (req, res) => {
 
   const user_username = decode.username;
 
-  const user = await User.findOne({ username: user_username });
+  const user = await User.findById(user_username);
 
   const taskIndex = user.tasks.findIndex((task) => task.title === title);
 
@@ -128,7 +128,7 @@ const modify_task = async (req, res) => {
 
   const user_username = decode.username;
 
-  const user = await User.findOne({ username: user_username });
+  const user = await User.findById(user_username);
 
   const taskIndex = user.tasks.findIndex((task) => task.title === title);
 
@@ -153,7 +153,7 @@ const change_status_task = async (req, res) => {
 
   const user_username = decode.username;
 
-  const user = await User.findOne({ username: user_username });
+  const user = await User.findById(user_username);
 
   const taskIndex = user.tasks.findIndex((task) => task.title === title);
 

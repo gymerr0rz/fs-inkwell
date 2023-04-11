@@ -62,10 +62,9 @@ const create_user = async (req, res) => {
 
     const accessToken = jwt.sign(
       {
-        username: user.username,
+        username: user._id,
       },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '30s' }
+      process.env.ACCESS_TOKEN_SECRET
     );
 
     const confirmationLink = `https://inkwell.onrender.com/auth/confirm/${token}`;

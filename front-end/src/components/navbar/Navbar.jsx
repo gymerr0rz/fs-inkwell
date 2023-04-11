@@ -18,7 +18,6 @@ import SERVER_URL from '../../config/config';
 import Logo from '../../assets/logo/logo4.png';
 
 const Navbar = () => {
-  const [navbar, setNavbar] = useState(false);
   const [users, setUsers] = useState([]);
 
   function currentButton(code) {
@@ -27,7 +26,6 @@ const Navbar = () => {
       Tasks: 'apptasks',
       Notes: 'appnotes',
       Settings: 'appsettings',
-      Friends: 'appfriends',
     };
     return navbarButtons[code] || null;
   }
@@ -80,11 +78,7 @@ const Navbar = () => {
                   />
                   <Search color="#fff" />
                 </SearchIcons>
-                {users.length !== 0 ? (
-                  <ShowUsers users={users} />
-                ) : (
-                  console.log('Error')
-                )}
+                {users.length !== 0 ? <ShowUsers users={users} /> : null}
               </SearchDiv>
               <NavLinks className="navBtn">
                 <Link to="/app">
@@ -95,9 +89,6 @@ const Navbar = () => {
                 </Link>
                 <Link to="/app/notes">
                   <NavButton icon="Book" name="Notes" />
-                </Link>
-                <Link to="/app/friends">
-                  <NavButton icon="Users" name="Friends" />
                 </Link>
                 <Link to="/app/settings">
                   <NavButton icon="Settings" name="Settings" />

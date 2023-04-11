@@ -6,7 +6,7 @@ const ShowContainer = styled.div`
   z-index: 99;
   width: 250px;
   left: 25px;
-  top: 190px;
+  top: 250px;
   padding: 20px 30px;
   display: flex;
   flex-direction: column;

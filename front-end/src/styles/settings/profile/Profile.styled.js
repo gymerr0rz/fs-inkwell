@@ -50,6 +50,17 @@ const ProfileText = styled.div`
   }
 `;
 
+const SaveButton = styled.button`
+  width: 200px;
+  height: 40px;
+  border: none;
+  background-color: #6364ff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: -25px;
+`;
+
 const ImageContainer = styled.div`
   width: 100px;
   height: 100px;
@@ -131,4 +142,5 @@ export {
   UpdateUsername,
   ProfileText,
   ImageContainer,
+  SaveButton,
 };

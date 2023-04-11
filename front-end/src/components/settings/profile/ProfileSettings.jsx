@@ -8,6 +8,7 @@ import {
   ProfileText,
   UpdateUsername,
   ImageContainer,
+  SaveButton,
 } from '../../../styles/settings/profile/Profile.styled';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -19,6 +20,7 @@ const ProfileSettings = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [user, setUser] = useState([]);
   const [username, setUsername] = useState(null);
+  const [bio, setBio] = useState(null);
   const header = useAuthHeader();
 
   useEffect(() => {
@@ -55,7 +57,19 @@ const ProfileSettings = () => {
     setUsername(target);
   };
 
-  const handleBio = (event) => {};
+  const handleBio = (event) => {
+    const target = event.target.value;
+    setBio(target);
+  };
+
+  const handleSaveChanges = () => {
+    axios
+      .post(`${SERVER_URL}/user/changeSettings`, {
+        bio,
+        username,
+      })
+      .then((response) => console.log(response));
+  };
 
   return (
     <>
@@ -101,7 +115,11 @@ const ProfileSettings = () => {
         <ProfileText>
           <h1>Bio</h1>
           <UpdateUsername>
-            <input type="text" placeholder={user.bio} />
+            <input
+              type="text"
+              placeholder={user.bio}
+              onChange={(e) => handleBio(e)}
+            />
             <p>
               Description for the About panel on your channel page in under 300
               characters
@@ -109,6 +127,7 @@ const ProfileSettings = () => {
           </UpdateUsername>
         </ProfileText>
       </ProfileContainer>
+      <SaveButton onClick={() => handleSaveChanges()}>Save Changes</SaveButton>
     </>
   );
 };

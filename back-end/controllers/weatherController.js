@@ -19,7 +19,7 @@ const get_weather = async (req, res) => {
 
     const user_username = decode.username;
 
-    const user = await User.findOne({ username: user_username });
+    const user = await User.findById(user_username);
 
     if (!user) return res.sendStatus(204);
 

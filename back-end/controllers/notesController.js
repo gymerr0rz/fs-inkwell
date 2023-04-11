@@ -16,7 +16,7 @@ const get_notes = async (req, res) => {
 
     const user_username = decode.username;
 
-    const user = await User.findOne({ username: user_username });
+    const user = await User.findById(user_username);
 
     if (!user) return res.sendStatus(204);
 
@@ -41,7 +41,7 @@ const create_notes = async (req, res) => {
 
     const user_username = decode.username;
 
-    const user = await User.findOne({ username: user_username });
+    const user = await User.findById(user_username);
 
     const findNote = user.notes.find((note) => note.title === title);
 
@@ -76,7 +76,7 @@ const delete_note = async (req, res) => {
 
   const user_username = decode.username;
 
-  const user = await User.findOne({ username: user_username });
+  const user = await User.findById(user_username);
 
   const noteIndex = user.notes.findIndex((note) => note.title === title);
 

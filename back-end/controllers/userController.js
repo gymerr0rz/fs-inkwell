@@ -15,7 +15,7 @@ const get_user = async (req, res) => {
 
     const user_username = decode.username;
 
-    const user = await User.findOne({ username: user_username });
+    const user = await User.findById(user_username);
 
     if (!user) return res.sendStatus(204);
 
@@ -39,7 +39,7 @@ const delete_user = async (req, res) => {
 
   const user_username = decode.username;
 
-  const user = await User.findOne({ username: user_username });
+  const user = await User.findById(user_username);
 
   const taskIndex = user.tasks.findIndex((task) => task.title === title);
 
@@ -61,7 +61,7 @@ const upload_profile_image = async (req, res) => {
 
     const user_username = decode.username;
 
-    const user = await User.findOne({ username: user_username });
+    const user = await User.findById(user_username);
 
     user.profile_image = req.file.path;
 
@@ -85,7 +85,7 @@ const upload_banner_image = async (req, res) => {
 
     const user_username = decode.username;
 
-    const user = await User.findOne({ username: user_username });
+    const user = await User.findById(user_username);
 
     user.banner_image = req.file.path;
 
@@ -99,9 +99,9 @@ const upload_banner_image = async (req, res) => {
 };
 
 const change_settings = async (req, res) => {
-  const { title } = req.body;
+  const { username, bio } = req.body;
 
-  if (!title) return res.sendStatus(403);
+  if (!bio && !username) return res.sendStatus(403);
 
   const headers = req.headers.authorization;
   const token = headers.split(' ')[1];
@@ -112,14 +112,18 @@ const change_settings = async (req, res) => {
 
   const user_username = decode.username;
 
-  const user = await User.findOne({ username: user_username });
+  const user = await User.findById(user_username);
 
-  const taskIndex = user.tasks.findIndex((task) => task.title === title);
+  const changeUser = await User.findOne({ username: username });
 
-  if (taskIndex !== -1) {
-    user.tasks.splice(taskIndex, 1);
+  if (changeUser) {
+    res.status(409).json({
+      status: 'failed',
+      message: 'User with that username already exists!',
+    });
+  } else {
+    user.username = username;
     await user.save();
-    return res.sendStatus(200);
   }
 };
 

@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, useLocation, Switch } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import LoginPage from './pages/auth/Login';
 import React from 'react';
 import RegisterPage from './pages/auth/Register';
@@ -10,7 +10,6 @@ import AdministrationPage from './pages/app/AdministrationPage';
 import TasksPage from './pages/app/TasksPage';
 import Navbar from './components/navbar/Navbar';
 import HomePage from './pages/app/HomePage';
-import FriendsPage from './pages/app/FriendsPage';
 import UsersPage from './pages/app/UsersPage';
 import UsersId from './pages/app/UsersId';
 import SetupProfile from './pages/auth/setupProfile/SetupProfile';
@@ -61,14 +60,6 @@ function App() {
           element={
             <RequireAuth loginPath="/auth/login">
               <AdministrationPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/app/friends"
-          element={
-            <RequireAuth loginPath="/auth/login">
-              <FriendsPage />
             </RequireAuth>
           }
         />
