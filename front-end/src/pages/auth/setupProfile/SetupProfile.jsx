@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 import { useAuthHeader } from 'react-auth-kit';
 import { Link } from 'react-router-dom';
+import SERVER_URL from '../../../config/config';
 
 const SetupProfile = () => {
   const [user, setUser] = useState('{User}');
@@ -16,7 +17,7 @@ const SetupProfile = () => {
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .get('https://inkwell.onrender.com/user/getUser')
+      .get(`${SERVER_URL}/user/getUser`)
       .then((user) => {
         const data = user.data;
         setUser(data);

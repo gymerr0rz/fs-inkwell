@@ -24,6 +24,7 @@ import {
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import SERVER_URL from '../../config/config';
 
 const Weather = () => {
   const [temperature, setTemperature] = useState('0');
@@ -41,7 +42,7 @@ const Weather = () => {
     const location = localStorage.getItem('weatherLocation');
 
     axios
-      .post('https://inkwell.onrender.com/user/getWeather', {
+      .post(`${SERVER_URL}/user/getWeather`, {
         location,
       })
       .then((response) => {

@@ -17,6 +17,7 @@ import {
 } from '../../styles/notes/NotesView.styled';
 import { useAuthHeader } from 'react-auth-kit';
 import NewNote from './NewNote';
+import SERVER_URL from '../../config/config';
 
 const NotesView = () => {
   const [notes, setNotes] = useState([]);
@@ -25,7 +26,7 @@ const NotesView = () => {
   const header = useAuthHeader();
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get('https://inkwell.onrender.com/user/getNotes').then((response) => {
+    axios.get(`${SERVER_URL}/user/getNotes`).then((response) => {
       const newNotes = response.data;
       setNotes([...notes, ...newNotes]);
     });
@@ -36,7 +37,7 @@ const NotesView = () => {
       e.currentTarget.parentNode.parentNode.querySelector('h1').innerText;
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .delete('https://inkwell.onrender.com/user/deleteNote', {
+      .delete(`${SERVER_URL}/user/deleteNote`, {
         data: { title },
       })
       .then((response) => window.location.reload())

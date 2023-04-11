@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
 import ShowOptions from './show_options/ShowOptions';
+import SERVER_URL from '../../config/config';
 
 const User = () => {
   const [username, setUsername] = useState(null);
@@ -28,7 +29,7 @@ const User = () => {
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get('https://inkwell.onrender.com/user/getUser').then((user) => {
+    axios.get(`${SERVER_URL}/user/getUser`).then((user) => {
       setUsername(user.data.username);
       setDisplayName(user.data.username);
       setProfilePicture(user.data.profile_image);
@@ -42,7 +43,7 @@ const User = () => {
           <ImageContainer>
             <UserImage
               {...{
-                src: `https://inkwell.onrender.com/${profilePicture}`,
+                src: `${SERVER_URL}/${profilePicture}`,
                 alt: '',
               }}
             />

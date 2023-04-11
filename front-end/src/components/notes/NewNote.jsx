@@ -8,6 +8,7 @@ import {
 import { BookmarkPlus, XCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
+import SERVER_URL from '../../config/config';
 
 const NewNote = (props) => {
   const [title, setTitle] = useState(null);
@@ -17,7 +18,7 @@ const NewNote = (props) => {
   const handleClick = () => {
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .post('https://inkwell.onrender.com/user/createNote', {
+      .post(`${SERVER_URL}/user/createNote`, {
         title,
         content,
       })

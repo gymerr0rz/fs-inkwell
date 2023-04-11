@@ -14,6 +14,7 @@ import {
 import axios from 'axios';
 import { GithubIcon, TwitterIcon } from 'lucide-react';
 import { useAuthHeader } from 'react-auth-kit';
+import SERVER_URL from '../../config/config';
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -24,12 +25,10 @@ const UsersPage = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     axios.defaults.headers.common['Authorization'] = header();
-    axios
-      .get('https://inkwell.onrender.com/user/searchUser?id=' + id)
-      .then((response) => {
-        console.log(...response.data);
-        setUsers(...response.data);
-      });
+    axios.get(`${SERVER_URL}/user/searchUser?id=` + id).then((response) => {
+      console.log(...response.data);
+      setUsers(...response.data);
+    });
   }, []);
 
   return (
@@ -41,16 +40,13 @@ const UsersPage = () => {
               <BannerImage
                 src={
                   users.profile_banner
-                    ? `https://inkwell.onrender.com/${users.profile_banner}`
+                    ? `${SERVER_URL}/${users.profile_banner}`
                     : ''
                 }
                 alt=""
               />
               <div>
-                <img
-                  src={`https://inkwell.onrender.com/${users.profile_image}`}
-                  alt=""
-                />
+                <img src={`${SERVER_URL}/${users.profile_image}`} alt="" />
                 <button>ADD AS FRIEND</button>
               </div>
             </Banner>

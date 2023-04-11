@@ -21,6 +21,7 @@ import NewTask from './NewTask';
 import ShowOptions from './show_options/ShowOptions';
 import { useDrag } from 'react-dnd';
 import Draggable from 'react-draggable';
+import SERVER_URL from '../../config/config';
 
 const TasksView = () => {
   const [tasks, setTasks] = useState([]);
@@ -40,7 +41,7 @@ const TasksView = () => {
     };
     document.addEventListener('click', handleClickOutside);
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get('https://inkwell.onrender.com/user/getTasks').then((response) => {
+    axios.get(`${SERVER_URL}/user/getTasks`).then((response) => {
       const newTasks = response.data;
       setTasks([...tasks, ...newTasks]);
       newTasks.forEach((task) => {
@@ -84,9 +85,7 @@ const TasksView = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value);
     axios
-      .get(
-        'https://inkwell.onrender.com/user/getTasks?search=' + e.target.value
-      )
+      .get(`${SERVER_URL}/user/getTasks?search=` + e.target.value)
       .then((response) => {
         const newTasks = response.data;
         setTasks([...newTasks]);

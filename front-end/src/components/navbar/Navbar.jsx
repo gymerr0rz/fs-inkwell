@@ -2,10 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   NavbarContainer,
-  NavbarContainerProps,
-  NavOpen,
-  NavFixed,
-  NavClosed,
   NavNoFixed,
   NavLogo,
   NavbarInnerContainer,
@@ -14,10 +10,12 @@ import {
   SearchIcons,
 } from '../../styles/navbar/Navbar.styled';
 import NavButton from './buttons/NavButton';
-import { ChevronRight, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import User from '../user/User';
 import axios from 'axios';
 import ShowUsers from './showusers/ShowUsers';
+import SERVER_URL from '../../config/config';
+import Logo from '../../assets/logo/logo4.png';
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -54,94 +52,64 @@ const Navbar = () => {
     const user = e.target.value;
     // console.log(users);
     if (user.length > 0) {
-      axios
-        .get('https://inkwell.onrender.com/user/getUser/' + user)
-        .then((response) => {
-          if (response.data.length > 0) {
-            setUsers([...response.data]);
-          }
-        });
+      axios.get(`${SERVER_URL}/user/getUser/` + user).then((response) => {
+        if (response.data.length > 0) {
+          setUsers([...response.data]);
+        }
+      });
     } else {
       setUsers([]);
     }
   };
 
-  if (!navbar)
-    return (
-      <>
-        <NavNoFixed>
-          <NavOpen onClick={() => setNavbar(true)}>
-            <ChevronRight fill="white" strokeWidth="0" />
-          </NavOpen>
-          <NavbarContainer>
-            <NavbarInnerContainer>
-              <NavLogo>
-                <h1>Inkwell</h1>
-                <p>Workspace</p>
-                <SearchDiv>
-                  <SearchIcons>
-                    <input
-                      type="text"
-                      placeholder="Find users..."
-                      onChange={(e) => handleSearch(e)}
-                    />
-                    <Search color="#fff" />
-                  </SearchIcons>
-                  {users.length !== 0 ? (
-                    <ShowUsers users={users} />
-                  ) : (
-                    console.log('Error')
-                  )}
-                </SearchDiv>
-                <NavLinks className="navBtn">
-                  <Link to="/app">
-                    <NavButton icon="Home" name="Home" />
-                  </Link>
-                  <Link to="/app/tasks">
-                    <NavButton icon="Check" name="Tasks" />
-                  </Link>
-                  <Link to="/app/notes">
-                    <NavButton icon="Book" name="Notes" />
-                  </Link>
-                  <Link to="/app/friends">
-                    <NavButton icon="Users" name="Friends" />
-                  </Link>
-                  <Link to="/app/settings">
-                    <NavButton icon="Settings" name="Settings" />
-                  </Link>
-                </NavLinks>
-              </NavLogo>
-              <User />
-            </NavbarInnerContainer>
-          </NavbarContainer>
-        </NavNoFixed>
-      </>
-    );
-
-  if (navbar)
-    return (
-      <>
-        <NavFixed>
-          <NavClosed onClick={() => setNavbar(false)}>
-            <ChevronRight fill="white" />
-          </NavClosed>
-          <NavbarContainerProps>
-            <div>
-              <Link to="/app/tasks">
-                <NavButton icon="Check" />
-              </Link>
-              <Link to="/app/notes">
-                <NavButton icon="Book" />
-              </Link>
-              <Link to="/app/administration">
-                <NavButton icon="User" />
-              </Link>
-            </div>
-            {/* <User /> */}
-          </NavbarContainerProps>
-        </NavFixed>
-      </>
-    );
+  return (
+    <>
+      <NavNoFixed>
+        <NavbarContainer>
+          <NavbarInnerContainer>
+            <NavLogo>
+              <img src={Logo} alt="" id="logo" />
+              <h1>Inkwell</h1>
+              <p>Workspace</p>
+              <SearchDiv>
+                <SearchIcons>
+                  <input
+                    type="text"
+                    placeholder="Find users..."
+                    onChange={(e) => handleSearch(e)}
+                  />
+                  <Search color="#fff" />
+                </SearchIcons>
+                {users.length !== 0 ? (
+                  <ShowUsers users={users} />
+                ) : (
+                  console.log('Error')
+                )}
+              </SearchDiv>
+              <NavLinks className="navBtn">
+                <Link to="/app">
+                  <NavButton icon="Home" name="Home" />
+                </Link>
+                <Link to="/app/tasks">
+                  <NavButton icon="Check" name="Tasks" />
+                </Link>
+                <Link to="/app/notes">
+                  <NavButton icon="Book" name="Notes" />
+                </Link>
+                <Link to="/app/friends">
+                  <NavButton icon="Users" name="Friends" />
+                </Link>
+                <Link to="/app/settings">
+                  <NavButton icon="Settings" name="Settings" />
+                </Link>
+              </NavLinks>
+            </NavLogo>
+            <User />
+          </NavbarInnerContainer>
+        </NavbarContainer>
+      </NavNoFixed>
+    </>
+  );
 };
 
 export default Navbar;

@@ -13,9 +13,7 @@ const ShowOptions = (options) => {
   const handleView = () => {
     console.log(options);
     window.location.assign(
-      `https://inkwell.onrender.com/app/users?id=${encodeURIComponent(
-        options.user
-      )}`
+      `http://localhost:3000/app/users?id=${encodeURIComponent(options.user)}`
     );
   };
 

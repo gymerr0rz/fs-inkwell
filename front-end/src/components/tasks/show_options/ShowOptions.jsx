@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Container } from '../../../styles/options/Options.styled';
 import axios from 'axios';
 import { useAuthHeader } from 'react-auth-kit';
+import SERVER_URL from '../../../config/config';
 
 const ShowOptions = (options) => {
   const [title] = useState(options.title);
@@ -12,7 +13,7 @@ const ShowOptions = (options) => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .delete('https://inkwell.onrender.com/user/deleteTask', {
+      .delete(`${SERVER_URL}/user/deleteTask`, {
         data: { title },
       })
       .then((response) => {
@@ -26,7 +27,7 @@ const ShowOptions = (options) => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .delete('https://inkwell.onrender.com/user/editTask', {
+      .delete(`${SERVER_URL}/user/editTask`, {
         data: { title },
       })
       .then((response) => {
@@ -40,7 +41,7 @@ const ShowOptions = (options) => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .post('https://inkwell.onrender.com/user/changeStatusTask', {
+      .post(`${SERVER_URL}/user/changeStatusTask`, {
         title,
       })
       .then((response) => {

@@ -1,3 +1,4 @@
+import SERVER_URL from '../../../config/config';
 import {
   ShowContainer,
   ShowInfo,
@@ -11,9 +12,7 @@ const ShowUsers = (props) => {
 
   const handleClick = (user) => {
     window.location.assign(
-      `https://dynamic-scone-61b6b0.netlify.app/app/users?id=${encodeURIComponent(
-        user.username
-      )}`
+      `http://localhost:3000/app/users?id=${encodeURIComponent(user.username)}`
     );
   };
 
@@ -25,7 +24,7 @@ const ShowUsers = (props) => {
             <ImageContainer>
               <UserImage
                 {...{
-                  src: `https://inkwell.onrender.com/${user.profile_image}`,
+                  src: `${SERVER_URL}/${user.profile_image}`,
                   alt: '',
                 }}
               />

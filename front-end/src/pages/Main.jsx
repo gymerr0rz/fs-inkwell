@@ -12,6 +12,7 @@ import {
 import Book from '../assets/undraw_design_notes_re_eklr.svg';
 import axios from 'axios';
 import { useAuthHeader } from 'react-auth-kit';
+import SERVER_URL from '../config/config';
 
 const MainPage = () => {
   const [active, setActive] = useState(null);
@@ -21,7 +22,7 @@ const MainPage = () => {
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
     axios
-      .get('https://inkwell.onrender.com/user/getUser')
+      .get(`${SERVER_URL}/user/getUser`)
       .then(() => {
         window.localStorage.setItem('isLoggedIn', true);
         setActive(true);

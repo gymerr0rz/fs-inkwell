@@ -12,6 +12,7 @@ import {
 import { BookmarkPlus, XCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
+import SERVER_URL from '../../config/config';
 
 const NewTask = (props) => {
   const [title, setTitle] = useState(null);
@@ -23,7 +24,7 @@ const NewTask = (props) => {
     axios.defaults.headers.common['Authorization'] = header();
     console.log(origin);
     axios
-      .post('https://inkwell.onrender.com/user/createTask', {
+      .post(`${SERVER_URL}/user/createTask`, {
         title,
         color,
         origin,

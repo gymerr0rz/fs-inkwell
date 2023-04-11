@@ -10,6 +10,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSignIn } from 'react-auth-kit';
+import SERVER_URL from '../../config/config';
 
 const options = {
   position: 'top-right',
@@ -34,7 +35,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     axios
-      .post('https://inkwell.onrender.com/auth/register', {
+      .post(`${SERVER_URL}/auth/register`, {
         accountData: { username, email, password },
       })
       .then((data) => {

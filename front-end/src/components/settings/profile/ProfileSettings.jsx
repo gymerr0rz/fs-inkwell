@@ -13,24 +13,19 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useAuthHeader } from 'react-auth-kit';
 import { useState } from 'react';
+import SERVER_URL from '../../../config/config';
 
 const ProfileSettings = () => {
-  const [username, setUsername] = useState(null);
-  const [displayName, setDisplayName] = useState(null);
-  const [profilePicture, setProfilePicture] = useState(null);
-  const [bio, setBio] = useState(null);
-  const [showOptions, setShowOptions] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-
+  const [user, setUser] = useState([]);
+  const [username, setUsername] = useState(null);
   const header = useAuthHeader();
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = header();
-    axios.get('https://inkwell.onrender.com/user/getUser').then((user) => {
-      setUsername(user.data.username);
-      setDisplayName(user.data.username);
-      setProfilePicture(user.data.profile_image);
-      setBio(user.data.bio);
+    axios.get(`${SERVER_URL}/user/getUser`).then((user) => {
+      console.log(user.data);
+      setUser(user.data);
     });
   }, []);
 
@@ -45,7 +40,7 @@ const ProfileSettings = () => {
     formData.append('profile_image', selectedFile);
 
     axios
-      .post('https://inkwell.onrender.com/user/uploadProfileImage', formData)
+      .post(`${SERVER_URL}/user/uploadProfileImage`, formData)
       .then((response) => {
         console.log(response.data);
         window.location.reload();
@@ -55,6 +50,13 @@ const ProfileSettings = () => {
       });
   };
 
+  const handleUsername = (event) => {
+    const target = event.target.value;
+    setUsername(target);
+  };
+
+  const handleBio = (event) => {};
+
   return (
     <>
       <ProfileContainer>
@@ -63,7 +65,7 @@ const ProfileSettings = () => {
           <ImageContainer>
             <ProfileImage
               {...{
-                src: `https://inkwell.onrender.com/${profilePicture}`,
+                src: `${SERVER_URL}/${user.profile_image}`,
                 alt: '',
               }}
             />
@@ -85,18 +87,12 @@ const ProfileSettings = () => {
         <ProfileText>
           <h1>Username</h1>
           <UpdateUsername>
-            <input type="text" placeholder={username} />
+            <input
+              type="text"
+              placeholder={user.username}
+              onChange={(e) => handleUsername(e)}
+            />
             <p>You may update your username</p>
-          </UpdateUsername>
-        </ProfileText>
-      </ProfileContainer>
-
-      <ProfileContainer>
-        <ProfileText>
-          <h1>Display Name </h1>
-          <UpdateUsername>
-            <input type="text" placeholder={username} />
-            <p>Customize capitalization for your username</p>
           </UpdateUsername>
         </ProfileText>
       </ProfileContainer>
@@ -105,7 +101,7 @@ const ProfileSettings = () => {
         <ProfileText>
           <h1>Bio</h1>
           <UpdateUsername>
-            <input type="text" placeholder={bio} />
+            <input type="text" placeholder={user.bio} />
             <p>
               Description for the About panel on your channel page in under 300
               characters

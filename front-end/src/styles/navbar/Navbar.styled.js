@@ -82,6 +82,11 @@ const NavLogo = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  #logo {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 10px;
+  }
 `;
 
 const SearchDiv = styled.div`
