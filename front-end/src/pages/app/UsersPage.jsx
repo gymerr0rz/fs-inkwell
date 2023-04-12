@@ -17,7 +17,7 @@ import { useAuthHeader } from 'react-auth-kit';
 import SERVER_URL from '../../config/config';
 
 const UsersPage = () => {
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState(null);
   const [owner, setOwner] = useState(false);
   const header = useAuthHeader();
 
@@ -28,7 +28,6 @@ const UsersPage = () => {
     axios
       .get(`${SERVER_URL}/user/searchUser?id=` + id)
       .then((response) => {
-        console.log(response.data.users);
         setUsers(response.data.users);
         setOwner(response.data.owner);
       })

@@ -1,5 +1,5 @@
 import { Search, Plus, CheckCircle, MoreVertical } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import {
   TasksContainer,
@@ -19,8 +19,6 @@ import {
 import { useAuthHeader } from 'react-auth-kit';
 import NewTask from './NewTask';
 import ShowOptions from './show_options/ShowOptions';
-import { useDrag } from 'react-dnd';
-import Draggable from 'react-draggable';
 import SERVER_URL from '../../config/config';
 
 const TasksView = () => {
@@ -30,16 +28,12 @@ const TasksView = () => {
   let [newTaskCount, setNewTaskCount] = useState(0);
   let [completedTask, setCompletedTask] = useState(0);
   const [search, setSearch] = useState(null);
+  const [completeTask, setCompleteTask] = useState(false);
+  const [addTask, setAddTask] = useState(false);
+
   const header = useAuthHeader();
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      const clickedInside = event.target.closest('.tasks-content');
-      if (!clickedInside) {
-        handleCloseOptions();
-      }
-    };
-    document.addEventListener('click', handleClickOutside);
     axios.defaults.headers.common['Authorization'] = header();
     axios.get(`${SERVER_URL}/user/getTasks`).then((response) => {
       const newTasks = response.data;
@@ -54,9 +48,6 @@ const TasksView = () => {
         }
       });
     });
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
   }, []);
 
   const handleCloseOptions = () => {
@@ -67,8 +58,12 @@ const TasksView = () => {
     setShowComponent(false);
   };
 
-  const handleClick = () => {
-    setShowComponent(true);
+  const handleClick = (e) => {
+    const newTask = document.getElementById('newBtn');
+    const completeBtn = document.getElementById('completeBtn');
+    newTask === e.currentTarget
+      ? setAddTask((prevState) => !prevState)
+      : setCompleteTask((prevState) => !prevState);
   };
 
   const handleOptions = (taskId) => {
@@ -114,12 +109,33 @@ const TasksView = () => {
                 <h1>New Tasks</h1>
                 <div>{newTaskCount}</div>
               </div>
-              <button onClick={handleClick}>
-                <Plus />
+              <button id="newBtn" onClick={(e) => handleClick(e)}>
+                <Plus id="newPlus" />
                 ADD
               </button>
             </TasksTitle>
             <TaskScroll>
+              {addTask ? (
+                <TasksContent
+                  className="tasks-content"
+                  draggable="true"
+                  onMouseLeave={handleCloseOptions}
+                >
+                  <TasksMenu>
+                    <div className="abc">
+                      <CheckCircle color="#8D8D8D" />
+                      <input type="text" placeholder="Write a task name" />
+                    </div>
+                    <MoreVertical
+                      className="vertical"
+                      onClick={() => handleOptions()}
+                    />
+                  </TasksMenu>
+                  <TasksDate>
+                    <br />
+                  </TasksDate>
+                </TasksContent>
+              ) : null}
               {tasks.map((task) => {
                 if (task.origin === 'new_tasks') {
                   return (
@@ -156,12 +172,33 @@ const TasksView = () => {
                 <h1>Completed</h1>
                 <div>{completedTask}</div>
               </div>
-              <button onClick={handleClick}>
+              <button id="completeBtn" onClick={(e) => handleClick(e)}>
                 <Plus />
                 ADD
               </button>
             </TasksTitleCompleted>
             <TaskScroll>
+              {completeTask ? (
+                <TasksContent
+                  className="tasks-content"
+                  draggable="true"
+                  onMouseLeave={handleCloseOptions}
+                >
+                  <TasksMenu>
+                    <div className="abc">
+                      <CheckCircle color="#8D8D8D" />
+                      <input type="text" placeholder="Write a task name" />
+                    </div>
+                    <MoreVertical
+                      className="vertical"
+                      onClick={() => handleOptions()}
+                    />
+                  </TasksMenu>
+                  <TasksDate>
+                    <br />
+                  </TasksDate>
+                </TasksContent>
+              ) : null}
               {tasks.map((task) => {
                 if (task.origin === 'completed') {
                   return (

@@ -235,6 +235,15 @@ const TasksMenu = styled.div`
     flex-direction: row;
     gap: 10px;
   }
+  input {
+    border: none;
+    color: #fff;
+    background-color: transparent;
+    height: 20px;
+    outline: none;
+    font-size: 1rem;
+    width: 300px;
+  }
 `;
 
 const TasksDate = styled.div`
