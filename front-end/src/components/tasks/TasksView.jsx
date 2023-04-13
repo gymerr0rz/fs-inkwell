@@ -30,6 +30,8 @@ const TasksView = () => {
   const [search, setSearch] = useState(null);
   const [completeTask, setCompleteTask] = useState(false);
   const [addTask, setAddTask] = useState(false);
+  const [newTitle, setNewTitle] = useState();
+  const [completedTitle, setCompleteTitle] = useState();
 
   const header = useAuthHeader();
 
@@ -60,7 +62,6 @@ const TasksView = () => {
 
   const handleClick = (e) => {
     const newTask = document.getElementById('newBtn');
-    const completeBtn = document.getElementById('completeBtn');
     newTask === e.currentTarget
       ? setAddTask((prevState) => !prevState)
       : setCompleteTask((prevState) => !prevState);
@@ -85,6 +86,40 @@ const TasksView = () => {
         const newTasks = response.data;
         setTasks([...newTasks]);
       });
+  };
+
+  const handleNewKey = (e) => {
+    e.keyCode === 13
+      ? axios
+          .post(`${SERVER_URL}/user/createTask`, {
+            title: newTitle,
+            origin: 'new_tasks',
+          })
+          .then((response) => {
+            console.log(response);
+            window.location.reload();
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      : console.log('Enter not clicked');
+  };
+
+  const handleComplete = (e) => {
+    e.keyCode === 13
+      ? axios
+          .post(`${SERVER_URL}/user/createTask`, {
+            title: completedTitle,
+            origin: 'completed',
+          })
+          .then((response) => {
+            console.log(response);
+            window.location.reload();
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      : console.log('Enter not clicked');
   };
 
   return (
@@ -124,12 +159,13 @@ const TasksView = () => {
                   <TasksMenu>
                     <div className="abc">
                       <CheckCircle color="#8D8D8D" />
-                      <input type="text" placeholder="Write a task name" />
+                      <input
+                        type="text"
+                        placeholder="Write a task name"
+                        onKeyDown={(e) => handleNewKey(e)}
+                        onChange={(e) => setNewTitle(e.target.value)}
+                      />
                     </div>
-                    <MoreVertical
-                      className="vertical"
-                      onClick={() => handleOptions()}
-                    />
                   </TasksMenu>
                   <TasksDate>
                     <br />
@@ -187,12 +223,13 @@ const TasksView = () => {
                   <TasksMenu>
                     <div className="abc">
                       <CheckCircle color="#8D8D8D" />
-                      <input type="text" placeholder="Write a task name" />
+                      <input
+                        type="text"
+                        placeholder="Write a task name"
+                        onChange={(e) => setCompleteTitle(e.target.value)}
+                        onKeyDown={(e) => handleComplete(e)}
+                      />
                     </div>
-                    <MoreVertical
-                      className="vertical"
-                      onClick={() => handleOptions()}
-                    />
                   </TasksMenu>
                   <TasksDate>
                     <br />

@@ -22,14 +22,15 @@ const get_tasks = async (req, res) => {
     if (!user) return res.sendStatus(204);
 
     if (!search) {
-      res.send(user.tasks);
+      res.send(user.tasks.reverse());
     }
 
     if (search) {
+      console.log(search);
       const query = search.toLowerCase();
-      const task = user.tasks.filter((task) =>
-        task.title.toLowerCase().includes(query)
-      );
+      const task = user.tasks.filter((task) => {
+        task.title.toLowerCase().includes(query);
+      });
       if (task.length > 0) {
         res.send(task);
       } else {
@@ -48,7 +49,7 @@ const create_task = async (req, res) => {
   try {
     const { title, origin, color } = req.body;
     console.log(origin);
-    if (!title && !category && !origin) return res.sendStatus(403);
+    if (!title && !origin) return res.sendStatus(403);
 
     const headers = req.headers.authorization;
     const token = headers.split(' ')[1];
