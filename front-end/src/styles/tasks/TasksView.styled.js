@@ -229,6 +229,8 @@ const TasksMenu = styled.div`
     h1 {
       font-size: 1rem;
       font-weight: 400 !important;
+      cursor: text;
+      width: 330px;
     }
     display: flex;
     align-items: center;

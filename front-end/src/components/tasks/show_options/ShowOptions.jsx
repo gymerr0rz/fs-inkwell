@@ -23,20 +23,6 @@ const ShowOptions = (options) => {
       .catch((err) => console.log(err));
   };
 
-  const handleEdit = () => {
-    console.log(title);
-    axios.defaults.headers.common['Authorization'] = header();
-    axios
-      .delete(`${SERVER_URL}/user/editTask`, {
-        data: { title },
-      })
-      .then((response) => {
-        console.log(response);
-        window.location.reload();
-      })
-      .catch((err) => console.log(err));
-  };
-
   const handleComplete = () => {
     console.log(title);
     axios.defaults.headers.common['Authorization'] = header();
@@ -58,12 +44,7 @@ const ShowOptions = (options) => {
           Delete <Trash />
         </button>
       </li>
-      <li>
-        <button onClick={handleEdit}>
-          Edit
-          <Edit2 />
-        </button>
-      </li>
+
       <li>
         <button onClick={handleComplete}>
           Mark as Complete

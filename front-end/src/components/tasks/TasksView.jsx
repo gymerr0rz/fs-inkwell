@@ -1,5 +1,5 @@
 import { Search, Plus, CheckCircle, MoreVertical } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
   TasksContainer,
@@ -12,12 +12,10 @@ import {
   TasksContent,
   TasksMenu,
   TasksDate,
-  TasksCategory,
   TasksTitleCompleted,
   TaskScroll,
 } from '../../styles/tasks/TasksView.styled';
 import { useAuthHeader } from 'react-auth-kit';
-import NewTask from './NewTask';
 import ShowOptions from './show_options/ShowOptions';
 import SERVER_URL from '../../config/config';
 
@@ -56,10 +54,6 @@ const TasksView = () => {
     setShowOptions({});
   };
 
-  const handleClose = () => {
-    setShowComponent(false);
-  };
-
   const handleClick = (e) => {
     const newTask = document.getElementById('newBtn');
     newTask === e.currentTarget
@@ -86,6 +80,10 @@ const TasksView = () => {
         const newTasks = response.data;
         setTasks([...newTasks]);
       });
+  };
+
+  const handleEdit = (e) => {
+    console.log(e.currentTarget.innerText);
   };
 
   const handleNewKey = (e) => {
@@ -124,7 +122,6 @@ const TasksView = () => {
 
   return (
     <>
-      {showComponent && <NewTask onClose={handleClose} />}
       <TasksContainer>
         <TasksTop>
           <TasksTopText>My Tasks</TasksTopText>
@@ -183,7 +180,7 @@ const TasksView = () => {
                       <TasksMenu>
                         <div className="abc">
                           <CheckCircle color="#8D8D8D" />
-                          <h1>{task.title}</h1>
+                          <h1 onClick={(e) => handleEdit(e)}>{task.title}</h1>
                         </div>
                         <MoreVertical
                           className="vertical"

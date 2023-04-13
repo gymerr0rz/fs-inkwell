@@ -50,11 +50,17 @@ const Navbar = () => {
     const user = e.target.value;
     // console.log(users);
     if (user.length > 0) {
-      axios.get(`${SERVER_URL}/user/getUser/` + user).then((response) => {
-        if (response.data.length > 0) {
-          setUsers([...response.data]);
-        }
-      });
+      axios
+        .get(`${SERVER_URL}/user/getUser/` + user)
+        .then((response) => {
+          if (response.data.length > 0) {
+            setUsers([...response.data]);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setUsers([]);
+        });
     } else {
       setUsers([]);
     }

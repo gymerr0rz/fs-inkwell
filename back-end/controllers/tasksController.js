@@ -26,13 +26,12 @@ const get_tasks = async (req, res) => {
     }
 
     if (search) {
-      console.log(search);
       const query = search.toLowerCase();
       const task = user.tasks.filter((task) => {
-        task.title.toLowerCase().includes(query);
+        return task.title?.toLowerCase().includes(query);
       });
       if (task.length > 0) {
-        res.send(task);
+        res.status(200).send(task);
       } else {
         res.status(400).json({
           status: 'failed',
