@@ -1,4 +1,8 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { GithubIcon, TwitterIcon } from 'lucide-react';
+import { useAuthHeader } from 'react-auth-kit';
+import SERVER_URL from '../../config/config';
 import {
   NotesContainer,
   UserProfileContainer,
@@ -11,13 +15,9 @@ import {
   Information,
   SocialLinks,
 } from '../../styles/userpage/UserPage.styled';
-import axios from 'axios';
-import { GithubIcon, TwitterIcon } from 'lucide-react';
-import { useAuthHeader } from 'react-auth-kit';
-import SERVER_URL from '../../config/config';
 
 const UsersPage = () => {
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
   const [owner, setOwner] = useState(false);
   const header = useAuthHeader();
 
@@ -28,6 +28,7 @@ const UsersPage = () => {
     axios
       .get(`${SERVER_URL}/user/searchUser?id=` + id)
       .then((response) => {
+        console.log(response);
         setUsers(response.data.users);
         setOwner(response.data.owner);
       })
