@@ -53,24 +53,25 @@ const Select = styled.div`
   display: flex;
   width: 482px;
   gap: 10px;
+  height: 300px;
   flex-direction: column;
   .container {
     display: flex;
     flex-direction: row;
     gap: 10px;
     overflow: hidden;
-    width: 100%;
-    height: 150px;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
   }
   input[type='file'] {
     visibility: hidden;
     color: transparent;
   }
   .profileimage {
-    width: 30%;
+    width: 300px;
     background-color: #09090a;
     height: 100%;
-    position: relative;
     border-radius: 10px;
     label {
       width: 100%;
@@ -82,34 +83,6 @@ const Select = styled.div`
       text-align: center;
       cursor: pointer;
     }
-  }
-  .profilebanner {
-    width: 70%;
-    height: 100%;
-    background-color: #09090a;
-    position: relative;
-    border-radius: 10px;
-    label {
-      width: 100%;
-      height: 100%;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      cursor: pointer;
-    }
-  }
-  textarea {
-    height: 116px;
-    width: 482px;
-    background-color: #09090a;
-    border: none;
-    resize: none;
-    color: #fff;
-    outline: none;
-    padding: 10px;
-    border-radius: 10px;
   }
 `;
 

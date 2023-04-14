@@ -99,46 +99,50 @@ const upload_banner_image = async (req, res) => {
 };
 
 const change_settings = async (req, res) => {
-  const { username, bio } = req.body;
+  try {
+    const { username, bio } = req.body;
 
-  if (!bio && !username) return res.sendStatus(403);
+    if (!bio && !username) return res.sendStatus(403);
 
-  const headers = req.headers.authorization;
-  const token = headers.split(' ')[1];
+    const headers = req.headers.authorization;
+    const token = headers.split(' ')[1];
 
-  if (!token) return res.sendStatus(403);
+    if (!token) return res.sendStatus(403);
 
-  const decode = jwt.decode(token, SECRET_TOKEN);
+    const decode = jwt.decode(token, SECRET_TOKEN);
 
-  const user_username = decode.username;
+    const user_username = decode.username;
 
-  const user = await User.findById(user_username);
+    const user = await User.findById(user_username); // Finds user by token authorization
 
-  const changeUser = await User.findOne({ username: username });
+    const changeUser = await User.findOne({ username: username.toLowerCase() }); // Finds user from the request to see if it exists.
 
-  if (username) {
-    if (changeUser) {
-      res.status(409).json({
-        status: 'failed',
-        message: 'User with that username already exists!',
-      });
-    } else {
-      user.username = username;
-      await user.save();
+    if (username) {
+      if (changeUser?.username.toLowerCase() === username.toLowerCase()) {
+        res.status(409).json({
+          status: 'failed',
+          message: 'User with that username already exists!',
+        });
+      } else {
+        user.username = username;
+        await user.save();
+        res.status(200).json({
+          status: 'success',
+          message: 'Username is updated to ' + username,
+        });
+      }
+    }
+
+    if (bio) {
+      user.bio = bio;
+      user.save();
       res.status(200).json({
         status: 'success',
-        message: 'Username is updated to ' + username,
+        message: 'Users bio successfully changed!',
       });
     }
-  }
-
-  if (bio) {
-    user.bio = bio;
-    user.save();
-    res.status(200).json({
-      status: 'success',
-      message: 'Users bio successfully changed!',
-    });
+  } catch (err) {
+    console.log(err);
   }
 };
 

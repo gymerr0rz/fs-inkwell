@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   NavbarContainer,
@@ -6,20 +6,12 @@ import {
   NavLogo,
   NavbarInnerContainer,
   NavLinks,
-  SearchDiv,
-  SearchIcons,
 } from '../../styles/navbar/Navbar.styled';
 import NavButton from './buttons/NavButton';
-import { Search } from 'lucide-react';
 import User from '../user/User';
-import axios from 'axios';
-import ShowUsers from './showusers/ShowUsers';
-import SERVER_URL from '../../config/config';
 import Logo from '../../assets/logo/logo4.png';
 
 const Navbar = () => {
-  const [users, setUsers] = useState([]);
-
   function currentButton(code) {
     const navbarButtons = {
       Home: 'app',
@@ -46,26 +38,6 @@ const Navbar = () => {
     });
   });
 
-  const handleSearch = (e) => {
-    const user = e.target.value;
-    // console.log(users);
-    if (user.length > 0) {
-      axios
-        .get(`${SERVER_URL}/user/getUser/` + user)
-        .then((response) => {
-          if (response.data.length > 0) {
-            setUsers([...response.data]);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          setUsers([]);
-        });
-    } else {
-      setUsers([]);
-    }
-  };
-
   return (
     <>
       <NavNoFixed>
@@ -75,17 +47,6 @@ const Navbar = () => {
               <img src={Logo} alt="" id="logo" />
               <h1>Inkwell</h1>
               <p>Workspace</p>
-              <SearchDiv>
-                <SearchIcons>
-                  <input
-                    type="text"
-                    placeholder="Find users..."
-                    onChange={(e) => handleSearch(e)}
-                  />
-                  <Search color="#fff" />
-                </SearchIcons>
-                {users.length !== 0 ? <ShowUsers users={users} /> : null}
-              </SearchDiv>
               <NavLinks className="navBtn">
                 <Link to="/app">
                   <NavButton icon="Home" name="Home" />

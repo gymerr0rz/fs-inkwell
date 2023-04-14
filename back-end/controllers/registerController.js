@@ -4,6 +4,7 @@ const sendConfirmationEmail = require('../utils/sendConfirmationEmail');
 const uuid = require('uuid');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const SECRET_TOKEN = process.env.REFRESH_TOKEN_SECRET;
 
 const confirm_user = async (req, res) => {
   try {
@@ -24,6 +25,31 @@ const confirm_user = async (req, res) => {
     );
 
     res.send('Email confirmed. Thank you!');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const retry_confirm_user = async (req, res) => {
+  try {
+    const headers = req.headers.authorization;
+
+    if (!headers) return res.sendStatus(403);
+
+    const token = headers.split(' ')[1];
+
+    const decode = jwt.decode(token, SECRET_TOKEN);
+
+    const user_username = decode.username;
+
+    const user = await User.findById(user_username);
+
+    if (!user) return res.sendStatus(204);
+
+    if (!user.token) return res.sendStatus(204);
+
+    const confirmationLink = `https://inkwell.onrender.com/auth/confirm/${user.token}`;
+    await sendConfirmationEmail(user.email, confirmationLink);
   } catch (err) {
     console.log(err);
   }
@@ -85,4 +111,5 @@ const create_user = async (req, res) => {
 module.exports = {
   create_user,
   confirm_user,
+  retry_confirm_user,
 };

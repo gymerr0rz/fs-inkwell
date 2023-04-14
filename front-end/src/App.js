@@ -10,7 +10,6 @@ import AdministrationPage from './pages/app/AdministrationPage';
 import TasksPage from './pages/app/TasksPage';
 import Navbar from './components/navbar/Navbar';
 import HomePage from './pages/app/HomePage';
-import UsersPage from './pages/app/UsersPage';
 import SetupProfile from './pages/auth/setupProfile/SetupProfile';
 import PageNotFound from './pages/PageNotFound';
 
@@ -62,15 +61,6 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route
-          path="/app/users"
-          element={
-            <RequireAuth loginPath="/auth/login">
-              <UsersPage />
-            </RequireAuth>
-          }
-        />
-
         <Route
           path="/app/"
           element={

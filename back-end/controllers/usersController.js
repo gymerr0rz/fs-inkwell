@@ -8,7 +8,7 @@ const get_users = async (req, res) => {
     const { id } = req.params;
     const maxUsers = 5;
     const users = await User.find(
-      { username: new RegExp('^' + id) },
+      { username: new RegExp('^' + id, 'i') },
       { username: 1, email: 1, profile_image: 1, _id: 0 }
     );
 

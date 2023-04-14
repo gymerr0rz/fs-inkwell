@@ -25,6 +25,12 @@ const SetupProfile = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleRetry = () => {
+    axios
+      .get(`${SERVER_URL}/auth/retry`)
+      .then((response) => console.log(response));
+  };
+
   return (
     <>
       {user.email_confirmed ? (
@@ -44,12 +50,7 @@ const SetupProfile = () => {
                 <label for="files">Select Profile Image</label>
                 <input type="file" name="" id="files" />
               </div>
-              <div className="profilebanner">
-                <label for="files">Select Banner Image</label>
-                <input type="file" name="" id="file" />
-              </div>
             </div>
-            <textarea placeholder="Describe yourself here..." />
           </Select>
           <Buttons>
             <Link to="/app">
@@ -69,6 +70,7 @@ const SetupProfile = () => {
                 <p>
                   When you have confirmed the email, please refresh the site.
                 </p>
+                <a onClick={() => handleRetry()}>Send request.</a>
               </Introduction>
             </SetupContainer>
           ) : null}

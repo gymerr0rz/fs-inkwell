@@ -130,6 +130,7 @@ const NavLinks = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
+  margin-top: 50px;
   button.active {
     svg {
       stroke: #fff;
