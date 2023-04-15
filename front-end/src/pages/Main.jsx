@@ -34,22 +34,6 @@ const MainPage = () => {
       });
   }, []);
 
-  function handleCondition() {
-    if (!active) {
-      return (
-        <Link to="/auth/login">
-          <button>Log in</button>
-        </Link>
-      );
-    } else {
-      return (
-        <Link to="/app">
-          <button>Dashboard</button>
-        </Link>
-      );
-    }
-  }
-
   return (
     <>
       <Container className="hero">
@@ -59,7 +43,17 @@ const MainPage = () => {
             <ul>
               <li>About us</li>
               <li>Contact us</li>
-              <li>{handleCondition()}</li>
+              <li>
+                {!active ? (
+                  <Link to="/auth/login">
+                    <button>Log in</button>
+                  </Link>
+                ) : (
+                  <Link to="/app">
+                    <button>Dashboard</button>
+                  </Link>
+                )}
+              </li>
             </ul>
           </HomeNavbar>
           <Hero>

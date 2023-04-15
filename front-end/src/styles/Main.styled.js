@@ -16,8 +16,8 @@ const HomeNavbar = styled.div`
   align-items: center;
   padding: 0 20px;
   width: 80%;
-  height: 150px;
-  color: #fff;
+  height: 100px;
+  color: #eee;
   z-index: 99;
   ul {
     display: flex;

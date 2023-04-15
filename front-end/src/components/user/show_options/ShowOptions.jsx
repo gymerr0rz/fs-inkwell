@@ -18,11 +18,6 @@ const ShowOptions = (options) => {
 
   return (
     <SettingsOptions>
-      <li className="profile">
-        <button className="profile" onClick={handleView}>
-          View Profile <User />
-        </button>
-      </li>
       <li className="logout">
         <button className="trash" onClick={handleTrash}>
           Log Out <LogOut />

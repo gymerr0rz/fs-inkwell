@@ -74,35 +74,11 @@ const upload_profile_image = async (req, res) => {
   }
 };
 
-const upload_banner_image = async (req, res) => {
-  try {
-    const headers = req.headers.authorization;
-    const token = headers.split(' ')[1];
-
-    if (!token) return res.sendStatus(403);
-
-    const decode = jwt.decode(token, SECRET_TOKEN);
-
-    const user_username = decode.username;
-
-    const user = await User.findById(user_username);
-
-    user.banner_image = req.file.path;
-
-    await user.save();
-
-    res.status(200).json({ message: 'Banner picture uploaded successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
-};
-
 const change_settings = async (req, res) => {
   try {
     const { username, bio } = req.body;
 
-    if (!bio && !username) return res.sendStatus(403);
+    if (!username) return res.sendStatus(403);
 
     const headers = req.headers.authorization;
     const token = headers.split(' ')[1];
@@ -132,15 +108,6 @@ const change_settings = async (req, res) => {
         });
       }
     }
-
-    if (bio) {
-      user.bio = bio;
-      user.save();
-      res.status(200).json({
-        status: 'success',
-        message: 'Users bio successfully changed!',
-      });
-    }
   } catch (err) {
     console.log(err);
   }
@@ -151,5 +118,4 @@ module.exports = {
   delete_user,
   change_settings,
   upload_profile_image,
-  upload_banner_image,
 };
