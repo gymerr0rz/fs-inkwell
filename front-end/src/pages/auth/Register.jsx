@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSignIn } from 'react-auth-kit';
 import SERVER_URL from '../../config/config';
 
+// Toasty Interface Options
 const options = {
   position: 'top-right',
   autoClose: 3000,
@@ -24,9 +25,9 @@ const options = {
 };
 
 const RegisterPage = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
   const signIn = useSignIn();
 
@@ -54,11 +55,6 @@ const RegisterPage = () => {
       });
   }
 
-  function onClick(e) {
-    const target = e.currentTarget;
-    target.querySelector('input').focus();
-  }
-
   return (
     <>
       <AuthContainer>
@@ -70,25 +66,28 @@ const RegisterPage = () => {
             Pomodoro app!
           </p>
           <form id="login" onSubmit={onFormSubmit}>
-            <div className="labels" onClick={onClick}>
-              <label for="email">EMAIL</label>
+            <div className="labels">
+              <label htmlFor="email">EMAIL</label>
               <AuthInputs
-                type="text"
+                type="email"
+                id="email"
                 placeholder="john@example.com"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="labels" onClick={onClick}>
-              <label for="username">USERNAME</label>
+            <div className="labels">
+              <label htmlFor="username">USERNAME</label>
               <AuthInputs
                 type="text"
                 placeholder="john1234"
+                id="username"
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <div className="labels" onClick={onClick}>
-              <label for="password">PASSWORD</label>
+            <div className="labels">
+              <label htmlFor="password">PASSWORD</label>
               <AuthInputs
+                id="password"
                 type="password"
                 placeholder="password123"
                 onChange={(e) => setPassword(e.target.value)}
