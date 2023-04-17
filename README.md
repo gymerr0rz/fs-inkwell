@@ -1,7 +1,10 @@
 <!-- PROJECT LOGO -->
 <br />
+<br />
 <div align="center">
-    ![video](https://user-images.githubusercontent.com/101925682/232554266-6928d24f-d180-4f0b-badb-28ba01e22ab6.mp4)
+  <a href="https://github.com/gymerr0rz/fs-inkwell">
+    <img src="front-end/src/assets/ss.png" alt="Logo" >
+  </a>
 </div>
 
 ### Built With
