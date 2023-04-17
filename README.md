@@ -1,9 +1,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/gymerr0rz/fs-inkwell">
-    <img src="front-end/src/assets/ss.png" alt="Logo" >
-  </a>
+    <video width="320" height="240" autoplay>
+      <source src="front-end/src/assets/project-overview.mp4" type="video/mp4">
+    </video>
 </div>
 
 ### Built With
