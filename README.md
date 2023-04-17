@@ -1,9 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <video width="320" height="240" autoplay>
-      <source src="front-end/src/assets/project-overview.mp4" type="video/mp4">
-    </video>
+    https://user-images.githubusercontent.com/101925682/232554266-6928d24f-d180-4f0b-badb-28ba01e22ab6.mp4
 </div>
 
 ### Built With
