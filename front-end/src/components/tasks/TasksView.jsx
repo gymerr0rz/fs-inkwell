@@ -21,7 +21,6 @@ import SERVER_URL from '../../config/config';
 
 const TasksView = () => {
   const [tasks, setTasks] = useState([]);
-  const [showComponent, setShowComponent] = useState(false);
   const [showOptions, setShowOptions] = useState([]);
   let [newTaskCount, setNewTaskCount] = useState(0);
   let [completedTask, setCompletedTask] = useState(0);
@@ -30,11 +29,9 @@ const TasksView = () => {
   const [addTask, setAddTask] = useState(false);
   const [newTitle, setNewTitle] = useState();
   const [completedTitle, setCompleteTitle] = useState();
-
   const header = useAuthHeader();
 
-  useEffect(() => {
-    axios.defaults.headers.common['Authorization'] = header();
+  function getTasks(header) {
     axios.get(`${SERVER_URL}/user/getTasks`).then((response) => {
       const newTasks = response.data;
       setTasks([...tasks, ...newTasks]);
@@ -48,6 +45,10 @@ const TasksView = () => {
         }
       });
     });
+  }
+
+  useEffect(() => {
+    getTasks(header);
   }, []);
 
   const handleCloseOptions = () => {
@@ -169,34 +170,32 @@ const TasksView = () => {
                   </TasksDate>
                 </TasksContent>
               ) : null}
-              {tasks.map((task) => {
-                if (task.origin === 'new_tasks') {
-                  return (
-                    <TasksContent
-                      className="tasks-content"
-                      draggable="true"
-                      onMouseLeave={handleCloseOptions}
-                    >
-                      <TasksMenu>
-                        <div className="abc">
-                          <CheckCircle color="#8D8D8D" />
-                          <h1 onClick={(e) => handleEdit(e)}>{task.title}</h1>
-                        </div>
-                        <MoreVertical
-                          className="vertical"
-                          onClick={() => handleOptions(task.title)}
-                        />
-                      </TasksMenu>
-                      <TasksDate>
-                        <p>{task.date}</p>
-                      </TasksDate>
-                      {showOptions[task.title] && (
-                        <ShowOptions title={task.title} />
-                      )}
-                    </TasksContent>
-                  );
-                }
-              })}
+              {tasks.map((task) =>
+                task.origin === 'new_tasks' ? (
+                  <TasksContent
+                    className="tasks-content"
+                    draggable="true"
+                    onMouseLeave={handleCloseOptions}
+                  >
+                    <TasksMenu>
+                      <div className="abc">
+                        <CheckCircle color="#8D8D8D" />
+                        <h1 onClick={(e) => handleEdit(e)}>{task.title}</h1>
+                      </div>
+                      <MoreVertical
+                        className="vertical"
+                        onClick={() => handleOptions(task.title)}
+                      />
+                    </TasksMenu>
+                    <TasksDate>
+                      <p>{task.date}</p>
+                    </TasksDate>
+                    {showOptions[task.title] && (
+                      <ShowOptions title={task.title} />
+                    )}
+                  </TasksContent>
+                ) : null
+              )}
             </TaskScroll>
           </TasksManager>
           <TasksManager>
@@ -233,34 +232,32 @@ const TasksView = () => {
                   </TasksDate>
                 </TasksContent>
               ) : null}
-              {tasks.map((task) => {
-                if (task.origin === 'completed') {
-                  return (
-                    <TasksContent
-                      className="tasks-content"
-                      draggable="true"
-                      onMouseLeave={handleCloseOptions}
-                    >
-                      <TasksMenu>
-                        <div className="abc">
-                          <CheckCircle color="#8bffc0" />
-                          <h1>{task.title}</h1>
-                        </div>
-                        <MoreVertical
-                          className="vertical"
-                          onClick={() => handleOptions(task.title)}
-                        />
-                      </TasksMenu>
-                      <TasksDate>
-                        <p>{task.date}</p>
-                      </TasksDate>
-                      {showOptions[task.title] && (
-                        <ShowOptions title={task.title} />
-                      )}
-                    </TasksContent>
-                  );
-                }
-              })}
+              {tasks.map((task) =>
+                task.origin === 'completed' ? (
+                  <TasksContent
+                    className="tasks-content"
+                    draggable="true"
+                    onMouseLeave={handleCloseOptions}
+                  >
+                    <TasksMenu>
+                      <div className="abc">
+                        <CheckCircle color="#8bffc0" />
+                        <h1>{task.title}</h1>
+                      </div>
+                      <MoreVertical
+                        className="vertical"
+                        onClick={() => handleOptions(task.title)}
+                      />
+                    </TasksMenu>
+                    <TasksDate>
+                      <p>{task.date}</p>
+                    </TasksDate>
+                    {showOptions[task.title] && (
+                      <ShowOptions title={task.title} />
+                    )}
+                  </TasksContent>
+                ) : null
+              )}
             </TaskScroll>
           </TasksManager>
         </TasksBottom>
