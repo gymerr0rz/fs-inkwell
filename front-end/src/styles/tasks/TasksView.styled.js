@@ -275,6 +275,17 @@ const TaskScroll = styled.div`
   width: 100%;
 `;
 
+const ChangeInput = styled.textarea`
+  width: 330px;
+  background-color: transparent;
+  font-size: 1rem;
+  border: none;
+  resize: none;
+  color: #fff;
+  height: 100%;
+  outline: none;
+`;
+
 export {
   TasksContainer,
   TasksTop,
@@ -290,4 +301,5 @@ export {
   TasksCategory,
   TasksTitleCompleted,
   TaskScroll,
+  ChangeInput,
 };

@@ -14,6 +14,7 @@ import {
   TasksDate,
   TasksTitleCompleted,
   TaskScroll,
+  ChangeInput,
 } from '../../styles/tasks/TasksView.styled';
 import { useAuthHeader } from 'react-auth-kit';
 import ShowOptions from './show_options/ShowOptions';
@@ -22,6 +23,7 @@ import SERVER_URL from '../../config/config';
 const TasksView = () => {
   const [tasks, setTasks] = useState([]);
   const [showOptions, setShowOptions] = useState([]);
+  const [edit, setEdit] = useState({});
   let [newTaskCount, setNewTaskCount] = useState(0);
   let [completedTask, setCompletedTask] = useState(0);
   const [search, setSearch] = useState(null);
@@ -84,7 +86,12 @@ const TasksView = () => {
   };
 
   const handleEdit = (e) => {
-    console.log(e.currentTarget.innerText);
+    setEdit({
+      target: e.currentTarget.innerText,
+      change: true,
+    });
+
+    console.log(edit);
   };
 
   const handleNewKey = (e) => {
@@ -118,6 +125,18 @@ const TasksView = () => {
           .catch((err) => {
             console.log(err);
           })
+      : console.log('Enter not clicked');
+  };
+
+  const handleEditChange = (e) => {
+    console.log(e);
+  };
+
+  const handleEditSubmit = (e) => {
+    e.keyCode === 13
+      ? axios.post(`${SERVER_URL}/user/modifyTask`, {
+          title: e.currentTarget.value.split('\n').join(''),
+        })
       : console.log('Enter not clicked');
   };
 
@@ -170,6 +189,7 @@ const TasksView = () => {
                   </TasksDate>
                 </TasksContent>
               ) : null}
+
               {tasks.map((task) =>
                 task.origin === 'new_tasks' ? (
                   <TasksContent
@@ -180,7 +200,16 @@ const TasksView = () => {
                     <TasksMenu>
                       <div className="abc">
                         <CheckCircle color="#8D8D8D" />
-                        <h1 onClick={(e) => handleEdit(e)}>{task.title}</h1>
+                        {task.title === edit.target && edit.change ? (
+                          <ChangeInput
+                            type="text"
+                            placeholder={task.title}
+                            onChange={(e) => handleEditChange(e)}
+                            onKeyDown={(e) => handleEditSubmit(e)}
+                          />
+                        ) : (
+                          <h1 onClick={(e) => handleEdit(e)}>{task.title}</h1>
+                        )}
                       </div>
                       <MoreVertical
                         className="vertical"

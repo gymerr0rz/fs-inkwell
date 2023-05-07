@@ -16,6 +16,7 @@ router.post('/createTask', tasksController.create_task);
 router.get('/getTasks', tasksController.get_tasks);
 router.delete('/deleteTask', tasksController.delete_task);
 router.post('/changeStatusTask', tasksController.change_status_task);
+router.post('/modifyTask', tasksController.modify_task);
 
 // User routes
 router.post('/changeSettings', userController.change_settings);
