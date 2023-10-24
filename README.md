@@ -7,13 +7,29 @@
   </a>
 </div>
 
-### Built With
+### 💻 Stack
 
-- React
-- Nodejs
-- Styled-Components
-- Express
-- Mongoose
+- [axios](https://www.npmjs.com/package/axios): Promise-based HTTP client for making API requests.
+- [bcrypt](https://www.npmjs.com/package/bcrypt): Library for hashing passwords and comparing hashes.
+- [cors](https://www.npmjs.com/package/cors): Middleware for enabling Cross-Origin Resource Sharing (CORS) in Express.js.
+- [dotenv](https://www.npmjs.com/package/dotenv): Loads environment variables from a .env file into process.env.
+- [express](https://www.npmjs.com/package/express): Fast and minimalist web application framework for Node.js.
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken): Implements JSON Web Tokens (JWT) for authentication.
+- [mongoose](https://www.npmjs.com/package/mongoose): Object Data Modeling (ODM) library for MongoDB and Node.js.
+- [nodemon](https://www.npmjs.com/package/nodemon): Monitor for changes in the source code and automatically restart the server.
+
+### 📝 Project Summary
+
+- [**back-end**](back-end): Contains the back-end code for the project.
+- [**back-end/controllers**](back-end/controllers): Handles the logic for different routes and interacts with models.
+- [**back-end/models**](back-end/models): Defines the data models for the project.
+- [**back-end/routes**](back-end/routes): Contains the route definitions for the API endpoints.
+- [**front-end**](front-end): Contains the front-end code for the project.
+- [**front-end/src/components**](front-end/src/components): Holds the reusable UI components used throughout the application.
+- [**front-end/src/pages**](front-end/src/pages): Contains the different pages/views of the application.
+- [**front-end/src/styles**](front-end/src/styles): Holds the styling files for the application.
+- [**front-end/src/assets**](front-end/src/assets): Contains the static assets used in the project.
+- [**front-end/public**](front-end/public): Holds the public files for the front-end build.
 
 <!-- GETTING STARTED -->
 
